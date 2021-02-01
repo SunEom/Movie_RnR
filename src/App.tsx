@@ -11,7 +11,7 @@ function App() {
         <Route exact path="/">
           <Home />
         </Route>
-        <Route exact path="/Create">
+        <Route exact path="/create">
           <Create />
         </Route>
       </HashRouter>
