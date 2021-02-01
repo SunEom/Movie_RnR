@@ -1,0 +1,25 @@
+.main__screen {
+  display: flex;
+  width: 100vw;
+  justify-content: center;
+}
+
+.main__screen__content {
+  width: 90%;
+  padding: 0px 60px;
+  width: 65%;
+}
+
+.post__form__input {
+  margin-top: 12px;
+}
+
+.post__form__input__overview {
+  margin-top: 40px;
+}
+
+.post__form__submit__btn {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
