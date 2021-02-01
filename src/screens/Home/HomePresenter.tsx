@@ -4,7 +4,7 @@ import Navigation from '../../components/Navigation';
 const Home = () => {
   return (
     <>
-      <div>Hello</div>
+      <div className="screens__">Hello</div>
       <Navigation />
     </>
   );
