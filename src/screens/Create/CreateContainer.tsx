@@ -23,7 +23,7 @@ export default () => {
       overview,
     };
     await axios
-      .post('/create_process', { ...data })
+      .post('/post', { ...data })
       .then(() => {
         window.location.href = '/';
       })
