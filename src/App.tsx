@@ -1,9 +1,22 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React from 'react';
+import { HashRouter, Route } from 'react-router-dom';
+import Create from './screens/Create';
+import Home from './screens/Home';
 import './App.css';
 
 function App() {
-  return <div className="App">Hello</div>;
+  return (
+    <div className="App">
+      <HashRouter>
+        <Route exact path="/">
+          <Home />
+        </Route>
+        <Route exact path="/Create">
+          <Create />
+        </Route>
+      </HashRouter>
+    </div>
+  );
 }
 
 export default App;
