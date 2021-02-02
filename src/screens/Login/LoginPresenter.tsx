@@ -3,15 +3,15 @@ import Navigation from '../../components/Navigation';
 
 const Home = () => {
   return (
-    <div className="flex justify-center pt-14">
-      <div className="max-w-md w-full space-y-8">
+    <div className="flex justify-center pt-0 sm:pt-14">
+      <div className="max-w-md w-full space-y-8 flex items-center flex-col">
         <div>
-          <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">Sign in to your account</h2>
+          <h2 className="mt-6 text-center text-2xl sm:text-3xl font-extrabold text-gray-900">Sign in to your account</h2>
           <p className="mt-2 text-center text-sm text-gray-600"></p>
         </div>
-        <form className="mt-8 space-y-6" action="#" method="POST">
+        <form className="mt-8 space-y-6 w-11/12 flex flex-col items-center" action="#" method="POST">
           <input type="hidden" name="remember" value="true" />
-          <div className="rounded-md shadow-sm -space-y-px">
+          <div className="rounded-md shadow-sm space-y-px pb-2 w-full">
             <div>
               <label htmlFor="email-address" className="sr-only">
                 Email address
@@ -42,7 +42,7 @@ const Home = () => {
             </div>
           </div>
 
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-between w-full">
             <div className="flex items-center">
               <input
                 id="remember_me"
@@ -62,10 +62,10 @@ const Home = () => {
             </div>
           </div>
 
-          <div>
+          <div className="w-full flex justify-center">
             <button
               type="submit"
-              className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-grey-dark hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+              className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-gray-darker hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
             >
               <span className="absolute left-0 inset-y-0 flex items-center pl-3">
                 <svg
