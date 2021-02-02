@@ -5,12 +5,10 @@ import './Header.css';
 const Header = () => {
   return (
     <>
-      <header className="header">
-        <div className="header__title">
-          <Link to="/" style={{ textDecoration: 'none', color: 'black' }}>
-            Movie R&R 🎬
-          </Link>
-        </div>
+      <header className="header flex justify-center py-9 items-center">
+        <Link to="/" style={{ textDecoration: 'none', color: 'black' }}>
+          <div className="text-4xl">Movie R&R 🎬</div>
+        </Link>
       </header>
     </>
   );
