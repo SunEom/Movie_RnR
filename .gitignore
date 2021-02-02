@@ -1,5 +1,7 @@
 .eslintcache
 
+screenshots/
+
 # dependencies
 /node_modules
 /.pnp
