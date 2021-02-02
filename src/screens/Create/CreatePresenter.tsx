@@ -1,16 +1,15 @@
 import React from 'react';
 import Navigation from '../../components/Navigation';
 import { TextField, Button } from '@material-ui/core';
-import './Create.css';
 
 type CreateProps = { onChange: (e: any) => void; onSubmit: (e: any) => void };
 
 const Create = ({ onChange, onSubmit }: CreateProps) => {
   return (
-    <div className="main__screen">
-      <div className="main__screen__content">
+    <div className="flex w-full justify-center">
+      <div className="w-6/12 px-13">
         <form className="post__form" noValidate autoComplete="off" onSubmit={onSubmit}>
-          <div className="post__form__input">
+          <div>
             <TextField
               id="standard-basic"
               label="Title"
@@ -19,7 +18,7 @@ const Create = ({ onChange, onSubmit }: CreateProps) => {
               required
             />
           </div>
-          <div className="post__form__input">
+          <div>
             <TextField
               id="standard-basic"
               label="Genres"
@@ -28,7 +27,7 @@ const Create = ({ onChange, onSubmit }: CreateProps) => {
               required
             />
           </div>
-          <div className="post__form__input">
+          <div>
             <TextField
               id="standard-basic"
               type="number"
@@ -38,7 +37,7 @@ const Create = ({ onChange, onSubmit }: CreateProps) => {
               required
             />
           </div>
-          <div className="post__form__input post__form__input__overview">
+          <div className="mt-10">
             <TextField
               id="outlined-multiline-static"
               label="Overview"
@@ -51,7 +50,7 @@ const Create = ({ onChange, onSubmit }: CreateProps) => {
               required
             />
           </div>
-          <div className="post__form__submit__btn">
+          <div className="flex justify-end mt-5">
             <Button variant="contained" color="primary" size="small" type="submit">
               Save
             </Button>

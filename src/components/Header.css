@@ -2,13 +2,4 @@
 
 .header {
   font-family: 'Carter One', cursive;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  padding: 50px 0px;
-}
-
-.header__title {
-  font-size: 30px;
 }
