@@ -4,6 +4,7 @@ import Header from './components/Header';
 import Create from './screens/Create';
 import Home from './screens/Home';
 import Login from './screens/Login';
+import Join from './screens/Join';
 import './App.css';
 
 function App() {
@@ -19,6 +20,9 @@ function App() {
         </Route>
         <Route exact path="/login">
           <Login />
+        </Route>
+        <Route exact path="/join">
+          <Join />
         </Route>
       </HashRouter>
     </div>
