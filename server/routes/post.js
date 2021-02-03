@@ -28,7 +28,7 @@ router.post('/update_process',function(req,res){
         post.rates=10;
     }
     db.query(
-        `UPDATE movie SET title=?, description=?, genre=?, rates=?, updated=NOW() WHERE id=?`
+        `UPDATE movie SET title=?, description=?, genre=?, rates=?, updated=NOW() WHERE id=?;`
         ,[post.title,post.overview,post.genres,post.rates,post.id],
         function(error,result){
             if(error){
@@ -41,7 +41,7 @@ router.post('/update_process',function(req,res){
 
 router.delete('/', function(req,res){
     const post = res.body;
-    db.query(`DELETE FROM movie WHERE id = ?`,[post.id],function(error,result){
+    db.query(`DELETE FROM movie WHERE id = ?;`,[post.id],function(error,result){
         if(error){
             throw error;
         }
@@ -51,7 +51,7 @@ router.delete('/', function(req,res){
 
 router.get('/', async function(req,res){
     await db.query(
-        `SELECT * FROM movie ORDER BY created desc LIMIT 20`,function(error,result){
+        `SELECT * FROM movie ORDER BY created desc LIMIT 20;`,function(error,result){
             if(error){
                 throw error;
             }
@@ -62,7 +62,7 @@ router.get('/', async function(req,res){
 
 router.get('/:id',async function(req,res){
     await db.query(
-        `SELECT * FROM movie WHERE id=?`,[req.params.id],function(error,result){
+        `SELECT * FROM movie WHERE id=?;`,[req.params.id],function(error,result){
             if(error){
                 throw error;
             }
