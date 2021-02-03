@@ -1,5 +1,4 @@
 import React from 'react';
-import Navigation from '../../components/Navigation';
 import { TextField, Button } from '@material-ui/core';
 
 type CreateProps = { onChange: (e: any) => void; onSubmit: (e: any) => void };
