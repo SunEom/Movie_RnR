@@ -5,8 +5,8 @@ type CreateProps = { onChange: (e: any) => void; onSubmit: (e: any) => void };
 
 const Create = ({ onChange, onSubmit }: CreateProps) => {
   return (
-    <div className="flex w-full justify-center">
-      <div className="w-6/12 px-13">
+    <div className="flex w-full justify-center sm:pt-20">
+      <div className="w-10/12 sm:w-6/12 px-13">
         <form className="post__form" noValidate autoComplete="off" onSubmit={onSubmit}>
           <div>
             <TextField
