@@ -4,7 +4,7 @@ dotenv.config();
 const app = express();
 const bodyParser = require('body-parser');
 const db = require('./lib/db');
-const topicRouter = require('./routes/topic');
+const postRouter = require('./routes/post');
 
 app.use(bodyParser.urlencoded({ extended: false }));
 
@@ -13,7 +13,7 @@ app.get('/', (req, res, next) => {
   res.send(`home`);
 });
 
-app.use('/topic', topicRouter);
+app.use('/post', postRouter);
 
 
 app.use(function(req, res, next) {
