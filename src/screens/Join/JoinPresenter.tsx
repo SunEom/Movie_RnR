@@ -2,7 +2,7 @@ import React from 'react';
 
 const Home = () => {
   return (
-    <div className="w-screen flex justify-center ">
+    <div className="w-screen flex justify-center sm:pt-20">
       <div className="mt-5 md:mt-0 md:col-span-2 w-9/12 sm:w-6/12 bg-white bg-opacity-50 rounded-lg">
         <form action="#" method="POST">
           <div className="shadow overflow-hidden sm:rounded-md">
