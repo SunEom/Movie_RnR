@@ -22,6 +22,13 @@ export default () => {
       rates,
       overview,
     };
+
+    if (rates > 10) {
+      alert('Rates must be lower than 10 !');
+      console.log(e.target);
+      return;
+    }
+
     await axios
       .post('/post', { ...data })
       .then(() => {
