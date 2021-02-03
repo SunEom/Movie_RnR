@@ -20,6 +20,7 @@ export default () => {
     e.preventDefault();
     if (password !== password_check) {
       alert('Plase Check your passwords are same !');
+      return;
     }
 
     const data: post = {
