@@ -59,4 +59,16 @@ router.get('/', async function(req,res){
         }
     );
 });
+
+router.get('/:id',async function(req,res){
+    await db.query(
+        `SELECT * FROM movie WHERE id=?`,[req.params.id],function(error,result){
+            if(error){
+                throw error;
+            }
+            res.json(result);
+        }
+    );
+});
+
 module.exports = router;
