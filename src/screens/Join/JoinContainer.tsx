@@ -31,7 +31,7 @@ export default () => {
     };
 
     await axios
-      .post('/post', { ...data })
+      .post('http://localhost:8000/user', { ...data })
       .then(() => {
         window.location.href = '/login';
       })
