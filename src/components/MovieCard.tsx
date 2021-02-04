@@ -1,14 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-type ResultCardProps = {
+type MovieCardProps = {
   id: number;
   title: string;
   genres: string;
   rates: number;
 };
 
-const ResultCard = ({ id, title, genres, rates }: ResultCardProps) => {
+const MovieCard = ({ id, title, genres, rates }: MovieCardProps) => {
   return (
     <div className="w-11/12 pt-10 md:w-2/5 lg:w-1/3 px-2 sm:px-6 lg:px-8 ">
       <div className="overflow-hidden shadow-lg">
@@ -30,4 +30,4 @@ const ResultCard = ({ id, title, genres, rates }: ResultCardProps) => {
   );
 };
 
-export default ResultCard;
+export default MovieCard;
