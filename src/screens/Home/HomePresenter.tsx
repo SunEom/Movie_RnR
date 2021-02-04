@@ -3,7 +3,7 @@ import MovieCard from '../../components/MovieCard';
 const Home = () => {
   return (
     <div>
-      <div className="flex justify-center">
+      <div className="flex justify-center pt-10">
         <div className="flex justify-center flex-wrap w-10/12">
           <MovieCard id={1} title="Soul" genres="Animation" rates={10} />
           <MovieCard id={2} title="Wonder Woman" genres="Hero" rates={9.3} />
