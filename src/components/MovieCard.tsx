@@ -6,34 +6,16 @@ type MovieCardProps = {
   title: string;
   genres: string;
   rates: number;
+  overview: string;
 };
 
-const MovieCard = ({ id, title, genres, rates }: MovieCardProps) => {
+const MovieCard = ({ id, title, genres, rates, overview }: MovieCardProps) => {
   return (
-    // <div className="w-11/12 pt-10 md:w-2/5 lg:w-1/3 px-2 sm:px-6 lg:px-8 ">
-    //   <div className="overflow-hidden shadow-lg">
-    //     <div className="px-6 pt-4 pb-2 bg-white border-b border-gray-200 font-bold uppercase whitespace-nowrap">{title}</div>
-
-    //     <div className="px-6 bg-white border-b border-gray">{genres}</div>
-    //     <div className="px-6 bg-white border-b border-gray">⭐ {rates} / 10</div>
-
-    //     <div className="p-6 bg-white border-gray-200 text-right">
-    //       <Link
-    //         className="bg-gray shadow-lg text-sm text-black font-bold py-3 md:px-8 px-4 hover:bg-gray-dark rounded uppercase whitespace-nowrap"
-    //         to={`/post/${id}`}
-    //       >
-    //         View Detail
-    //       </Link>
-    //     </div>
-    //   </div>
-    // </div>
     <div className="p-4 lg:w-1/3">
       <div className="h-full bg-gray-dark bg-opacity-40 px-8 pt-16 pb-24 rounded-lg overflow-hidden text-center relative">
         <h2 className="tracking-widest text-xs title-font font-medium text-gray-500 mb-1">{genres}</h2>
-        <h1 className="title-font sm:text-2xl text-xl font-medium text-white mb-3">{title}</h1>
-        <p className="leading-relaxed mb-3">
-          Photo booth fam kinfolk cold-pressed sriracha leggings jianbing microdosing tousled waistcoat.
-        </p>
+        <h1 className="title-font sm:text-2xl text-xl font-semibold text-white mb-3">{title}</h1>
+        <p className="leading-relaxed mb-3">{overview}...</p>
         <Link className="text-indigo-400 inline-flex items-center" to={`/post/${id}`}>
           Learn More
           <svg
