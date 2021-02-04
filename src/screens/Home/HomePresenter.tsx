@@ -1,5 +1,6 @@
 import React from 'react';
 import MovieCard from '../../components/MovieCard';
+import ActivityIndicator from '../../components/ActivityIndicator';
 
 type movie = {
   id: number;
@@ -18,11 +19,7 @@ const Home = ({ recent, loading }: HomeProps) => {
   return (
     <div>
       {loading ? (
-        <div className="w-full h-full flex justify-center">
-          <div className="text-gray-darker mt-32 sm:mt-32 md:mt-52 lg:mt-80">
-            <i className="fas fa-circle-notch fa-spin fa-5x"></i>
-          </div>
-        </div>
+        <ActivityIndicator />
       ) : (
         <>
           <div className="w-screen text-center text-2xl pt-10">Recent 20 Postings</div>
