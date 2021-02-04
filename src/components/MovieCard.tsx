@@ -6,9 +6,10 @@ type MovieCardProps = {
   title: string;
   genres: string;
   rates: number;
+  overview: string;
 };
 
-const MovieCard = ({ id, title, genres, rates }: MovieCardProps) => {
+const MovieCard = ({ id, title, genres, rates, overview }: MovieCardProps) => {
   return (
     // <div className="w-11/12 pt-10 md:w-2/5 lg:w-1/3 px-2 sm:px-6 lg:px-8 ">
     //   <div className="overflow-hidden shadow-lg">
@@ -31,9 +32,7 @@ const MovieCard = ({ id, title, genres, rates }: MovieCardProps) => {
       <div className="h-full bg-gray-dark bg-opacity-40 px-8 pt-16 pb-24 rounded-lg overflow-hidden text-center relative">
         <h2 className="tracking-widest text-xs title-font font-medium text-gray-500 mb-1">{genres}</h2>
         <h1 className="title-font sm:text-2xl text-xl font-medium text-white mb-3">{title}</h1>
-        <p className="leading-relaxed mb-3">
-          Photo booth fam kinfolk cold-pressed sriracha leggings jianbing microdosing tousled waistcoat.
-        </p>
+        <p className="leading-relaxed mb-3">{overview.split('.')}...</p>
         <Link className="text-indigo-400 inline-flex items-center" to={`/post/${id}`}>
           Learn More
           <svg
