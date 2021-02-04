@@ -11,7 +11,7 @@ type MovieCardProps = {
 
 const MovieCard = ({ id, title, genres, rates, overview }: MovieCardProps) => {
   return (
-    <div className="p-4 lg:w-1/3">
+    <div className="p-4 lg:w-1/3 min-w-20">
       <div className="h-full bg-gray-dark bg-opacity-40 px-8 pt-16 pb-24 rounded-lg overflow-hidden text-center relative">
         <h2 className="tracking-widest text-xs title-font font-medium text-gray-500 mb-1">{genres}</h2>
         <h1 className="title-font sm:text-2xl text-xl font-semibold text-white mb-3">{title}</h1>
