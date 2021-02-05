@@ -7,10 +7,14 @@ const bodyParser = require('body-parser');
 const db = require('./lib/db');
 const postRouter = require('./routes/post');
 const userRouter = require('./routes/user');
+const authRouter = require('./routes/auth');
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cors());
+
+
+
 
 app.get('/', (req, res, next) => {
   res.send(`home`);
@@ -18,6 +22,7 @@ app.get('/', (req, res, next) => {
 
 app.use('/post', postRouter);
 app.use('/user', userRouter);
+app.use('/auth', authRouter);
 
 app.use(function (req, res, next) {
   res.status(404).send('Sorry cant find that!');

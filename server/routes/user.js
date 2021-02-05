@@ -32,17 +32,20 @@ router.post('/', async function (req, res) {
   });
 
   if (checkId && checkNickname) {
+    console.log('ok');
     db.query(
       `INSERT INTO user(user_id,password,nickname,gender) 
             VALUES(?,?,?,?);`,
       [post.id, post.password, post.nickname, post.gender],
       function (error, result) {
         if (error) {
+            console.log('mysql err')
           throw error;
         }
         res.send('ok');
       }
     );
+    console.log('ok2');
   } else {
     if (!checkId) {
       res.status(400).send({ error: 'Already used id' });
