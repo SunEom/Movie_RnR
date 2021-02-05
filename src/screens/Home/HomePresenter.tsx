@@ -1,22 +1,37 @@
 import React from 'react';
-import ResultCard from '../../components/ResultCard';
-const Home = () => {
+import MovieCard from '../../components/MovieCard';
+import ActivityIndicator from '../../components/ActivityIndicator';
+
+type movie = {
+  id: number;
+  title: string;
+  genres: string;
+  rates: number;
+  overview: string;
+};
+
+type HomeProps = {
+  recent: Array<movie>;
+  loading: boolean;
+};
+
+const Home = ({ recent, loading }: HomeProps) => {
   return (
     <div>
-      <div className="flex justify-center">
-        <div className="flex justify-center flex-wrap w-10/12">
-          <ResultCard id={1} title="Soul" genres="Animation" rates={10} />
-          <ResultCard id={2} title="Wonder Woman" genres="Hero" rates={9.3} />
-          <ResultCard id={3} title="Breach" genres="Science Fiction" rates={5} />
-
-          <ResultCard id={1} title="Soul" genres="Animation" rates={10} />
-          <ResultCard id={2} title="Wonder Woman" genres="Hero" rates={9.3} />
-          <ResultCard id={3} title="Breach" genres="Science Fiction" rates={5} />
-          <ResultCard id={3} title="Breach" genres="Science Fiction" rates={5} />
-          <ResultCard id={3} title="Breach" genres="Science Fiction" rates={5} />
-          <ResultCard id={3} title="Breach" genres="Science Fiction" rates={5} />
-        </div>
-      </div>
+      {loading ? (
+        <ActivityIndicator />
+      ) : (
+        <>
+          <div className="w-screen text-center text-2xl pt-10">Recent 20 Postings</div>
+          <div className="flex justify-center pt-10">
+            <div className="flex justify-center flex-wrap w-10/12">
+              {recent.map((m) => (
+                <MovieCard key={m.id} id={m.id} title={m.title} genres={m.genres} rates={m.rates} overview={m.overview} />
+              ))}
+            </div>
+          </div>
+        </>
+      )}
     </div>
   );
 };
