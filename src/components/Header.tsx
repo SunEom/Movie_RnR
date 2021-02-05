@@ -37,6 +37,12 @@ const Header = ({ user }: HeaderProps) => {
                     <span className="ml-2">Posting</span>
                   </Link>
                 </li>
+                <li className="nav-item">
+                  <Link className={navItemLink} to="/login">
+                    <i className="fas fa-sign-in-alt text-lg leading-lg text-white opacity-75"></i>
+                    <span className="ml-2">Log in</span>
+                  </Link>
+                </li>
               </ul>
             </div>
           ) : (
@@ -46,6 +52,12 @@ const Header = ({ user }: HeaderProps) => {
                   <Link className={navItemLink} to="/login">
                     <i className="fas fa-sign-in-alt text-lg leading-lg text-white opacity-75"></i>
                     <span className="ml-2">Log in</span>
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link className={navItemLink} to="/create">
+                    <i className="far fa-plus-square text-lg leading-lg text-white opacity-75"></i>
+                    <span className="ml-2">Posting</span>
                   </Link>
                 </li>
               </ul>
