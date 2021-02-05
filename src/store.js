@@ -2,7 +2,7 @@ import { createStore } from 'redux';
 
 export default createStore((state, action) => {
   if (state === undefined) {
-    return { user: { nick: 'suneom' } };
+    return { user: null };
   }
 
   if (action.type === 'LOGIN') {
