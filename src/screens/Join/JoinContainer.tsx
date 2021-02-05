@@ -9,7 +9,7 @@ export default () => {
   const [nickname, setNickname] = useState<string>('');
   const [gender, setGender] = useState<'Man' | 'Woman'>('Man');
 
-  type post = {
+  type user = {
     id: string;
     password: string;
     nickname: string;
@@ -23,7 +23,7 @@ export default () => {
       return;
     }
 
-    const data: post = {
+    const data: user = {
       id,
       password,
       nickname,
@@ -31,7 +31,7 @@ export default () => {
     };
 
     await axios
-      .post('http://localhost:8000/user', { ...data })
+      .post('http://localhost:8000/user', data)
       .then(() => {
         window.location.href = '/login';
       })
