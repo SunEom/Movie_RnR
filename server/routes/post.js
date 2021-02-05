@@ -10,7 +10,7 @@ router.post('/', function(req,res){ //create
         post.rates=10;
     }
     db.query(
-        `INSERT INTO movie(title,description,genre,rates,created)
+        `INSERT INTO movie(title,overview,genre,rates,created)
         VALUES(?,?,?,?,NOW());`,
         [post.title,post.overview,post.genres,post.rates],
         function(error,result){
@@ -28,7 +28,7 @@ router.post('/update_process',function(req,res){
         post.rates=10;
     }
     db.query(
-        `UPDATE movie SET title=?, description=?, genre=?, rates=?, updated=NOW() WHERE id=?;`
+        `UPDATE movie SET title=?, overview=?, genre=?, rates=?, updated=NOW() WHERE id=?;`
         ,[post.title,post.overview,post.genres,post.rates,post.id],
         function(error,result){
             if(error){
