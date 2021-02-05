@@ -54,12 +54,19 @@ passport.use(new LocalStrategy({
         });
     }
 ));
-router.post('/login_process', 
+router.post('/login', 
     passport.authenticate('local',{
         successRedirect:'/',
         failureRedirect:'/auth/login',
         failureFlash:true
     })
 );
+
+router.get('/logout',function(req,res){
+    req.logout();
+    req.session.save(function(){
+        res.redirect('/');
+    })
+})
 
 module.exports = router;

@@ -6,13 +6,17 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const db = require('./lib/db');
 const postRouter = require('./routes/post');
-const userRouter = require('./routes/user');
+const joinRouter = require('./routes/join');
 const authRouter = require('./routes/auth');
+const session = require('express-session')
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cors());
-
+app.use(session({
+  secret:'secret',
+  resave: false,
+  saveUninitialized: true}));
 
 
 
@@ -21,7 +25,7 @@ app.get('/', (req, res, next) => {
 });
 
 app.use('/post', postRouter);
-app.use('/user', userRouter);
+app.use('/join', joinRouter);
 app.use('/auth', authRouter);
 
 app.use(function (req, res, next) {
