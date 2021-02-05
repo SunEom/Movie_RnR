@@ -5,7 +5,7 @@ export default createStore((state, action) => {
     return { user: null };
   }
 
-  if (action.state === 'LOGIN') {
+  if (action.type === 'LOGIN') {
     return { ...state, user: action.user };
   }
 }, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
