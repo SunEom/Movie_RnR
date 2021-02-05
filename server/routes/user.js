@@ -4,27 +4,45 @@ const db = require('../lib/db');
 const qs = require('querystring');
 
 router.post('/', async function(req,res){
+    console.log(req.body);
     const post = req.body;
+    console.log(post.id);
     let checkId = true;
     let checkNickname = true;
     await db.query(
-        `SELECT id, nickname FROM user WHERE id=? nickname=?;`,[post.id, post.nickname],
+        `SELECT id, nickname FROM user`,
         function(error,result){
             if(error){
                 throw error;
             }
-            if(result[0].id){
-                checkId = false;
+            let i=0;
+            while(i<result.length){
+                if(post.id == result[i].id){
+                    checkId = false;
+                }
             }
-            if(result[0].nickname){
-                checkNickname = false;
+        }
+    );
+
+    await db.query(
+        `SELECT nickname FROM user`,
+        function(error,result){
+            if(error){
+                throw error;
+            }
+            let i=0;
+            while(i<result.length){
+                if(post.nickname == result[i].nickname){
+                    checkNickname = false;
+                }
             }
         }
     );
 
 
     if(checkId && checkNickname){
-        db.query(
+        console.log('ok user1');
+        await db.query(
             `INSERT INTO user(id,password,nickname,gender) 
             VALUES(?,?,?,?);`,
             [post.id, post.password, post.nickname, post.gender],
@@ -32,6 +50,7 @@ router.post('/', async function(req,res){
                 if(error){
                     throw error;
                 }
+                console.log('ok user2');
                 res.redirect('/login');
             }
         );

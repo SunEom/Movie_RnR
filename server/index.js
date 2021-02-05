@@ -5,7 +5,6 @@ const app = express();
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const db = require('./lib/db');
-
 const postRouter = require('./routes/post');
 const userRouter = require('./routes/user');
 
