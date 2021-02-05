@@ -4,9 +4,7 @@ const db = require('../lib/db');
 const qs = require('querystring');
 
 router.post('/', async function(req,res){
-    console.log(req.body);
     const post = req.body;
-    console.log(post.id);
     let checkId = true;
     let checkNickname = true;
     await db.query(
@@ -42,16 +40,17 @@ router.post('/', async function(req,res){
 
     if(checkId && checkNickname){
         console.log('ok user1');
-        await db.query(
+        db.query(
             `INSERT INTO user(id,password,nickname,gender) 
             VALUES(?,?,?,?);`,
             [post.id, post.password, post.nickname, post.gender],
             function(error,result){
                 if(error){
+                    console.log("insert err");
                     throw error;
                 }
                 console.log('ok user2');
-                res.redirect('/login');
+                res.send('ok');
             }
         );
     } else{

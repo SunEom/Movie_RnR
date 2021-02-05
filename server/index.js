@@ -8,7 +8,8 @@ const db = require('./lib/db');
 const postRouter = require('./routes/post');
 const userRouter = require('./routes/user');
 
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 app.use(cors());
 
 app.get('/', (req, res, next) => {
