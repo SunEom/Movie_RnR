@@ -8,31 +8,49 @@ router.post('/', async function(req,res){
     let checkId = true;
     let checkNickname = true;
     await db.query(
-        `SELECT id, nickname FROM user WHERE id=? nickname=?;`,[post.id, post.nickname],
+        `SELECT id, nickname FROM user`,
         function(error,result){
             if(error){
                 throw error;
             }
-            if(result[0].id){
-                checkId = false;
+            let i=0;
+            while(i<result.length){
+                if(post.id == result[i].id){
+                    checkId = false;
+                }
             }
-            if(result[0].nickname){
-                checkNickname = false;
+        }
+    );
+
+    await db.query(
+        `SELECT nickname FROM user`,
+        function(error,result){
+            if(error){
+                throw error;
+            }
+            let i=0;
+            while(i<result.length){
+                if(post.nickname == result[i].nickname){
+                    checkNickname = false;
+                }
             }
         }
     );
 
 
     if(checkId && checkNickname){
+        console.log('ok user1');
         db.query(
             `INSERT INTO user(id,password,nickname,gender) 
             VALUES(?,?,?,?);`,
             [post.id, post.password, post.nickname, post.gender],
             function(error,result){
                 if(error){
+                    console.log("insert err");
                     throw error;
                 }
-                res.redirect('/login');
+                console.log('ok user2');
+                res.send('ok');
             }
         );
     } else{
