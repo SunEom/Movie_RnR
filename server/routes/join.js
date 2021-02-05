@@ -5,34 +5,33 @@ const qs = require('querystring');
 
 router.post('/', async function (req, res) {
   const post = req.body;
-  let checkId = true;
-  let checkNickname = true;
-  await db.query(`SELECT user_id, nickname FROM user`, function (error, result) {
+  let checkId = false;
+  let checkNickname = false;
+  await db.query(`SELECT user_id FROM user where user_id=?`,[post.id], function (error, result) {
     if (error) {
       throw error;
     }
-    let i = 0;
-    while (i < result.length) {
-      if (post.id == result[i].id) {
-        checkId = false;
-      }
+    if(result.length==0){
+        console.log('id ok');
+        checkId=true;
+        console.log(checkId);
     }
   });
 
-  await db.query(`SELECT nickname FROM user`, function (error, result) {
+  await db.query(`SELECT nickname FROM user where nickname=?`,[post.nickname], function (error, result) {
     if (error) {
       throw error;
     }
-    let i = 0;
-    while (i < result.length) {
-      if (post.nickname == result[i].nickname) {
-        checkNickname = false;
-      }
+    if(result.length==0){
+        console.log('nickname ok');
+        checkNickname=true;
+        console.log(checkNickname);
+        console.log(post);
     }
   });
 
   if (checkId && checkNickname) {
-    console.log('ok');
+      console.log("insert start");
     db.query(
       `INSERT INTO user(user_id,password,nickname,gender) 
             VALUES(?,?,?,?);`,
@@ -42,10 +41,11 @@ router.post('/', async function (req, res) {
             console.log('mysql err')
           throw error;
         }
+        console.log("insert complete");
         res.send('ok');
       }
     );
-    console.log('ok2');
+
   } else {
     if (!checkId) {
       res.status(400).send({ error: 'Already used id' });
