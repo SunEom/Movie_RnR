@@ -7,7 +7,7 @@ router.post('/', async function (req, res) {
   const post = req.body;
   let checkId = true;
   let checkNickname = true;
-  await db.query(`SELECT id, nickname FROM user`, function (error, result) {
+  await db.query(`SELECT user_id, nickname FROM user`, function (error, result) {
     if (error) {
       throw error;
     }
@@ -32,17 +32,14 @@ router.post('/', async function (req, res) {
   });
 
   if (checkId && checkNickname) {
-    console.log('ok user1');
     db.query(
       `INSERT INTO user(user_id,password,nickname,gender) 
             VALUES(?,?,?,?);`,
       [post.id, post.password, post.nickname, post.gender],
       function (error, result) {
         if (error) {
-          console.log('insert err');
           throw error;
         }
-        console.log('ok user2');
         res.send('ok');
       }
     );
