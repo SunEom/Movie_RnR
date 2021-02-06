@@ -1,7 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const Home = () => {
+type LoginProps = {
+  onChange: any;
+  onSubmit: any;
+};
+
+const Login = ({ onChange, onSubmit }: LoginProps) => {
   return (
     <div className="flex justify-center pt-0 sm:pt-14">
       <div className="max-w-md w-full space-y-8 flex items-center flex-col">
@@ -24,6 +29,7 @@ const Home = () => {
                 required
                 className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                 placeholder="Email address"
+                onChange={onChange}
               />
             </div>
             <div>
@@ -38,6 +44,7 @@ const Home = () => {
                 required
                 className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                 placeholder="Password"
+                onChange={onChange}
               />
             </div>
           </div>
