@@ -31,11 +31,11 @@ export default () => {
     };
 
     await axios
-      .post('http://localhost:8000/user', data)
-      .then(() => {
+      .post('/user', data)
+      .then((response: any) => {
         window.location.href = '/login';
       })
-      .catch((err) => console.error(err));
+      .catch((err) => console.log(err));
   };
 
   const onChange = (e: React.FormEvent<HTMLInputElement>) => {

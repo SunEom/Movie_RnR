@@ -13,16 +13,13 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cors());
 
-
-
-
 app.get('/', (req, res, next) => {
   res.send(`home`);
 });
 
 app.use('/post', postRouter);
 app.use('/user', userRouter);
-app.use('/auth', authRouter);
+// app.use('/auth', authRouter);
 
 app.use(function (req, res, next) {
   res.status(404).send('Sorry cant find that!');
