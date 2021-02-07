@@ -6,6 +6,7 @@ import Home from './screens/Home';
 import Login from './screens/Login';
 import Join from './screens/Join';
 import Detail from './screens/Detail';
+import Find from './screens/Find';
 import store from './store';
 import './App.css';
 
@@ -44,6 +45,9 @@ function App() {
         </Route>
         <Route exact path="/post/:id">
           <DetailView />
+        </Route>
+        <Route exact path="/find">
+          <Find />
         </Route>
       </BrowserRouter>
     </div>
