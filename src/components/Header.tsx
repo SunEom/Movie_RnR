@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router';
 
 import './Header.css';
 
@@ -10,6 +11,7 @@ type HeaderProps = {
 };
 
 const Header = ({ user, onClick, onLogout }: HeaderProps) => {
+  const history = useHistory();
   const [navbarOpen, setNavbarOpen] = React.useState(false);
   const navItemLink = 'px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75';
 
@@ -42,7 +44,15 @@ const Header = ({ user, onClick, onLogout }: HeaderProps) => {
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <button className={navItemLink} onClick={() => onClick(onLogout)}>
+                  <button
+                    className={navItemLink}
+                    onClick={() => {
+                      onClick(onLogout);
+                      history.push({
+                        pathname: '/',
+                      });
+                    }}
+                  >
                     <i className="fas fa-sign-out-alt text-lg leading-lg text-white opacity-75"></i>
                     <span className="ml-2">Log out</span>
                   </button>

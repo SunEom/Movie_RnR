@@ -5,7 +5,7 @@ import axios from 'axios';
 const mapDispatchToProps = (dispatch: any) => {
   return {
     onLogout: () => {
-      dispatch({ type: 'LOGOUT', user: null });
+      dispatch({ type: 'LOGOUT' });
     },
   };
 };
@@ -15,7 +15,6 @@ const onClick = async (logout: any) => {
     .get('/auth/logout')
     .then(() => {
       logout();
-      window.location.href = '/';
     })
     .catch((error) => console.error(error));
 };
