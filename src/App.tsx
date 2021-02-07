@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { BrowserRouter, Route, useParams } from 'react-router-dom';
-import Header from './components/Header';
+import Header from './container/Header';
 import Create from './screens/Create';
 import Home from './screens/Home';
 import Login from './screens/Login';
@@ -25,12 +25,18 @@ function App() {
     const user = store.getState().user;
     setUser(user);
   };
+
+  const logout = async () => {
+    setUser(null);
+  };
+
   store.subscribe(login);
+  store.subscribe(logout);
 
   return (
     <div className="App">
       <BrowserRouter>
-        <Header user={user} />
+        <Header />
         <Route exact path="/">
           <Home />
         </Route>
