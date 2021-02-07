@@ -4,7 +4,7 @@ const sanitizeHtml = require('sanitize-html');
 const db = require('../lib/db');
 const qs = require('querystring');
 
-router.post('/', function(req,res){ //create
+router.post('/', function(req,res){ //글 쓰기
     const post = req.body;
     if(post.rates >10){
         post.rates=10;
@@ -22,11 +22,12 @@ router.post('/', function(req,res){ //create
     );
 });
 
-router.post('/update_process',function(req,res){
+router.post('/update_process',function(req,res){ //글 수정
     const post = req.body;
     if(post.rates >10){
         post.rates=10;
     }
+    
     db.query(
         `UPDATE movie SET title=?, overview=?, genre=?, rates=?, updated=NOW() WHERE id=?;`
         ,[post.title,post.overview,post.genres,post.rates,post.id],
@@ -39,7 +40,7 @@ router.post('/update_process',function(req,res){
     );
 });
 
-router.delete('/', function(req,res){
+router.delete('/', function(req,res){ //글 삭제
     const post = res.body;
     db.query(`DELETE FROM movie WHERE id = ?;`,[post.id],function(error,result){
         if(error){
