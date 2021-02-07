@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import LoginPresenter from './LoginPresenter';
 import axios from 'axios';
+import store from '../../store';
+import { useHistory } from 'react-router';
 
 type loginFormat = {
   id: string;
@@ -8,6 +10,7 @@ type loginFormat = {
 };
 
 export default () => {
+  const history = useHistory();
   const [id, setId] = useState<string>('');
   const [password, setPassword] = useState<string>('');
 
@@ -21,8 +24,11 @@ export default () => {
 
     await axios
       .post('http://localhost:8000/auth/login', data)
-      .then(() => {
-        window.location.href = '/';
+      .then((response) => {
+        store.dispatch({ type: 'LOGIN', user: response });
+        history.push({
+          pathname: '/',
+        });
       })
       .catch((err) => console.error(err));
   };
