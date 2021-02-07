@@ -111,4 +111,4 @@ const Login = ({ onChange, onSubmit }: LoginProps) => {
   );
 };
 
-export default Home;
+export default Login;
