@@ -1,4 +1,5 @@
 const db = require('../lib/db');
+const bcrypt = require('bcrypt');
 
 module.exports = function(app){
     const session = require('express-session');
@@ -32,32 +33,29 @@ module.exports = function(app){
         passwordField: 'password'
         },
         function(username,password,done){
-            db.query('SELECT * FROM user WHERE user_id=? and password=?;',[username,password],
+            db.query('SELECT * FROM user WHERE user_id=?;',[username],
             function(err,result){
                 if(err){
                     console.log('mysql error')
                     return done(err);
                 }
-                
-                if(!result[0].user_id){
-                    return done(null,false,{message:'Incorrect id'});
-                }
-                if(!result[0].password){
-                    return done(null,false,{message:'Incorrect password'});
-                }
-                /*
-                if(result.length===0){
-                    console.log('id, password 결과 없음');
-                    return done(null,false,{message:'Incorrect'});
-                
-                }*/            
-                console.log(result);
-
                 let json = JSON.stringify(result[0]);
                 let user = JSON.parse(json);
-                console.log("user:"+user);
-                return done(null,user);            //user : 사용자에 대한 정보
-                                        //user를 serializeUser 콜백함수의 첫번째 인자로 줌.
+                //확인 한 후 db함수 밖으로 빼기.
+                if(user){
+                    bcrypt.compare(password, user.password, function(err,check){
+                        if(check){ //사용자가 입력한 pwd와 db에 저장된 pwd가 일치하면  result는 true.
+                            console.log("user:"+user);
+                            return done(null,user);            //user : 사용자에 대한 정보
+                                                    //user를 serializeUser 콜백함수의 첫번째 인자로 줌.
+                        } else{
+                            return done(null,false,{message:'Incorrect password'});
+                        }
+                    })
+                } else{
+                    return done(null,false,{message:'Incorrect id'});
+                }          
+                
             });
         }
     ));
