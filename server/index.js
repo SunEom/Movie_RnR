@@ -3,11 +3,8 @@ const dotenv = require('dotenv');
 dotenv.config();
 const app = express();
 const cors = require('cors');
-const bodyParser = require('body-parser');
 const db = require('./lib/db');
-const postRouter = require('./routes/post');
-const joinRouter = require('./routes/join');
-const authRouter = require('./routes/auth');
+
 const session = require('express-session')
 
 app.use(express.json());
@@ -23,6 +20,10 @@ app.use(session({
 app.get('/', (req, res, next) => {
   res.send(`home`);
 });
+const passport = require('./lib/passport')(app);
+const postRouter = require('./routes/post');
+const joinRouter = require('./routes/join')(passport);
+const authRouter = require('./routes/auth')(passport);
 
 app.use('/post', postRouter);
 app.use('/join', joinRouter);

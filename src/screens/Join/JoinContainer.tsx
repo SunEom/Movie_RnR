@@ -31,9 +31,9 @@ export default () => {
     };
 
     await axios
-      .post('http://localhost:8000/user', data)
+      .post('http://localhost:8000/join', data)
       .then(() => {
-        window.location.href = '/login';
+        //window.location.href = '/login';
       })
       .catch((err) => console.error(err));
   };
