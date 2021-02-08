@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import JoinPresenter from './JoinPresenter';
+import { useHistory } from 'react-router';
 
 export default () => {
+  const history = useHistory();
   const [id, setId] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [password_check, setPasswordCheck] = useState<string>('');
@@ -89,7 +91,7 @@ export default () => {
     await axios
       .post('http://localhost:8000/join', data)
       .then(() => {
-        //window.location.href = '/login';
+        history.push('/login');
       })
       .catch((err) => console.error(err));
   };
