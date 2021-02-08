@@ -19,6 +19,8 @@ const Join = ({ onSubmit, onChange, idConfirm, nickConfirm }: JoinProps) => {
                       type="text"
                       name="id"
                       id="id"
+                      minLength={6}
+                      maxLength={13}
                       className="px-2 mt-1 min-w-10 bg-white h-7 bg-opacity-50 border border-gray-dark focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                       required
                       onChange={onChange}
@@ -37,6 +39,8 @@ const Join = ({ onSubmit, onChange, idConfirm, nickConfirm }: JoinProps) => {
                     type="password"
                     name="password"
                     id="password"
+                    minLength={8}
+                    maxLength={13}
                     className="px-2 mt-1 bg-white h-7 bg-opacity-50 border border-gray-dark focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                     required
                     onChange={onChange}
@@ -51,6 +55,8 @@ const Join = ({ onSubmit, onChange, idConfirm, nickConfirm }: JoinProps) => {
                     type="password"
                     name="password_check"
                     id="password_check"
+                    maxLength={13}
+                    minLength={8}
                     className="px-2 mt-1 h-7 bg-white bg-opacity-50 border border-gray-dark focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                     required
                     onChange={onChange}
@@ -66,6 +72,7 @@ const Join = ({ onSubmit, onChange, idConfirm, nickConfirm }: JoinProps) => {
                       type="text"
                       name="nickname"
                       id="nickname"
+                      maxLength={10}
                       className="px-2 min-w-10 mt-1 h-7 bg-white bg-opacity-50 border border-gray-dark focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                       required
                       onChange={onChange}
