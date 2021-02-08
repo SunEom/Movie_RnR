@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const db = require('../lib/db');
 const qs = require('querystring');
-
+const bcrypt = require('bcrypt');
 
 module.exports = function(passport){
   router.get('/id', async function(req,res){ //id 중복확인
@@ -39,19 +39,25 @@ module.exports = function(passport){
   router.post('/', async function (req, res) { //회원가입
     const post = req.body;
     let user;
-      
-    await db.query(
-      `INSERT INTO user(user_id,password,nickname,gender) 
-            VALUES(?,?,?,?);`,
-      [post.id, post.password, post.nickname, post.gender],
-      function (error, result) {
-        if (error) {
-          console.log('mysql err');
-          throw error;
+
+    bcrypt.hash(post.password, 10, async function(err, hash) {
+      await db.query(
+        `INSERT INTO user(user_id,password,nickname,gender) 
+              VALUES(?,?,?,?);`,
+        [post.id, hash, post.nickname, post.gender],
+        function (error, result) {
+          if (error) {
+            console.log('mysql err');
+            throw error;
+          }
+          console.log("insert complete");
         }
-        console.log("insert complete");
-      }
-    );
+      );
+      
+    }); 
+    
+      
+    
 
     //회원가입 성공 시 바로 로그인.
     
