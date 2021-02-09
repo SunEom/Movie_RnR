@@ -19,7 +19,7 @@ module.exports = function (passport) {
           if (err) {
             return next(err);
           }
-          return res.send({ error: 'Login Error' });
+          return res.send({ error: info });
         });
       }
       req.login(user, function (err) {
@@ -30,7 +30,7 @@ module.exports = function (passport) {
           if (err) {
             return next(err);
           }
-          return res.send('ok');
+          return res.send(user);
         });
       });
     })(req, res, next);

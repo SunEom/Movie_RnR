@@ -12,6 +12,7 @@ module.exports = function(app){
 
 
     passport.serializeUser(function(user, done){ //로그인 성공 시
+        console.log('serializeuser',user);
         done(null,user.user_id); //user_id는 식별자
     })
 
@@ -21,9 +22,8 @@ module.exports = function(app){
             if(err){
                 throw err;
             }
-            let json = JSON.stringify(result[0]);
-            user = JSON.parse(json);
-            done(null,user);
+            console.log('deserializeuser',result[0]);
+            done(null,result[0]);
         });
     });
 
@@ -39,15 +39,13 @@ module.exports = function(app){
                     console.log('mysql error')
                     return done(err);
                 }
-                let json = JSON.stringify(result[0]);
-                let user = JSON.parse(json);
                 //확인 한 후 db함수 밖으로 빼기.
-                if(user){
-                    bcrypt.compare(password, user.password, function(err,check){
+                if(result[0]){
+                    bcrypt.compare(password, result[0].password, function(err,check){
                         if(check){ //사용자가 입력한 pwd와 db에 저장된 pwd가 일치하면  result는 true.
-                            console.log("user:"+user);
-                            return done(null,user);            //user : 사용자에 대한 정보
-                                                    //user를 serializeUser 콜백함수의 첫번째 인자로 줌.
+                            console.log("user:"+result[0]);
+                            return done(null,result[0]);            //result[0] : 사용자에 대한 정보
+                                                    //result[0] serializeUser 콜백함수의 첫번째 인자로 줌.
                         } else{
                             return done(null,false,{message:'Incorrect password'});
                         }
