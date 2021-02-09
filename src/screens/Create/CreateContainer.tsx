@@ -42,7 +42,7 @@ export default () => {
     await axios
       .post('http://localhost:8000/post', { ...data })
       .then(() => {
-        window.location.href = '/';
+        history.push({ pathname: '/' });
       })
       .catch((err) => console.error(err));
   };
