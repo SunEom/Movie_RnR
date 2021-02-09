@@ -4,18 +4,23 @@ dotenv.config();
 const app = express();
 const cors = require('cors');
 const db = require('./lib/db');
+const passport = require('passport');
 
-const session = require('express-session')
+const session = require('express-session');
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cors());
-app.use(session({
-  secret:'keyboard cat',
-  resave: false,
-  saveUninitialized: true}));
+app.use(
+  session({
+    secret: 'keyboard cat',
+    resave: false,
+    saveUninitialized: true,
+  })
+);
 
-
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.get('/', (req, res, next) => {
   res.send(`home`);
