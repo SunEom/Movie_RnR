@@ -14,6 +14,12 @@ export default () => {
   const [id, setId] = useState<string>('');
   const [password, setPassword] = useState<string>('');
 
+  if (store.getState().user) {
+    history.push({
+      pathname: '/',
+    });
+  }
+
   const onSubmit = async (e: any) => {
     e.preventDefault();
 

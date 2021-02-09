@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import FindPresenter from './FindPresenter';
 import axios from 'axios';
+import store from '../../store';
+import { useHistory } from 'react-router';
 
 type findFormat = {
   id: string;
@@ -19,6 +21,14 @@ export default () => {
 
   const [password, setPassword] = useState('');
   const [passwordCheck, setPasswordCheck] = useState('');
+
+  const history = useHistory();
+
+  if (store.getState().user) {
+    history.push({
+      pathname: '/',
+    });
+  }
 
   const onSubmit = async (e: any) => {
     e.preventDefault();
