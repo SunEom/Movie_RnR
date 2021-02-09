@@ -41,8 +41,8 @@ export default () => {
 
     await axios
       .post('http://localhost:8000/post', { ...data })
-      .then(() => {
-        history.push({ pathname: '/' });
+      .then((response) => {
+        history.push(`/post/${response.data.data.id}`);
       })
       .catch((err) => console.error(err));
   };
