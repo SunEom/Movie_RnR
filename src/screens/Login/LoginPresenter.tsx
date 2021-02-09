@@ -18,13 +18,13 @@ const Login = ({ onChange, onSubmit }: LoginProps) => {
           <input type="hidden" name="remember" value="true" />
           <div className="rounded-md shadow-sm space-y-px pb-2 w-full">
             <div>
-              <label htmlFor="email-address" className="sr-only">
+              <label htmlFor="id" className="sr-only">
                 ID
               </label>
               <input
-                id="email-address"
+                id="id"
                 name="id"
-                type="id"
+                type="text"
                 autoComplete="id"
                 required
                 className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"

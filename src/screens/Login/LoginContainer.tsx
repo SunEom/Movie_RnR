@@ -22,8 +22,9 @@ export default () => {
       password,
     };
 
+    console.log(data);
     await axios
-      .post('http://localhost:8000/auth/login', data)
+      .post('http://localhost:8000/auth/login', { ...data, withCredentials: true })
       .then((response) => {
         if (response.data.error) {
           return console.error(response.data.error);
@@ -36,7 +37,8 @@ export default () => {
       .catch((err) => console.error(err));
   };
 
-  const onChange = (e: React.FormEvent<HTMLInputElement>) => {
+  const onChange = (e: any) => {
+    console.log(e.currentTarget);
     switch (e.currentTarget.id) {
       case 'id': {
         setId(e.currentTarget.value);
