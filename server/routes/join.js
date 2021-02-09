@@ -12,7 +12,7 @@ module.exports = function (passport) {
       if (error) {
         throw error;
       }
-      if (result.length == 0) {
+      if (result.length === 0) {
         console.log('id ok');
         res.json({ already: false }); //중복없으면
       } else {
@@ -24,12 +24,12 @@ module.exports = function (passport) {
   router.post('/nick', async function (req, res) {
     //nickname 중복확인
     const post = req.body;
-    await db.query(`SELECT user_id FROM user where user_id=?`, [post.id], function (error, result) {
+    await db.query(`SELECT user_id FROM user where nickname=?`, [post.nickname], function (error, result) {
       if (error) {
         throw error;
       }
-      if (result.length == 0) {
-        console.log('id ok');
+      if (result.length === 0) {
+        console.log('nickname ok');
         res.json({ already: false }); //중복없으면
       } else {
         res.json({ already: true }); //중복있으면
@@ -58,28 +58,18 @@ module.exports = function (passport) {
     });
 
     //회원가입 성공 시 바로 로그인.
-
-    await db.query(`SELECT * FROM user WHERE user_id=?`, [post.id], function (error, result) {
+    db.query(`SELECT * FROM user WHERE user_id=?`, [post.id], function (error, result) {
       if (error) {
         console.log('mysql err');
         throw error;
       }
       user = result[0];
-    });
-    req.login(user, function (err) {
-      //회원가입 성공 시 바로 로그인.
-      return res.send('ok');
-    });
 
-    /*
-      else {
-      if (!checkId) {
-        res.status(400).send({ error: 'Already used id' });
-      } else {
-        res.status(400).send({ error: 'Already used Nickname' });
-      }
-    }
-  */
+      req.login(user, function (err) {
+        console.log('회원가입성공, 로그인');
+        return res.send('ok');
+      });
+    });
   });
   return router;
 };
