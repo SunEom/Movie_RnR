@@ -38,7 +38,6 @@ export default () => {
   };
 
   const onChange = (e: any) => {
-    console.log(e.currentTarget);
     switch (e.currentTarget.id) {
       case 'id': {
         setId(e.currentTarget.value);
