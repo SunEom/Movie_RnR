@@ -1,11 +1,21 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import CreatePresenter from './CreatePresenter';
+import { useHistory } from 'react-router';
+import store from '../../store';
+
 export default () => {
   const [title, setTitle] = useState<string>('');
   const [genres, setGenres] = useState<string>('');
   const [rates, setRates] = useState<number>(0);
   const [overview, setOverview] = useState<string>('This movie is ...');
+  const history = useHistory();
+
+  if (!store.getState().user) {
+    history.push({
+      pathname: '/login',
+    });
+  }
 
   type post = {
     title: string;

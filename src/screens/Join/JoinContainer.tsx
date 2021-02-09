@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import JoinPresenter from './JoinPresenter';
 import { useHistory } from 'react-router';
+import store from '../../store';
 
 export default () => {
   const history = useHistory();
@@ -12,6 +13,12 @@ export default () => {
   const [gender, setGender] = useState<'Man' | 'Woman'>('Man');
   const [idConfirmation, setIdConfirmation] = useState(false);
   const [nickConfirmation, setNickConfirmation] = useState(false);
+
+  if (store.getState().user) {
+    history.push({
+      pathname: '/',
+    });
+  }
 
   type user = {
     id: string;
