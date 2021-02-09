@@ -12,7 +12,7 @@ const mapDispatchToProps = (dispatch: any) => {
 
 const onClick = async (logout: any) => {
   await axios
-    .get('/auth/logout')
+    .get('http://localhost:8000/auth/logout', { withCredentials: true })
     .then(() => {
       logout();
     })

@@ -13,9 +13,13 @@ import axios from 'axios';
 
 function App() {
   const reloading = () => {
-    axios
-      .get('http://localhost:8000/auth/login', { withCredentials: true })
-      .then((response) => store.dispatch({ type: 'LOGIN', user: response }));
+    axios.get('http://localhost:8000/auth/login', { withCredentials: true }).then((response) => {
+      if (!response.data.user_id) {
+        return;
+      } else {
+        store.dispatch({ type: 'LOGIN', user: response.data });
+      }
+    });
   };
 
   const DetailView = () => {

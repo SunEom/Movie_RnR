@@ -39,8 +39,9 @@ router.get('/login', function (req, res) {
   if (req.isAuthenticated()) {
     console.log('login', req.user);
     return res.send(req.user);
+  } else {
+    return res.send({});
   }
-  return res.send({});
 });
 
 router.get('/logout', function (req, res) {
