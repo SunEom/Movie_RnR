@@ -93,7 +93,7 @@ export default () => {
       .then(() => {
         history.push('/login');
       })
-      .catch((err) => console.error(err));
+      .catch((err) => console.log(err));
   };
 
   const onChange = (e: React.FormEvent<HTMLInputElement>) => {

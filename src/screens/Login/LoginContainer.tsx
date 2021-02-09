@@ -25,6 +25,9 @@ export default () => {
     await axios
       .post('http://localhost:8000/auth/login', data)
       .then((response) => {
+        if (response.data.error) {
+          return console.error(response.data.error);
+        }
         store.dispatch({ type: 'LOGIN', user: response });
         history.push({
           pathname: '/',

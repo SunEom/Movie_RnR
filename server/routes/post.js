@@ -4,72 +4,71 @@ const sanitizeHtml = require('sanitize-html');
 const db = require('../lib/db');
 const qs = require('querystring');
 
-router.post('/', function(req,res){ //글 쓰기
-    const post = req.body;
-    if(post.rates >10){
-        post.rates=10;
-    }
-    db.query(
-        `INSERT INTO movie(title,overview,genre,rates,created)
+router.post('/', function (req, res) {
+  //글 쓰기
+  const post = req.body;
+  if (post.rates > 10) {
+    post.rates = 10;
+  }
+  db.query(
+    `INSERT INTO movie(title,overview,genre,rates,created)
         VALUES(?,?,?,?,NOW());`,
-        [post.title,post.overview,post.genres,post.rates],
-        function(error,result){
-            if(error){
-                throw error;
-            }
-            res.redirect(`/`);
-        }
-    );
-});
-
-router.post('/update_process',function(req,res){ //글 수정
-    const post = req.body;
-    if(post.rates >10){
-        post.rates=10;
+    [post.title, post.overview, post.genres, post.rates],
+    function (error, result) {
+      if (error) {
+        throw error;
+      }
+      res.redirect(`/`);
     }
-    
-    db.query(
-        `UPDATE movie SET title=?, overview=?, genre=?, rates=?, updated=NOW() WHERE id=?;`
-        ,[post.title,post.overview,post.genres,post.rates,post.id],
-        function(error,result){
-            if(error){
-                throw error;
-            }
-            res.redirect(`/`);
-        }
-    );
+  );
 });
 
-router.delete('/', function(req,res){ //글 삭제
-    const post = res.body;
-    db.query(`DELETE FROM movie WHERE id = ?;`,[post.id],function(error,result){
-        if(error){
-            throw error;
-        }
-        res.redirect('/');
-    });
+router.post('/update_process', function (req, res) {
+  //글 수정
+  const post = req.body;
+  if (post.rates > 10) {
+    post.rates = 10;
+  }
+
+  db.query(
+    `UPDATE movie SET title=?, overview=?, genre=?, rates=?, updated=NOW() WHERE id=?;`,
+    [post.title, post.overview, post.genres, post.rates, post.id],
+    function (error, result) {
+      if (error) {
+        throw error;
+      }
+      res.redirect(`/`);
+    }
+  );
 });
 
-router.get('/', async function(req,res){
-    await db.query(
-        `SELECT * FROM movie ORDER BY created desc LIMIT 20;`,function(error,result){
-            if(error){
-                throw error;
-            }
-            res.json(result);
-        }
-    );
+router.delete('/', function (req, res) {
+  //글 삭제
+  const post = res.body;
+  db.query(`DELETE FROM movie WHERE id = ?;`, [post.id], function (error, result) {
+    if (error) {
+      throw error;
+    }
+    res.redirect('/');
+  });
 });
 
-router.get('/:id',async function(req,res){
-    await db.query(
-        `SELECT * FROM movie WHERE id=?;`,[req.params.id],function(error,result){
-            if(error){
-                throw error;
-            }
-            res.json(result);
-        }
-    );
+router.get('/', async function (req, res) {
+  await db.query(`SELECT * FROM movie ORDER BY created desc LIMIT 20;`, function (error, result) {
+    if (error) {
+      throw error;
+    }
+    res.json(result);
+  });
+});
+
+router.get('/:id', async function (req, res) {
+  await db.query(`SELECT * FROM movie WHERE id=?;`, [req.params.id], function (error, result) {
+    if (error) {
+      throw error;
+    }
+    res.json(result);
+  });
 });
 
 module.exports = router;
