@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import CreatePresenter from './CreatePresenter';
 import { useHistory } from 'react-router';
@@ -10,12 +10,13 @@ export default () => {
   const [rates, setRates] = useState<number>(0);
   const [overview, setOverview] = useState<string>('This movie is ...');
   const history = useHistory();
-
-  if (!store.getState().user) {
-    history.push({
-      pathname: '/login',
-    });
-  }
+  useEffect(() => {
+    if (!store.getState().user) {
+      history.push({
+        pathname: '/login',
+      });
+    }
+  }, []);
 
   type post = {
     title: string;
@@ -44,7 +45,7 @@ export default () => {
       .then((response) => {
         history.push(`/post/${response.data.data.id}`);
       })
-      .catch((err) => console.error(err));
+      .catch((err) => console.log('response: ', err.response.data));
   };
 
   const onChange = (e: React.FormEvent<HTMLInputElement>) => {

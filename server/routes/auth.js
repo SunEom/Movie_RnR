@@ -2,45 +2,51 @@ const express = require('express');
 const db = require('../lib/db');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
-const { runInNewContext } = require('vm');
 const router = express.Router();
+const passport = require('passport');
 
 router.use(bodyParser.urlencoded({ extended: false }));
 router.use(cookieParser());
 
-module.exports = function (passport) {
-  router.post('/login', function (req, res, next) {
-    passport.authenticate('local', function (err, user, info) {
-      if (err) {
-        return next(err);
-      }
-      if (!user) {
-        return req.session.save(function (err) {
-          if (err) {
-            return next(err);
-          }
-          return res.send({ error: info });
-        });
-      }
-      req.login(user, function (err) {
+router.post('/login', function (req, res, next) {
+  passport.authenticate('local', function (err, user, info) {
+    if (err) {
+      return next(err);
+    }
+    if (!user) {
+      return req.session.save(function (err) {
         if (err) {
           return next(err);
         }
-        return req.session.save(function (err) {
-          if (err) {
-            return next(err);
-          }
-          return res.send(user);
-        });
+        return res.status(400).send({ error: info });
       });
-    })(req, res, next);
-  });
-
-  router.get('/logout', function (req, res) {
-    req.logout();
-    req.session.save(function () {
-      res.send('ok');
+    }
+    req.login(user, function (err) {
+      if (err) {
+        return next(err);
+      }
+      return req.session.save(function (err) {
+        if (err) {
+          return next(err);
+        }
+        return res.send(user);
+      });
     });
-  });
-  return router;
-};
+  })(req, res, next);
+});
+
+router.get('/login', function (req, res) {
+  if (req.isAuthenticated()) {
+    console.log('login', req.user);
+    return res.send(req.user);
+  }
+  return res.send({});
+});
+
+router.get('/logout', function (req, res) {
+  req.logout();
+  req.session.destroy();
+  res.send('logout');
+});
+
+module.exports = router;

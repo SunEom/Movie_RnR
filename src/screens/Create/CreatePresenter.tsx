@@ -25,6 +25,7 @@ const Create = ({ onChange, onSubmit }: CreateProps) => {
               inputProps={{ name: 'genres', onChange }}
               required
             />
+            git
           </div>
           <div>
             <TextField

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import LoginPresenter from './LoginPresenter';
 import axios from 'axios';
 import store from '../../store';
@@ -14,11 +14,13 @@ export default () => {
   const [id, setId] = useState<string>('');
   const [password, setPassword] = useState<string>('');
 
-  if (store.getState().user) {
-    history.push({
-      pathname: '/',
-    });
-  }
+  useEffect(() => {
+    if (store.getState().user) {
+      history.push({
+        pathname: '/login',
+      });
+    }
+  }, []);
 
   const onSubmit = async (e: any) => {
     e.preventDefault();
@@ -28,14 +30,11 @@ export default () => {
       password,
     };
 
-    console.log(data);
-    await axios
-      .post('http://localhost:8000/auth/login', { ...data, withCredentials: true })
+    axios
+      .post('http://localhost:8000/auth/login', { ...data }, { withCredentials: true })
       .then((response) => {
-        if (response.data.error) {
-          return console.error(response.data.error);
-        }
-        store.dispatch({ type: 'LOGIN', user: response });
+        store.dispatch({ type: 'LOGIN', user: response.data });
+
         history.push({
           pathname: '/',
         });
@@ -56,5 +55,11 @@ export default () => {
     }
   };
 
+  useEffect(() => {
+    return () => {
+      setId('');
+      setPassword('');
+    };
+  }, []);
   return <LoginPresenter onSubmit={onSubmit} onChange={onChange} />;
 };
