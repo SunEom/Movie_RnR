@@ -1,14 +1,20 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router';
+
 import './Header.css';
 
 type HeaderProps = {
   user: any;
+  onClick: any;
+  onLogout: any;
 };
 
-const Header = ({ user }: HeaderProps) => {
+const Header = ({ user, onClick, onLogout }: HeaderProps) => {
+  const history = useHistory();
   const [navbarOpen, setNavbarOpen] = React.useState(false);
   const navItemLink = 'px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75';
+
   return (
     <>
       <nav className="relative flex flex-wrap items-center justify-between px-2 py-3 navbar-expand-lg bg-gray-dark mb-3">
@@ -38,10 +44,18 @@ const Header = ({ user }: HeaderProps) => {
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link className={navItemLink} to="/login">
-                    <i className="fas fa-sign-in-alt text-lg leading-lg text-white opacity-75"></i>
-                    <span className="ml-2">Log in</span>
-                  </Link>
+                  <button
+                    className={navItemLink}
+                    onClick={() => {
+                      onClick(onLogout);
+                      history.push({
+                        pathname: '/',
+                      });
+                    }}
+                  >
+                    <i className="fas fa-sign-out-alt text-lg leading-lg text-white opacity-75"></i>
+                    <span className="ml-2">Log out</span>
+                  </button>
                 </li>
               </ul>
             </div>

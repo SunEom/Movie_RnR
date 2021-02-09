@@ -8,4 +8,8 @@ export default createStore((state, action) => {
   if (action.type === 'LOGIN') {
     return { ...state, user: action.user };
   }
+
+  if (action.type === 'LOGOUT') {
+    return { ...state, user: null };
+  }
 }, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());

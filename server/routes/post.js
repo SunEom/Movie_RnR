@@ -5,13 +5,13 @@ const db = require('../lib/db');
 const qs = require('querystring');
 
 router.post('/', function (req, res) {
-  //create
+  //글 쓰기
   const post = req.body;
   if (post.rates > 10) {
     post.rates = 10;
   }
   db.query(
-    `INSERT INTO movie(title,overview,genres,rates,created)
+    `INSERT INTO movie(title,overview,genre,rates,created)
         VALUES(?,?,?,?,NOW());`,
     [post.title, post.overview, post.genres, post.rates],
     function (error, result) {
@@ -24,12 +24,14 @@ router.post('/', function (req, res) {
 });
 
 router.post('/update_process', function (req, res) {
+  //글 수정
   const post = req.body;
   if (post.rates > 10) {
     post.rates = 10;
   }
+
   db.query(
-    `UPDATE movie SET title=?, overview=?, genres=?, rates=?, updated=NOW() WHERE id=?;`,
+    `UPDATE movie SET title=?, overview=?, genre=?, rates=?, updated=NOW() WHERE id=?;`,
     [post.title, post.overview, post.genres, post.rates, post.id],
     function (error, result) {
       if (error) {
@@ -41,6 +43,7 @@ router.post('/update_process', function (req, res) {
 });
 
 router.delete('/', function (req, res) {
+  //글 삭제
   const post = res.body;
   db.query(`DELETE FROM movie WHERE id = ?;`, [post.id], function (error, result) {
     if (error) {

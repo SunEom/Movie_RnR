@@ -1,11 +1,11 @@
 import React from 'react';
 
-type JoinProps = { onChange: (e: any) => void; onSubmit: (e: any) => void };
+type JoinProps = { onChange: (e: any) => void; onSubmit: (e: any) => void; idConfirm: any; nickConfirm: any };
 
-const Join = ({ onSubmit, onChange }: JoinProps) => {
+const Join = ({ onSubmit, onChange, idConfirm, nickConfirm }: JoinProps) => {
   return (
     <div className="w-screen flex justify-center sm:pt-20">
-      <div className="mt-5 md:mt-0 md:col-span-2 w-8/12 sm:w-8/12 md:w-6/12 lg:w-5/12 bg-white bg-opacity-50 rounded-lg">
+      <div className="mt-5 md:mt-0 md:col-span-2 w-10/12 sm:w-8/12 md:w-6/12 lg:w-5/12 bg-white bg-opacity-50 rounded-lg">
         <form action="#" method="POST" onSubmit={onSubmit}>
           <div className="shadow overflow-hidden sm:rounded-md">
             <div className="px-4 py-5 ">
@@ -14,17 +14,24 @@ const Join = ({ onSubmit, onChange }: JoinProps) => {
                   <label htmlFor="id" className="block text-sm font-medium ">
                     ID
                   </label>
-                  <input
-                    type="text"
-                    name="id"
-                    id="id"
-                    className="px-2 mt-1 bg-white h-7 bg-opacity-50 border border-gray-dark focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                    required
-                    onChange={onChange}
-                  />
+                  <div className="flex ">
+                    <input
+                      type="text"
+                      name="id"
+                      id="id"
+                      minLength={6}
+                      maxLength={13}
+                      className="px-2 mt-1 min-w-10 bg-white h-7 bg-opacity-50 border border-gray-dark focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                      required
+                      onChange={onChange}
+                    />
+                    <button className="mx-5 border text-xs border-black px-3 rounded-md" onClick={idConfirm}>
+                      Confirmation
+                    </button>
+                  </div>
                 </div>
                 <div className="col-span-6 sm:col-span-3"></div>
-                <div className="col-span-6 sm:col-span-3">
+                <div className="col-span-3 sm:col-span-3">
                   <label htmlFor="password" className="block text-sm font-medium ">
                     Password
                   </label>
@@ -32,13 +39,15 @@ const Join = ({ onSubmit, onChange }: JoinProps) => {
                     type="password"
                     name="password"
                     id="password"
+                    minLength={8}
+                    maxLength={13}
                     className="px-2 mt-1 bg-white h-7 bg-opacity-50 border border-gray-dark focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                     required
                     onChange={onChange}
                   />
                 </div>
 
-                <div className="col-span-6 sm:col-span-3">
+                <div className="col-span-3 sm:col-span-3">
                   <label htmlFor="password_check" className="block text-sm font-medium ">
                     Password Check
                   </label>
@@ -46,25 +55,34 @@ const Join = ({ onSubmit, onChange }: JoinProps) => {
                     type="password"
                     name="password_check"
                     id="password_check"
+                    maxLength={13}
+                    minLength={8}
                     className="px-2 mt-1 h-7 bg-white bg-opacity-50 border border-gray-dark focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                     required
                     onChange={onChange}
                   />
                 </div>
 
-                <div className="col-span-6 sm:col-span-4">
-                  <label htmlFor="nickname" className="block text-sm font-medium ">
+                <div className="col-span-6 sm:col-span-3">
+                  <label htmlFor="nickname" className="block  text-sm font-medium ">
                     Nickname
                   </label>
-                  <input
-                    type="text"
-                    name="nickname"
-                    id="nickname"
-                    className="px-2 mt-1 h-7 bg-white bg-opacity-50 border border-gray-dark focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                    required
-                    onChange={onChange}
-                  />
+                  <div className="flex">
+                    <input
+                      type="text"
+                      name="nickname"
+                      id="nickname"
+                      maxLength={10}
+                      className="px-2 min-w-10 mt-1 h-7 bg-white bg-opacity-50 border border-gray-dark focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                      required
+                      onChange={onChange}
+                    />
+                    <button className="mx-5 border text-xs border-black px-3 rounded-md" onClick={nickConfirm}>
+                      Confirmation
+                    </button>
+                  </div>
                 </div>
+                <div className="col-span-6 sm:col-span-3"></div>
 
                 <div className="col-span-6 sm:col-span-3">
                   <label htmlFor="gender" className="block text-sm font-medium ">
