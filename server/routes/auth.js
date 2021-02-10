@@ -29,6 +29,14 @@ router.post('/login', function (req, res, next) {
   })(req, res, next);
 });
 
+router.get('/login', function(req,res,next){
+  if(req.user){
+    res.status(200).send({ code: 200, data: user });
+  } else{
+    res.status(400).send({code: 400, error: 'not login'});
+  }
+})
+
 router.get('/logout', function (req, res, next) {
   req.logout();
   req.session.save(function () {
