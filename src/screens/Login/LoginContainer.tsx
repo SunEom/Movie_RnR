@@ -33,13 +33,7 @@ export default () => {
     axios
       .post('http://localhost:8000/auth/login', { ...data }, { withCredentials: true })
       .then((response) => {
-<<<<<<< HEAD
-        console.log(response);
-        store.dispatch({ type: 'LOGIN', user: response });
-=======
         store.dispatch({ type: 'LOGIN', user: response.data });
-
->>>>>>> 685b96e79204e1e9987cba0199a68d4c68cdba96
         history.push({
           pathname: '/',
         });
