@@ -7,6 +7,7 @@ import Login from './screens/Login';
 import Join from './screens/Join';
 import Detail from './screens/Detail';
 import Find from './screens/Find';
+import Profile from './screens/Profile';
 import store from './store';
 import './App.css';
 import axios from 'axios';
@@ -68,6 +69,9 @@ function App() {
         </Route>
         <Route exact path="/find">
           <Find />
+        </Route>
+        <Route exact path="/profile">
+          <Profile />
         </Route>
       </BrowserRouter>
     </div>
