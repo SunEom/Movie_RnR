@@ -2,7 +2,6 @@ const express = require('express');
 const router = express.Router();
 const sanitizeHtml = require('sanitize-html');
 const db = require('../lib/db');
-const qs = require('querystring');
 const authCheck = require('../lib/authCheck');
 
 router.post('/', function (req, res, next) {

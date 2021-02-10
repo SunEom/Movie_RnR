@@ -1,8 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const db = require('../lib/db');
-const qs = require('querystring');
-const { nextTick } = require('process');
 
 router.post('/', async function (req, res, next) {
   const post = req.body;
@@ -37,7 +35,7 @@ router.post('/', async function (req, res, next) {
               console.log('mysql err');
               next(error);
             }
-            res.status(200).send({code: 200});
+            res.status(200).send({ code: 200 });
           }
         );
       } else {
