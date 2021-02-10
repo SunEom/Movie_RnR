@@ -5,7 +5,7 @@ const db = require('../lib/db');
 const qs = require('querystring');
 const authCheck = require('../lib/authCheck');
 
-router.post('/', function (req, res) {
+router.post('/', function (req, res, next) {
     // if(!authCheck.IsOwner(req,res)){
     //     console.log('not login');
     //     res.status(400).send({error: 'not login'});
@@ -21,16 +21,26 @@ router.post('/', function (req, res) {
             [post.title, post.overview, post.genres, post.rates],
             function (error, result) {
             if (error) {
-                res.send({error: 'insertQueryErr'});
+                next(error);
             }
-            res.status(201).send({code : 'insert complete'});
+            db.query(
+                `SELECT * FROM movie WHERE title=? and overview=? and genres=?`,
+                [post.title, post.overview, post.genres],
+                function(error, result){
+                    if(error){
+                        next(error);
+                    }
+                    res.status(201).send({code : 201,
+                                        data : result});
+                }
+            )          
             }
         );
     
   
 });
 
-router.post('/update_process', function (req, res) {
+router.post('/update_process', function (req, res, next) {
     // if(!authCheck.IsOwner(req,res)){
     //     res.status(400).send({error: 'not login'});
     // } 
@@ -45,42 +55,51 @@ router.post('/update_process', function (req, res) {
         [post.title, post.overview, post.genres, post.rates, post.id],
         function (error, result) {
             if (error) {
-            res.send({error: 'updateQueryErr'});
+                next(error);
             }
-            res.status(201).send({code : 'update complete'});
+            db.query(
+                `SELECT * FROM movie WHERE id=?`,
+                [post.id],
+                function(error, result){
+                    if(error){
+                        next(error);
+                    }
+                    res.status(201).send({code : 201,
+                                        data : result});
+                }
+            )
         }
         );
-    
 });
 
-router.delete('/', function (req, res) {
+router.delete('/:id', function (req, res, next) {
     // if(!authCheck.IsOwner(req,res)){
     //     res.status(400).send({error: 'not login'});
     // } 
         //글 삭제
-        const post = res.body;
-        db.query(`DELETE FROM movie WHERE id = ?;`, [post.id], function (error, result) {
+        const post = req.body;
+        db.query(`DELETE FROM movie WHERE id = ?;`, [req.params.id], function (error, result) {
             if (error) {
-                res.send({error: 'deleteQueryErr'});
+                next(error);
             }
-            res.status(200).send({code : 'delete complete'});
+            res.status(200).send({code : 200});
         });
     
 });
 
-router.get('/', async function (req, res) {
+router.get('/', async function (req, res, next) {
   await db.query(`SELECT * FROM movie ORDER BY created desc LIMIT 20;`, function (error, result) {
     if (error) {
-        res.send({error: 'queryerr'});
+        next(error);
     }
     res.json(result);
   });
 });
 
-router.get('/:id', async function (req, res) {
+router.get('/:id', async function (req, res, next) {
   await db.query(`SELECT * FROM movie WHERE id=?;`, [req.params.id], function (error, result) {
     if (error) {
-        res.send({error: 'queryerr'});
+        next(error);
     }
     res.json(result);
   });
