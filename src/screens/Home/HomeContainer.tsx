@@ -5,7 +5,7 @@ import store from '../../store';
 
 export default () => {
   const [recent, setRecent] = useState<Array<object>>([{}]);
-  const [loading, setLoading] = useState<boolean>(store.getState().recent ? false : true);
+  const [loading, setLoading] = useState<boolean>(true);
 
   const getRecent = async () => {
     const { data } = await axios.get('/post/');
@@ -15,12 +15,7 @@ export default () => {
   };
 
   useEffect(() => {
-    if (store.getState().recent) {
-      setRecent(store.getState().recent);
-      setLoading(false);
-    } else {
-      getRecent();
-    }
+    getRecent();
   }, []);
 
   return <HomePresenter recent={recent as any} loading={loading} />;

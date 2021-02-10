@@ -43,7 +43,7 @@ export default () => {
     await axios
       .post('http://localhost:8000/post', { ...data }, { withCredentials: true })
       .then((response) => {
-        history.push(`/post/${response.data.data.id}`);
+        history.push(`/post/${response.data.data[0].id}`);
       })
       .catch((err) => console.log('response: ', err.response.data));
   };
