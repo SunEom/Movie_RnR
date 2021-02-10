@@ -12,9 +12,10 @@ type movie = {
 type DetailProps = {
   movie: movie;
   loading: boolean;
+  onDeleteClick: any;
 };
 
-const Detail = ({ movie, loading }: DetailProps) => {
+const Detail = ({ movie, loading, onDeleteClick }: DetailProps) => {
   return (
     <>
       {loading ? (
@@ -40,6 +41,15 @@ const Detail = ({ movie, loading }: DetailProps) => {
                 <div className="flex flex-wrap pt-5">
                   <div className="w-full md:w-1/3 text-sm font-medium">{movie.created}</div>
                 </div>
+              </div>
+              <div className="flex justify-end">
+                <button
+                  type="button"
+                  onClick={onDeleteClick}
+                  className="border border-black-light bg-gray text-sm text-gray-darker rounded-md px-4 py-2 m-4 transition duration-500 ease select-none hover:bg-gray-light focus:outline-none focus:shadow-outline"
+                >
+                  Delete
+                </button>
               </div>
             </div>
           </div>

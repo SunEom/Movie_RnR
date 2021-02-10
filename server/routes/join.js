@@ -64,7 +64,7 @@ module.exports = function (passport) {
 
       req.login(user, function (err) {
         console.log('회원가입성공, 로그인');
-        return res.status(200).send({code: 200, data: user});
+        return res.status(200).send({ code: 200, data: user });
       });
     });
   });

@@ -22,7 +22,7 @@ const Home = ({ recent, loading }: HomeProps) => {
         <ActivityIndicator />
       ) : (
         <>
-          <div className="w-screen text-center text-2xl pt-10">Recent 20 Postings</div>
+          <div className="w-screen text-center text-2xl pt-10">Recent Postings</div>
           <div className="flex justify-center pt-10">
             <div className="flex justify-center flex-wrap w-10/12">
               {recent.map((m) => (

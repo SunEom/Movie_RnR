@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { BrowserRouter, Route, useParams } from 'react-router-dom';
 import Header from './container/Header';
 import Create from './screens/Create';
@@ -9,8 +9,19 @@ import Detail from './screens/Detail';
 import Find from './screens/Find';
 import store from './store';
 import './App.css';
+import axios from 'axios';
 
 function App() {
+  const reloading = () => {
+    axios.get('http://localhost:8000/auth/login', { withCredentials: true }).then((response) => {
+      if (!response.data.user_id) {
+        return;
+      } else {
+        store.dispatch({ type: 'LOGIN', user: response.data });
+      }
+    });
+  };
+
   const DetailView = () => {
     interface ParamTypes {
       id: string;
@@ -32,6 +43,9 @@ function App() {
 
   store.subscribe(login);
   store.subscribe(logout);
+  useEffect(() => {
+    reloading();
+  }, []);
 
   return (
     <div className="App">
