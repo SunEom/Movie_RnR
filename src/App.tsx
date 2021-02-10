@@ -15,7 +15,7 @@ import axios from 'axios';
 function App() {
   const reloading = () => {
     axios.get('http://localhost:8000/auth/login', { withCredentials: true }).then((response) => {
-      if (!response.data.user_id) {
+      if (!response.data.data.user_id) {
         return;
       } else {
         store.dispatch({ type: 'LOGIN', user: response.data });
