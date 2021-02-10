@@ -19,7 +19,8 @@ module.exports = function (passport) {
           if (err) {
             return next(err);
           }
-          return res.send({ error: info });
+          return res.status(400).send({ code: 400,
+                                        error: info.message });
         });
       }
       req.login(user, function (err) {
@@ -30,16 +31,16 @@ module.exports = function (passport) {
           if (err) {
             return next(err);
           }
-          return res.send(user);
+          return res.status(200).send({code: 200, data: user});
         });
       });
     })(req, res, next);
   });
 
-  router.get('/logout', function (req, res) {
+  router.get('/logout', function (req, res, next) {
     req.logout();
     req.session.save(function () {
-      res.send('ok');
+      res.status(200).send({code: 200});
     });
   });
   return router;
