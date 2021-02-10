@@ -44,6 +44,7 @@ function App() {
 
   store.subscribe(login);
   store.subscribe(logout);
+
   useEffect(() => {
     reloading();
   }, []);
