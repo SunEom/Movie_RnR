@@ -44,12 +44,20 @@ router.post('/update_process', function (req, res, next) {
     if(!authCheck.IsOwner(req,res)){
         return res.status(400).send({code: 400, error: 'not login'});
     }
-
-    //글 수정
     const post = req.body;
     if (post.rates > 10) {
     post.rates = 10;
     }
+    db.query(`SELECT user_id FROM movie WHERE id=?`,[post.id], 
+    function(error,result){
+        if(error){
+            next(error);
+        }
+        if(result[0].user_id != req.user.user_id){
+            return res.status(400).send({code: 400, error: '다른 사용자가 작성한 글입니다.'});
+        }
+    })
+    //글 수정
 
     db.query(
     `UPDATE movie SET title=?, overview=?, genres=?, rates=?, updated=NOW() WHERE id=?;`,
@@ -76,7 +84,16 @@ router.post('/update_process', function (req, res, next) {
 router.delete('/:id', function (req, res, next) {
     if(!authCheck.IsOwner(req,res)){
         return res.status(400).send({code: 400, error: 'not login'});
-    } 
+    }
+    db.query(`SELECT user_id FROM movie WHERE id=?`,[post.id], 
+    function(error,result){
+        if(error){
+            next(error);
+        }
+        if(result[0].user_id != req.user.user_id){
+            return res.status(400).send({code: 400, error: '다른 사용자가 작성한 글입니다.'});
+        }
+    })
     //글 삭제
     db.query(`DELETE FROM movie WHERE id = ?;`, [req.params.id], function (error, result) {
         if (error) {
