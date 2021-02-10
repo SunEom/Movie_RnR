@@ -8,7 +8,7 @@ const authCheck = require('../lib/authCheck');
 router.post('/', function (req, res, next) {
     if(!authCheck.IsOwner(req,res)){
         console.log('not login');
-        res.status(400).send({code: 400, error: 'not login'});
+        return res.status(400).send({code: 400, error: 'not login'});
     } 
     //글 쓰기
     const post = req.body;
@@ -16,9 +16,9 @@ router.post('/', function (req, res, next) {
         post.rates = 10;
     }
     db.query(
-        `INSERT INTO movie(title,overview,genres,rates,created)
-            VALUES(?,?,?,?,NOW());`,
-        [post.title, post.overview, post.genres, post.rates],
+        `INSERT INTO movie(title,overview,genres,rates,created,user_id)
+            VALUES(?,?,?,?,NOW(),?);`,
+        [post.title, post.overview, post.genres, post.rates, req.user.user_id],
         function (error, result) {
         if (error) {
             next(error);
@@ -42,8 +42,9 @@ router.post('/', function (req, res, next) {
 
 router.post('/update_process', function (req, res, next) {
     if(!authCheck.IsOwner(req,res)){
-        res.status(400).send({code: 400, error: 'not login'});
-    } 
+        return res.status(400).send({code: 400, error: 'not login'});
+    }
+
     //글 수정
     const post = req.body;
     if (post.rates > 10) {
@@ -74,10 +75,9 @@ router.post('/update_process', function (req, res, next) {
 
 router.delete('/:id', function (req, res, next) {
     if(!authCheck.IsOwner(req,res)){
-        res.status(400).send({code: 400, error: 'not login'});
+        return res.status(400).send({code: 400, error: 'not login'});
     } 
     //글 삭제
-    const post = req.body;
     db.query(`DELETE FROM movie WHERE id = ?;`, [req.params.id], function (error, result) {
         if (error) {
             next(error);
