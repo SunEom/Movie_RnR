@@ -44,26 +44,23 @@ router.post('/update_process', function (req, res, next) {
         }
         if(result[0].user_id != req.user.user_id){
             return res.status(400).send({code: 400, error: '다른 사용자가 작성한 글입니다.'});
+        } else{//글 수정
+            db.query(`UPDATE movie SET title=?, overview=?, genres=?, rates=?, updated=NOW() WHERE id=?;`,
+                [post.title, post.overview, post.genres, post.rates, post.id],
+                function (error, result) {
+                if (error) {
+                    next(error);
+                }
+                db.query(`SELECT * FROM movie WHERE id=?`, [post.id], function (error, result) {
+                    if (error) {
+                    next(error);
+                    }
+                    res.status(201).send({ code: 201, data: result });
+                });
+                }
+            );
         }
     })
-    //글 수정
-
-
-  db.query(
-    `UPDATE movie SET title=?, overview=?, genres=?, rates=?, updated=NOW() WHERE id=?;`,
-    [post.title, post.overview, post.genres, post.rates, post.id],
-    function (error, result) {
-      if (error) {
-        next(error);
-      }
-      db.query(`SELECT * FROM movie WHERE id=?`, [post.id], function (error, result) {
-        if (error) {
-          next(error);
-        }
-        res.status(201).send({ code: 201, data: result });
-      });
-    }
-  );
 });
 
 router.delete('/:id', function (req, res, next) {
@@ -71,23 +68,23 @@ router.delete('/:id', function (req, res, next) {
     if(!authCheck.IsOwner(req,res)){
         return res.status(400).send({code: 400, error: 'not login'});
     }
-    db.query(`SELECT user_id FROM movie WHERE id=?`,[post.id], 
+    db.query(`SELECT user_id FROM movie WHERE id=?`,[req.params.id], 
     function(error,result){
         if(error){
             next(error);
         }
         if(result[0].user_id != req.user.user_id){
             return res.status(400).send({code: 400, error: '다른 사용자가 작성한 글입니다.'});
+        } else{//글 삭제
+            db.query(`DELETE FROM movie WHERE id = ?;`, [req.params.id], function (error, result) {
+                if (error) {
+                    next(error);
+                }
+                res.status(200).send({code : 200});
+            });
         }
     })
-    //글 삭제
-    db.query(`DELETE FROM movie WHERE id = ?;`, [req.params.id], function (error, result) {
-        if (error) {
-            next(error);
-        }
-        res.status(200).send({code : 200});
-    });
-    
+
 });
 
 router.get('/', async function (req, res, next) {
