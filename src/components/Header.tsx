@@ -38,6 +38,12 @@ const Header = ({ user, onClick, onLogout }: HeaderProps) => {
             <div className={'lg:flex flex-grow items-center' + (navbarOpen ? ' flex' : ' hidden')} id="example-navbar-danger">
               <ul className="flex flex-col lg:flex-row list-none lg:ml-auto">
                 <li className="nav-item">
+                  <Link className={navItemLink} to="/profile">
+                    <i className="fas fa-user-cog text-lg leading-lg text-white opacity-75"></i>
+                    <span className="ml-2">My page</span>
+                  </Link>
+                </li>
+                <li className="nav-item">
                   <Link className={navItemLink} to="/create">
                     <i className="far fa-plus-square text-lg leading-lg text-white opacity-75"></i>
                     <span className="ml-2">Posting</span>
@@ -66,12 +72,6 @@ const Header = ({ user, onClick, onLogout }: HeaderProps) => {
                   <Link className={navItemLink} to="/login">
                     <i className="fas fa-sign-in-alt text-lg leading-lg text-white opacity-75"></i>
                     <span className="ml-2">Log in</span>
-                  </Link>
-                </li>
-                <li className="nav-item">
-                  <Link className={navItemLink} to="/create">
-                    <i className="far fa-plus-square text-lg leading-lg text-white opacity-75"></i>
-                    <span className="ml-2">Posting</span>
                   </Link>
                 </li>
               </ul>
