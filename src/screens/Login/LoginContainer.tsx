@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import LoginPresenter from './LoginPresenter';
 import axios from 'axios';
 import store from '../../store';
@@ -14,6 +14,14 @@ export default () => {
   const [id, setId] = useState<string>('');
   const [password, setPassword] = useState<string>('');
 
+  useEffect(() => {
+    if (store.getState().user) {
+      history.push({
+        pathname: '/login',
+      });
+    }
+  }, []);
+
   const onSubmit = async (e: any) => {
     e.preventDefault();
 
@@ -22,11 +30,16 @@ export default () => {
       password,
     };
 
-    await axios
-      .post('http://localhost:8000/auth/login', data)
+    axios
+      .post('http://localhost:8000/auth/login', { ...data }, { withCredentials: true })
       .then((response) => {
+<<<<<<< HEAD
         console.log(response);
         store.dispatch({ type: 'LOGIN', user: response });
+=======
+        store.dispatch({ type: 'LOGIN', user: response.data });
+
+>>>>>>> 685b96e79204e1e9987cba0199a68d4c68cdba96
         history.push({
           pathname: '/',
         });
@@ -34,7 +47,7 @@ export default () => {
       .catch((err) => console.error(err));
   };
 
-  const onChange = (e: React.FormEvent<HTMLInputElement>) => {
+  const onChange = (e: any) => {
     switch (e.currentTarget.id) {
       case 'id': {
         setId(e.currentTarget.value);
@@ -47,5 +60,11 @@ export default () => {
     }
   };
 
+  useEffect(() => {
+    return () => {
+      setId('');
+      setPassword('');
+    };
+  }, []);
   return <LoginPresenter onSubmit={onSubmit} onChange={onChange} />;
 };

@@ -12,4 +12,8 @@ export default createStore((state, action) => {
   if (action.type === 'LOGOUT') {
     return { ...state, user: null };
   }
+
+  if (action.type === 'GET_RECENT') {
+    return { ...state, recent: action.recent };
+  }
 }, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
