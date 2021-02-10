@@ -7,6 +7,7 @@ import Login from './screens/Login';
 import Join from './screens/Join';
 import Detail from './screens/Detail';
 import Find from './screens/Find';
+import Profile from './screens/Profile';
 import store from './store';
 import './App.css';
 import axios from 'axios';
@@ -14,7 +15,7 @@ import axios from 'axios';
 function App() {
   const reloading = () => {
     axios.get('http://localhost:8000/auth/login', { withCredentials: true }).then((response) => {
-      if (!response.data.user_id) {
+      if (!response.data.data.user_id) {
         return;
       } else {
         store.dispatch({ type: 'LOGIN', user: response.data });
@@ -68,6 +69,9 @@ function App() {
         </Route>
         <Route exact path="/find">
           <Find />
+        </Route>
+        <Route exact path="/profile">
+          <Profile />
         </Route>
       </BrowserRouter>
     </div>
