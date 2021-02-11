@@ -3,7 +3,6 @@ import axios from 'axios';
 import CreatePresenter from './CreatePresenter';
 import { useHistory } from 'react-router';
 import store from '../../store';
-import { setgid } from 'process';
 
 export default () => {
   const [title, setTitle] = useState<string>('');
@@ -11,6 +10,7 @@ export default () => {
   const [rates, setRates] = useState<number | undefined>();
   const [overview, setOverview] = useState<string>('');
   const history = useHistory();
+
   useEffect(() => {
     if (!store.getState().user) {
       history.push({
