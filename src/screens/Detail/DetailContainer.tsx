@@ -11,9 +11,13 @@ export default ({ id }: { id: string }) => {
   const history = useHistory();
 
   const getMovie = async () => {
-    const { data } = await axios.get(`/post/${id}`);
-    setMovie(data[0]);
-    setLoading(false);
+    axios
+      .get(`/post/${id}`)
+      .then(({ data }) => {
+        setMovie(data[0]);
+        setLoading(false);
+      })
+      .catch((err) => console.error(err));
   };
 
   const modeToggle = () => {
