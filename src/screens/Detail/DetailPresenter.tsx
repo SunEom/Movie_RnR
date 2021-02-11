@@ -7,6 +7,7 @@ type movie = {
   rates: number;
   overview: string;
   created: any;
+  user_id: number;
 };
 
 type DetailProps = {
@@ -15,9 +16,10 @@ type DetailProps = {
   onDeleteClick: any;
   mode: string;
   modeToggle: any;
+  user: { user_id: number };
 };
 
-const Detail = ({ movie, loading, onDeleteClick, mode, modeToggle }: DetailProps) => {
+const Detail = ({ movie, loading, onDeleteClick, mode, modeToggle, user }: DetailProps) => {
   return (
     <>
       {loading ? (
@@ -45,22 +47,24 @@ const Detail = ({ movie, loading, onDeleteClick, mode, modeToggle }: DetailProps
                     <div className="w-full md:w-1/3 text-sm font-medium">{movie.created}</div>
                   </div>
                 </div>
-                <div className="flex justify-end">
-                  <button
-                    type="button"
-                    onClick={modeToggle}
-                    className="border border-black-light bg-gray text-sm text-gray-darker rounded-md px-6 py-2 m-4 mx-2 transition duration-500 ease select-none hover:bg-gray-light focus:outline-none focus:shadow-outline"
-                  >
-                    Edit
-                  </button>
-                  <button
-                    type="button"
-                    onClick={onDeleteClick}
-                    className="border border-black-light bg-gray text-sm text-gray-darker rounded-md px-4 py-2 m-4 mr-4 transition duration-500 ease select-none hover:bg-gray-light focus:outline-none focus:shadow-outline"
-                  >
-                    Delete
-                  </button>
-                </div>
+                {user.user_id === movie.user_id ? (
+                  <div className="flex justify-end">
+                    <button
+                      type="button"
+                      onClick={modeToggle}
+                      className="border border-black-light bg-gray text-sm text-gray-darker rounded-md px-6 py-2 m-4 mx-2 transition duration-500 ease select-none hover:bg-gray-light focus:outline-none focus:shadow-outline"
+                    >
+                      Edit
+                    </button>
+                    <button
+                      type="button"
+                      onClick={onDeleteClick}
+                      className="border border-black-light bg-gray text-sm text-gray-darker rounded-md px-4 py-2 m-4 mr-4 transition duration-500 ease select-none hover:bg-gray-light focus:outline-none focus:shadow-outline"
+                    >
+                      Delete
+                    </button>
+                  </div>
+                ) : null}
               </div>
             </div>
           </div>
@@ -86,15 +90,17 @@ const Detail = ({ movie, loading, onDeleteClick, mode, modeToggle }: DetailProps
                     <div className="w-full md:w-1/3 text-sm font-medium">{movie.created}</div>
                   </div>
                 </div>
-                <div className="flex justify-end">
-                  <button
-                    type="button"
-                    onClick={modeToggle}
-                    className="border border-black-light bg-gray text-sm text-gray-darker rounded-md px-4 py-2 m-4 mx-2 transition duration-500 ease select-none hover:bg-gray-light focus:outline-none focus:shadow-outline"
-                  >
-                    Cancel
-                  </button>
-                </div>
+                {user.user_id === movie.user_id ? (
+                  <div className="flex justify-end">
+                    <button
+                      type="button"
+                      onClick={modeToggle}
+                      className="border border-black-light bg-gray text-sm text-gray-darker rounded-md px-4 py-2 m-4 mx-2 transition duration-500 ease select-none hover:bg-gray-light focus:outline-none focus:shadow-outline"
+                    >
+                      Cancel
+                    </button>
+                  </div>
+                ) : null}
               </div>
             </div>
           </div>
