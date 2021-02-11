@@ -1,5 +1,7 @@
 import React from 'react';
 import ActivityIndicator from '../../components/ActivityIndicator';
+import CommentContainer from '../../container/CommentContainer';
+
 type movie = {
   id: number;
   title: string;
@@ -67,6 +69,7 @@ const Detail = ({ movie, loading, onDeleteClick, mode, modeToggle, user }: Detai
                   </div>
                 ) : null}
               </div>
+              <CommentContainer movie={movie} />
             </div>
           </div>
         ) : (
