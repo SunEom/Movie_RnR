@@ -13,15 +13,24 @@ import './App.css';
 import axios from 'axios';
 
 function App() {
-  const reloading = async () => {
-    await axios.get('http://localhost:8000/auth/login', { withCredentials: true }).then((response) => {
-      if (!response.data.data.user_id) {
-        return;
-      } else {
-        store.dispatch({ type: 'LOGIN', user: response.data.data });
-      }
-    });
+  const [loginCheck, setLoginCheck] = useState(false);
+  const reloading = () => {
+    axios
+      .get('http://localhost:8000/auth/login', { withCredentials: true })
+      .then(async (response) => {
+        if (!response.data.data.user_id) {
+          setLoginCheck(true);
+        } else {
+          await store.dispatch({ type: 'LOGIN', user: response.data.data });
+          setLoginCheck(true);
+        }
+      })
+      .catch((err) => setLoginCheck(true));
   };
+
+  useEffect(() => {
+    reloading();
+  }, []);
 
   const DetailView = () => {
     interface ParamTypes {
@@ -45,36 +54,34 @@ function App() {
   store.subscribe(login);
   store.subscribe(logout);
 
-  useEffect(() => {
-    reloading();
-  }, []);
-
   return (
     <div className="App">
-      <BrowserRouter>
-        <Header />
-        <Route exact path="/">
-          <Home />
-        </Route>
-        <Route exact path="/create">
-          <Create />
-        </Route>
-        <Route exact path="/login">
-          <Login />
-        </Route>
-        <Route exact path="/join">
-          <Join />
-        </Route>
-        <Route exact path="/post/:id">
-          <DetailView />
-        </Route>
-        <Route exact path="/find">
-          <Find />
-        </Route>
-        <Route exact path="/profile">
-          <Profile />
-        </Route>
-      </BrowserRouter>
+      {loginCheck ? (
+        <BrowserRouter>
+          <Header />
+          <Route exact path="/">
+            <Home />
+          </Route>
+          <Route exact path="/create">
+            <Create />
+          </Route>
+          <Route exact path="/login">
+            <Login />
+          </Route>
+          <Route exact path="/join">
+            <Join />
+          </Route>
+          <Route exact path="/post/:id">
+            <DetailView />
+          </Route>
+          <Route exact path="/find">
+            <Find />
+          </Route>
+          <Route exact path="/profile">
+            <Profile />
+          </Route>
+        </BrowserRouter>
+      ) : null}
     </div>
   );
 }
