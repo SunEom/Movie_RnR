@@ -80,9 +80,12 @@ const Detail = ({ movie, loading, onDeleteClick, mode, modeToggle, user, onChang
           </div>
         ) : (
           <form
-            className="editor mx-auto w-10/12 flex flex-col rounded text-gray-800 border border-gray-dark p-4 shadow-lg max-w-2xl"
+            className="editor mx-auto w-10/12 flex flex-col rounded text-gray-800 border mt-10 border-gray-dark p-4 shadow-lg max-w-2xl"
             onSubmit={onSubmit}
           >
+            <div className="text-xl py-5 font-bold">Edit Post</div>
+
+            <label>Title</label>
             <input
               name="title"
               className="title bg-gray-100 border border-gray-dark p-2 mb-4 outline-none"
@@ -198,10 +201,15 @@ const Detail = ({ movie, loading, onDeleteClick, mode, modeToggle, user, onChang
               <div className="count ml-auto text-gray-400 text-xs font-semibold">0/300</div>
             </div>
             <div className="buttons flex">
-              <button className="btn border border-gray-dark p-1 px-4 font-semibold cursor-pointer text-gray-500 ml-auto">Cancel</button>
+              <button
+                className="btn border border-gray-dark p-1 px-4 font-semibold cursor-pointer text-gray-500 ml-auto"
+                onClick={modeToggle}
+              >
+                Cancel
+              </button>
               <button
                 type="submit"
-                className="btn border border-indigo-500 p-1 px-4 font-semibold cursor-pointer text-gray-200 ml-2 bg-indigo-500"
+                className="btn border border-gray-dark p-1 px-4 font-semibold cursor-pointer text-gray-200 ml-2 bg-gray-dark"
               >
                 Post
               </button>
