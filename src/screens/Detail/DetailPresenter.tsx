@@ -43,8 +43,9 @@ const Detail = ({ movie, loading, onDeleteClick, mode, modeToggle, user }: Detai
                   <div>
                     <p className="py-4">{movie.overview}</p>
                   </div>
-                  <div className="flex flex-wrap pt-5">
-                    <div className="w-full md:w-1/3 text-sm font-medium">{movie.created}</div>
+                  <div className="flex flex-wrap justify-between pt-5w-full">
+                    <div className="text-sm font-medium">{movie.created}</div>
+                    <div className="text-sm font-medium text-gray-dark">by {movie.user_id}</div>
                   </div>
                 </div>
                 {user.user_id === movie.user_id ? (
