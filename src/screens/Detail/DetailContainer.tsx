@@ -32,9 +32,13 @@ export default ({ id }: { id: string }) => {
       .catch((err) => console.error(err.response.data));
   };
 
+  const user = store.getState().user;
+
   useEffect(() => {
     getMovie();
   }, []);
 
-  return <DetailPresenter movie={movie as any} loading={loading} onDeleteClick={onDeleteClick} mode={mode} modeToggle={modeToggle} />;
+  return (
+    <DetailPresenter movie={movie as any} loading={loading} onDeleteClick={onDeleteClick} mode={mode} modeToggle={modeToggle} user={user} />
+  );
 };
