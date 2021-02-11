@@ -7,12 +7,21 @@ import store from '../../store';
 export default ({ id }: { id: string }) => {
   const [movie, setMovie] = useState<object>([{}]);
   const [loading, setLoading] = useState<boolean>(true);
+  const [mode, setMode] = useState('read');
   const history = useHistory();
 
   const getMovie = async () => {
     const { data } = await axios.get(`/post/${id}`);
     setMovie(data[0]);
     setLoading(false);
+  };
+
+  const modeToggle = () => {
+    if (mode === 'read') {
+      setMode('edit');
+    } else if (mode === 'edit') {
+      setMode('read');
+    }
   };
 
   const onDeleteClick = async (e: any) => {
@@ -27,5 +36,5 @@ export default ({ id }: { id: string }) => {
     getMovie();
   }, []);
 
-  return <DetailPresenter movie={movie as any} loading={loading} onDeleteClick={onDeleteClick} />;
+  return <DetailPresenter movie={movie as any} loading={loading} onDeleteClick={onDeleteClick} mode={mode} modeToggle={modeToggle} />;
 };
