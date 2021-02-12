@@ -3,11 +3,12 @@ import Comments from '../components/Comments';
 
 type CommentContainerProps = {
   contents: string;
+  comments: Array<{ user_id: string; contents: string }>;
   onSubmit: (e: any) => void;
   onChange: (e: any) => void;
 };
 
-const CommentContainer = ({ onSubmit, onChange, contents }: CommentContainerProps) => {
+const CommentContainer = ({ onSubmit, onChange, contents, comments }: CommentContainerProps) => {
   return (
     <div>
       <section className="rounded-b-lg  mt-8 ">
@@ -31,6 +32,9 @@ const CommentContainer = ({ onSubmit, onChange, contents }: CommentContainerProp
         <div id="task-comments" className="pt-4">
           <Comments user_id="@Shanel" contents="Hi good morning will it be the entire house." />
           <Comments user_id="@Tim Motti" contents="Hello. Yes, the entire exterior, including the walls." />
+          {comments.map((comment) => (
+            <Comments {...comment} />
+          ))}
         </div>
       </section>
     </div>
