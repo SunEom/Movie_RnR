@@ -3,6 +3,8 @@ import ActivityIndicator from '../../components/ActivityIndicator';
 import ProfileNav from '../../components/Profile/ProfileNav';
 import BasicProfile from '../../components/Profile/BasicProfileContainer';
 import EditProfile from '../../components/Profile/EditProfileContainer';
+import ViewPosts from '../../components/Profile/ViewPostsContainer';
+
 type ProfileProps = {
   user: any;
   modeHandler: any;
@@ -30,7 +32,7 @@ const Profile = ({ user, modeHandler, mode }: ProfileProps) => {
       <div className="grid grid-cols-12 bg-gray ">
         <ProfileNav modeHandler={modeHandler} />
         <div className="col-span-12 md:border-solid md:border-l md:border-black md:border-opacity-25 h-full pb-12 md:col-span-10">
-          {mode === 'basic' ? <BasicProfile /> : <EditProfile />}
+          {mode === 'basic' ? <BasicProfile /> : mode === 'edit' ? <EditProfile /> : <ViewPosts />}
         </div>
       </div>
     </div>
