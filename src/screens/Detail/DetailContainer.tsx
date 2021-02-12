@@ -108,6 +108,7 @@ const DetailContainer = ({ id }: { id: string }) => {
     axios
       .get(`/post/${id}`)
       .then(({ data }) => {
+        console.log(data);
         setMovie(data[0]);
         setTitle(data[0].title);
         setGenres(data[0].genres.split(', '));
@@ -134,7 +135,7 @@ const DetailContainer = ({ id }: { id: string }) => {
       .catch((err) => console.error(err.response.data));
   };
 
-  const user = store.getState().user;
+  const user = store.getState().user ? store.getState().user : null;
 
   useEffect(() => {
     getMovie();

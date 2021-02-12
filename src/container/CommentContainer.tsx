@@ -16,7 +16,7 @@ type CommentsFormat = {
 
 const CommentContainerContainer = ({ movie }: CommentContainerProps) => {
   const [contents, setContents] = useState('');
-  const user_id = store.getState().user.user_id;
+  const user_id = store.getState().user?.user_id;
   const [comments, setComments] = useState<Array<{ user_id: string; contents: string }>>([]);
   const movie_id = movie.id;
 
@@ -48,7 +48,7 @@ const CommentContainerContainer = ({ movie }: CommentContainerProps) => {
     setContents(e.currentTarget.value);
   };
 
-  return <CommentContainer onSubmit={onSubmit} onChange={onChange} contents={contents} comments={comments} />;
+  return <CommentContainer onSubmit={onSubmit} onChange={onChange} contents={contents} comments={comments} user_id={user_id} />;
 };
 
 export default CommentContainerContainer;

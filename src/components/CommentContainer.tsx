@@ -6,9 +6,10 @@ type CommentContainerProps = {
   comments: Array<{ user_id: string; contents: string }>;
   onSubmit: (e: any) => void;
   onChange: (e: any) => void;
+  user_id: string;
 };
 
-const CommentContainer = ({ onSubmit, onChange, contents, comments }: CommentContainerProps) => {
+const CommentContainer = ({ onSubmit, onChange, contents, comments, user_id }: CommentContainerProps) => {
   return (
     <div>
       <section className="rounded-b-lg  mt-8 ">
@@ -16,15 +17,22 @@ const CommentContainer = ({ onSubmit, onChange, contents, comments }: CommentCon
           <textarea
             name="contents"
             className="w-full shadow-inner p-4 border-0 mb-4 rounded-lg focus:shadow-outline text-sm"
-            placeholder="Leave a comment..."
+            placeholder={user_id ? 'Leave a comment...' : 'Please login before leave comment ...'}
             cols={6}
             rows={6}
             id="comment_content"
             spellCheck="false"
             value={contents}
             onChange={onChange}
+            disabled={!user_id}
           ></textarea>
-          <button className="font-bold py-2 px-4 w-full bg-gray-darker text-lg text-white shadow-md rounded-lg ">Comment</button>
+          <button
+            className="font-bold py-2 px-4 w-full bg-gray-darker text-lg text-white shadow-md rounded-lg "
+            type="submit"
+            disabled={!user_id}
+          >
+            Comment
+          </button>
         </form>
 
         <div className="mt-10">Comments</div>
