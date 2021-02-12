@@ -48,7 +48,7 @@ const CommentContainerContainer = ({ movie }: CommentContainerProps) => {
     setContents(e.currentTarget.value);
   };
 
-  return <CommentContainer onSubmit={onSubmit} onChange={onChange} contents={contents} comments={comments} />;
+  return <CommentContainer onSubmit={onSubmit} onChange={onChange} contents={contents} comments={comments} user_id={user_id} />;
 };
 
 export default CommentContainerContainer;
