@@ -38,7 +38,15 @@ const LoginContainer = () => {
           pathname: '/',
         });
       })
-      .catch((err) => console.error(err));
+      .catch((err) => {
+        if (err.response.data.error === 'Incorrect id') {
+          setPassword('');
+          alert("Can't find a user using this ID !");
+        } else if (err.response.data.error === 'Incorrect password') {
+          setPassword('');
+          alert('Please check password again !');
+        }
+      });
   };
 
   const onChange = (e: any) => {
@@ -60,7 +68,7 @@ const LoginContainer = () => {
       setPassword('');
     };
   }, []);
-  return <LoginPresenter onSubmit={onSubmit} onChange={onChange} />;
+  return <LoginPresenter onSubmit={onSubmit} onChange={onChange} id={id} password={password} />;
 };
 
 export default LoginContainer;
