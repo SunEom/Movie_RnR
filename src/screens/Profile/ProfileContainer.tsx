@@ -3,7 +3,7 @@ import ProfilePresenter from './ProfilePresenter';
 import { useHistory } from 'react-router';
 import store from '../../store';
 
-export default () => {
+const ProfileContainer = () => {
   const history = useHistory();
   const user = store.getState().user;
   const [mode, setMode] = useState<'basic' | 'edit' | 'posts'>('basic');
@@ -13,3 +13,5 @@ export default () => {
   }
   return <ProfilePresenter user={user} modeHandler={setMode} mode={mode} />;
 };
+
+export default ProfileContainer;

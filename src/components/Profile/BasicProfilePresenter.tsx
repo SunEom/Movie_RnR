@@ -55,11 +55,10 @@ const BasicProfilePresenter = ({ user }: BasicProfilePresenterProps) => {
             rows={10}
             className="w-full appearance-none text-black text-opacity-50 rounded shadow py-1 px-2 mr-2 focus:outline-none focus:shadow-outline focus:border-blue-200 text-opacity-25 "
             disabled
-          >
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem natus nobis odio. Lorem ipsum dolor sit amet consectetur
+            value="Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem natus nobis odio. Lorem ipsum dolor sit amet consectetur
             adipisicing elit. Accusantium, eveniet fugiat? Explicabo assumenda dignissimos quisquam perspiciatis corporis sint commodi
-            cumque rem tempora!
-          </textarea>
+            cumque rem tempora!"
+          ></textarea>
         </div>
 
         <div>

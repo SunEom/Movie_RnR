@@ -51,61 +51,60 @@ router.post('/', async function (req, res, next) {
   });
 });
 
-router.post('/pofile', async function (req, res, next){ //nickname, gender변경
-  if(!authCheck.IsOwner(req,res)){
+router.post('/pofile', async function (req, res, next) {
+  //nickname, gender변경
+  if (!authCheck.IsOwner(req, res)) {
     console.log('not login');
-    res.status(400).send({code: 400, error: 'not login'});
+    res.status(400).send({ code: 400, error: 'not login' });
   }
   const post = req.body;
   await db.query(`UPDATE user SET nickname=?, gender=? WHERE user_id=?`),
-  [post.nickname,post.gender,req.user.user_id], async (error, result) => {
-    if (error) {
-      next(err);
-    }
-    db.query(
-      `SELECT * FROM user WHERE user_id=?`,
-      [req.user.user_id],
-      async (error, result) =>{
-          if(error){
-              next(error);
-          }
-          res.status(201).send({code : 201, data : result});
+    [post.nickname, post.gender, req.user.user_id],
+    async (error, result) => {
+      if (error) {
+        next(err);
       }
-    )
-  }
-})
+      db.query(`SELECT * FROM user WHERE user_id=?`, [req.user.user_id], async (error, result) => {
+        if (error) {
+          next(error);
+        }
+        res.status(201).send({ code: 201, data: result });
+      });
+    };
+});
 
-router.post('/password', async function (req, res, next){ //password 변경
-  if(!authCheck.IsOwner(req,res)){
+router.post('/password', async function (req, res, next) {
+  //password 변경
+  if (!authCheck.IsOwner(req, res)) {
     console.log('not login');
-    res.status(400).send({code: 400, error: 'not login'});
+    res.status(400).send({ code: 400, error: 'not login' });
   }
   const post = req.body;
-  bcrypt.hash(req.user.password,10,async function(err,hash){ //기존pwd
+  bcrypt.hash(req.user.password, 10, async function (err, hash) {
+    //기존pwd
     await db.query(`SELECT password FROM user WHERE user_id=?`),
-    [req.user.user_id],
-    async (error,result) => {
-      if(error){
-        next(error);
-      }
-      if(result[0].password != hash){
-        res.status(400).send({code: 400, error: '현재 비밀번호를 잘못 입력하였습니다.'});
-      } else{
-        bcrypt.hash(post.password,10,async function(err2,hash2){ //변경할 pwd
-          await db.query(`UPDATE user SET password=? WHERE user_id=?`),
-          [hash2,req.user.user_id],
-          async (error,result) => {
-            if(error){
-              next(error);
-            }
-            res.stauts(201).send({code:201});
-          }
-        })
-      }
-    }
-
-  })
-  
-})
+      [req.user.user_id],
+      async (error, result) => {
+        if (error) {
+          next(error);
+        }
+        if (result[0].password != hash) {
+          res.status(400).send({ code: 400, error: '현재 비밀번호를 잘못 입력하였습니다.' });
+        } else {
+          bcrypt.hash(post.password, 10, async function (err2, hash2) {
+            //변경할 pwd
+            await db.query(`UPDATE user SET password=? WHERE user_id=?`),
+              [hash2, req.user.user_id],
+              async (error, result) => {
+                if (error) {
+                  next(error);
+                }
+                res.stauts(201).send({ code: 201 });
+              };
+          });
+        }
+      };
+  });
+});
 
 module.exports = router;

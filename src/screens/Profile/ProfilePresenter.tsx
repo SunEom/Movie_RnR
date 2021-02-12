@@ -1,5 +1,4 @@
 import React from 'react';
-import ActivityIndicator from '../../components/ActivityIndicator';
 import ProfileNav from '../../components/Profile/ProfileNav';
 import BasicProfile from '../../components/Profile/BasicProfileContainer';
 import EditProfile from '../../components/Profile/EditProfileContainer';
@@ -23,6 +22,7 @@ const Profile = ({ user, modeHandler, mode }: ProfileProps) => {
         <div className="flex flex-col justify-center items-center relative h-full bg-gray-darker bg-opacity-50 text-white">
           <img
             src="https://images.unsplash.com/photo-1605722625766-a4c989c747a4?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1350&q=80"
+            alt=""
             className="h-24 w-24 object-cover rounded-full"
           />
           <h1 className="text-2xl font-semibold">{user.nickname}</h1>

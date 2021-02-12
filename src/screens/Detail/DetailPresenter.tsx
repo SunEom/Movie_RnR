@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import ActivityIndicator from '../../components/ActivityIndicator';
 import CommentContainer from '../../container/CommentContainer';
 
