@@ -4,7 +4,7 @@ import JoinPresenter from './JoinPresenter';
 import { useHistory } from 'react-router';
 import store from '../../store';
 
-export default () => {
+const JoinContainer = () => {
   const history = useHistory();
   const [id, setId] = useState<string>('');
   const [password, setPassword] = useState<string>('');
@@ -25,10 +25,6 @@ export default () => {
     password: string;
     nickname: string;
     gender: 'Man' | 'Woman';
-  };
-
-  type input = {
-    value: string;
   };
 
   const idConfirm = async (e: any) => {
@@ -130,3 +126,5 @@ export default () => {
 
   return <JoinPresenter onSubmit={onSubmit} onChange={onChange} idConfirm={idConfirm} nickConfirm={nickConfirm} />;
 };
+
+export default JoinContainer;

@@ -3,7 +3,7 @@ import axios from 'axios';
 import HomePresenter from './HomePresenter';
 import store from '../../store';
 
-export default () => {
+const HomeContainer = () => {
   const [recent, setRecent] = useState<Array<object>>([{}]);
   const [loading, setLoading] = useState<boolean>(true);
 
@@ -20,3 +20,5 @@ export default () => {
 
   return <HomePresenter recent={recent as any} loading={loading} />;
 };
+
+export default HomeContainer;

@@ -23,8 +23,8 @@ const ViewPostsPresenter = ({ posts, loading, page, pageHandler }: ViewPostsPres
           <ActivityIndicator />
         ) : (
           <div className="w-full flex flex-col items-center">
-            {posts.slice(3 * (page - 1), 3 * page).map((post) => (
-              <DetailPostCard id={1} title={post.title} overview={post.overview} created={post.created} genres={post.genres} />
+            {posts.slice(3 * (page - 1), 3 * page).map((post, idx) => (
+              <DetailPostCard key={idx} id={1} title={post.title} overview={post.overview} created={post.created} genres={post.genres} />
             ))}
             {/* <DetailPostCard
               id={1}

@@ -12,7 +12,7 @@ type post = {
   overview: string;
 };
 
-export default ({ id }: { id: string }) => {
+const DetailContainer = ({ id }: { id: string }) => {
   const [movie, setMovie] = useState<any>([{}]);
   const [loading, setLoading] = useState<boolean>(true);
   const [mode, setMode] = useState('read');
@@ -80,7 +80,7 @@ export default ({ id }: { id: string }) => {
         break;
       }
       case 'rates': {
-        if (e.currentTarget.value == '') {
+        if (e.currentTarget.value === '') {
           setRates(undefined);
         } else {
           setRates(+e.currentTarget.value);
@@ -154,3 +154,5 @@ export default ({ id }: { id: string }) => {
     />
   );
 };
+
+export default DetailContainer;

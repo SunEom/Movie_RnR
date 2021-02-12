@@ -32,8 +32,8 @@ const CommentContainer = ({ onSubmit, onChange, contents, comments }: CommentCon
         <div id="task-comments" className="pt-4">
           <Comments user_id="@Shanel" contents="Hi good morning will it be the entire house." />
           <Comments user_id="@Tim Motti" contents="Hello. Yes, the entire exterior, including the walls." />
-          {comments.map((comment) => (
-            <Comments {...comment} />
+          {comments.map((comment, idx) => (
+            <Comments key={idx} {...comment} />
           ))}
         </div>
       </section>

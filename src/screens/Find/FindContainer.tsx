@@ -14,7 +14,7 @@ type newPasswordFormat = {
   passwordCheck: string;
 };
 
-export default () => {
+const FindContainer = () => {
   const [id, setId] = useState<string>('');
   const [nickname, setNickname] = useState<string>('');
   const [checkUser, setCheckUser] = useState<boolean>(true);
@@ -90,3 +90,5 @@ export default () => {
 
   return <FindPresenter onSubmit={onSubmit} onChange={onChange} checkUser={checkUser} onSecondSubmit={onSecondSubmit} />;
 };
+
+export default FindContainer;

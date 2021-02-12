@@ -4,7 +4,7 @@ import CreatePresenter from './CreatePresenter';
 import { useHistory } from 'react-router';
 import store from '../../store';
 
-export default () => {
+const CreateContainer = () => {
   const [title, setTitle] = useState<string>('');
   const [genres, setGenres] = useState<string[]>([]);
   const [rates, setRates] = useState<number | undefined>();
@@ -83,7 +83,7 @@ export default () => {
         break;
       }
       case 'rates': {
-        if (e.currentTarget.value == '') {
+        if (e.currentTarget.value === '') {
           setRates(undefined);
         } else {
           setRates(+e.currentTarget.value);
@@ -109,3 +109,5 @@ export default () => {
 
   return <CreatePresenter onSubmit={onSubmit} onChange={onChange} onCheck={onCheck} />;
 };
+
+export default CreateContainer;

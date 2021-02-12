@@ -9,7 +9,7 @@ type loginFormat = {
   password: string;
 };
 
-export default () => {
+const LoginContainer = () => {
   const history = useHistory();
   const [id, setId] = useState<string>('');
   const [password, setPassword] = useState<string>('');
@@ -20,7 +20,7 @@ export default () => {
         pathname: '/login',
       });
     }
-  }, []);
+  }, [history]);
 
   const onSubmit = async (e: any) => {
     e.preventDefault();
@@ -62,3 +62,5 @@ export default () => {
   }, []);
   return <LoginPresenter onSubmit={onSubmit} onChange={onChange} />;
 };
+
+export default LoginContainer;

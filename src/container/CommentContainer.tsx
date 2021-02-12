@@ -14,12 +14,11 @@ type CommentsFormat = {
   contents: string;
 };
 
-export default ({ movie }: CommentContainerProps) => {
+const CommentContainerContainer = ({ movie }: CommentContainerProps) => {
   const [contents, setContents] = useState('');
   const user_id = store.getState().user.user_id;
   const [comments, setComments] = useState<Array<{ user_id: string; contents: string }>>([]);
   const movie_id = movie.id;
-  const history = useHistory();
 
   const onSubmit = async (e: any) => {
     e.preventDefault();
@@ -37,7 +36,6 @@ export default ({ movie }: CommentContainerProps) => {
     // axios
     //   .post('http://localhost:8000/comments', { ...data }, { withCredentials: true })
     //   .then((response) => {
-    //     history.push({ pathname: `/post/${movie_id}` });
     //     setComments(response.data.data);
     //     setContents('');
     //   })
@@ -52,3 +50,5 @@ export default ({ movie }: CommentContainerProps) => {
 
   return <CommentContainer onSubmit={onSubmit} onChange={onChange} contents={contents} comments={comments} />;
 };
+
+export default CommentContainerContainer;
