@@ -11,7 +11,7 @@ type DetailPostCardProps = {
 
 const DetailPostCard = ({ id, title, overview, created, genres }: DetailPostCardProps) => {
   return (
-    <div className="w-11/12 mt-10 flex justify-center mx-5 ">
+    <div className="w-11/12 mt-10 flex justify-center ">
       <div className="w-full max-w-4xl px-10 py-6 bg-white rounded-lg shadow-md">
         <div className="flex justify-between items-center">
           <span className="font-light text-gray-600">{created}</span>
