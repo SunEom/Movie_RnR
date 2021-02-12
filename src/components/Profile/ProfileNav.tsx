@@ -5,13 +5,26 @@ type ProfileNavProps = {
 };
 
 const ProfileNav = ({ modeHandler }: ProfileNavProps) => {
+  const navColorChange = (order: number) => {
+    document.querySelectorAll('.navbtn').forEach((btn, idx) => {
+      if (idx === order) {
+        btn.setAttribute('class', 'navbtn text-sm p-2 w-full bg-indigo-900 text-white text-center rounded font-bold');
+      } else {
+        btn.setAttribute(
+          'class',
+          'navbtn text-sm p-2 bg-indigo-200 text-center rounded font-semibold hover:bg-indigo-700 hover:text-gray-200'
+        );
+      }
+    });
+  };
   return (
     <div className="col-span-12 w-full px-3 py-6 justify-center flex space-x-4 border-gray border-solid md:space-x-0 md:space-y-4 md:flex-col md:col-span-2 md:justify-start ">
       <button
-        onClick={() => {
+        onClick={(e) => {
           modeHandler('basic');
+          navColorChange(0);
         }}
-        className="text-sm p-2 w-full bg-indigo-900 text-white text-center rounded font-bold"
+        className="navbtn text-sm p-2 w-full bg-indigo-900 text-white text-center rounded font-bold"
       >
         Basic Information
       </button>
@@ -19,19 +32,21 @@ const ProfileNav = ({ modeHandler }: ProfileNavProps) => {
       <button
         onClick={() => {
           modeHandler('edit');
+          navColorChange(1);
         }}
-        className="text-sm p-2 bg-indigo-200 text-center rounded font-semibold hover:bg-indigo-700 hover:text-gray-200"
+        className="navbtn text-sm p-2 bg-indigo-200 text-center rounded font-semibold hover:bg-indigo-700 hover:text-gray-200"
       >
-        Another Information
+        Edit Profile
       </button>
 
       <button
         onClick={() => {
           modeHandler('posts');
+          navColorChange(2);
         }}
-        className="text-sm p-2 bg-indigo-200 text-center rounded font-semibold hover:bg-indigo-700 hover:text-gray-200"
+        className="navbtn text-sm p-2 bg-indigo-200 text-center rounded font-semibold hover:bg-indigo-700 hover:text-gray-200"
       >
-        Another Something
+        View Postings
       </button>
     </div>
   );
