@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router';
+import Searchbar from '../container/Searchbar';
 
 import './Header.css';
 
@@ -34,17 +35,7 @@ const Header = ({ user, onClick, onLogout }: HeaderProps) => {
               <i className="fas fa-bars"></i>
             </button>
           </div>
-          <form className="pt-2 relative -top-1 text-gray-600 flex items-center">
-            <input
-              className="border-b-2 border-gray bg-gray-dark placeholder-gray plcaeholder h-10 pl-3 pr-10  text-base focus:outline-none"
-              type="text"
-              name="search"
-              placeholder="Search"
-            />
-            <button type="submit" className="h-10 absolute right-2">
-              <i className="fas fa-search"></i>
-            </button>
-          </form>
+          <Searchbar />
 
           {user ? (
             <div className={'lg:flex flex-grow items-center' + (navbarOpen ? ' flex' : ' hidden')} id="example-navbar-danger">
