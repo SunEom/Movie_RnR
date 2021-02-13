@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router';
+import Searchbar from '../container/Searchbar';
 
 import './Header.css';
 
@@ -34,6 +35,8 @@ const Header = ({ user, onClick, onLogout }: HeaderProps) => {
               <i className="fas fa-bars"></i>
             </button>
           </div>
+          <Searchbar />
+
           {user ? (
             <div className={'lg:flex flex-grow items-center' + (navbarOpen ? ' flex' : ' hidden')} id="example-navbar-danger">
               <ul className="flex flex-col lg:flex-row list-none lg:ml-auto">
