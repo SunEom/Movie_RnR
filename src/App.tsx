@@ -8,6 +8,7 @@ import Join from './screens/Join';
 import Detail from './screens/Detail';
 import Find from './screens/Find';
 import Profile from './screens/Profile';
+import Search from './screens/Search';
 import store from './store';
 import './App.css';
 import axios from 'axios';
@@ -79,6 +80,9 @@ function App() {
           </Route>
           <Route exact path="/profile">
             <Profile />
+          </Route>
+          <Route exact path="/search/:keyword">
+            <Search />
           </Route>
         </BrowserRouter>
       ) : null}
