@@ -1,22 +1,22 @@
-import { connect } from 'react-redux';
+import React, { useState } from 'react';
 import Searchbar from '../components/Header/Searchbar';
-import { createBrowserHistory } from 'history';
+import { useHistory } from 'react-router';
 
-const history = createBrowserHistory();
-let keyword = '';
+const SearchBarContainer = () => {
+  const history = useHistory();
+  const [keyword, setKeyword] = useState('');
 
-const onSubmit = (e: any) => {
-  e.preventDefault();
-  console.log(keyword);
-  history.push(`/search/${keyword}`);
+  const onSubmit = (e: any) => {
+    e.preventDefault();
+    console.log(keyword);
+    history.push({ pathname: `/search/${keyword}` });
+  };
+
+  const onChange = (e: any) => {
+    setKeyword(e.target.value);
+  };
+
+  return <Searchbar onSubmit={onSubmit} onChange={onChange} />;
 };
 
-const onChange = (e: any) => {
-  keyword = e.target.value;
-};
-
-const mapStateToProps = (state: any) => {
-  return { onSubmit, onChange };
-};
-
-export default connect(mapStateToProps)(Searchbar);
+export default SearchBarContainer;
