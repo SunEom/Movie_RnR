@@ -17,7 +17,7 @@ type CommentsFormat = {
 const CommentContainerContainer = ({ movie }: CommentContainerProps) => {
   const [contents, setContents] = useState('');
   const user_id = store.getState().user?.user_id;
-  const [comments, setComments] = useState<Array<{ user_id: string; contents: string }>>([]);
+  const [comments, setComments] = useState<Array<{ commenter: string; contents: string }>>([]);
   const movie_id = movie.id;
 
   const onSubmit = async (e: any) => {
@@ -40,7 +40,7 @@ const CommentContainerContainer = ({ movie }: CommentContainerProps) => {
     //     setContents('');
     //   })
     //   .catch((err) => console.error(err));
-    setComments([...comments, { user_id, contents }]);
+    setComments([...comments, { commenter: user_id, contents }]);
     setContents('');
   };
 

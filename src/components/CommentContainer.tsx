@@ -1,9 +1,8 @@
 import React from 'react';
-import Comments from '../components/Comments';
-
+import Comments from '../container/Comments';
 type CommentContainerProps = {
   contents: string;
-  comments: Array<{ user_id: string; contents: string }>;
+  comments: Array<{ commenter: string; contents: string }>;
   onSubmit: (e: any) => void;
   onChange: (e: any) => void;
   user_id: string;
@@ -38,10 +37,10 @@ const CommentContainer = ({ onSubmit, onChange, contents, comments, user_id }: C
         <div className="mt-10">Comments</div>
 
         <div id="task-comments" className="pt-4">
-          <Comments user_id="@Shanel" contents="Hi good morning will it be the entire house." />
-          <Comments user_id="@Tim Motti" contents="Hello. Yes, the entire exterior, including the walls." />
+          <Comments id={1} commenter="@Shanel" user_id={user_id} contents="Hi good morning will it be the entire house." />
+          <Comments id={2} commenter="@Tim Motti" user_id={user_id} contents="Hello. Yes, the entire exterior, including the walls." />
           {comments.map((comment, idx) => (
-            <Comments key={idx} {...comment} />
+            <Comments id={idx} key={idx} user_id={user_id} {...comment} />
           ))}
         </div>
       </section>
