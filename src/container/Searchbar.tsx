@@ -8,7 +8,6 @@ const SearchBarContainer = () => {
 
   const onSubmit = (e: any) => {
     e.preventDefault();
-    console.log(keyword);
     history.push({ pathname: `/search/${keyword}` });
   };
 
