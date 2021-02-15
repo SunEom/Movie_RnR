@@ -2,9 +2,10 @@ import React from 'react';
 
 type ProfileNavProps = {
   modeHandler: (mode: string) => void;
+  isMy: boolean;
 };
 
-const ProfileNav = ({ modeHandler }: ProfileNavProps) => {
+const ProfileNav = ({ modeHandler, isMy }: ProfileNavProps) => {
   const navColorChange = (order: number) => {
     document.querySelectorAll('.navbtn').forEach((btn, idx) => {
       if (idx === order) {
@@ -29,15 +30,17 @@ const ProfileNav = ({ modeHandler }: ProfileNavProps) => {
         Basic Information
       </button>
 
-      <button
-        onClick={() => {
-          modeHandler('edit');
-          navColorChange(1);
-        }}
-        className="navbtn text-sm p-2 bg-indigo-200 text-center rounded font-semibold hover:bg-indigo-700 hover:text-gray-200"
-      >
-        Edit Profile
-      </button>
+      {isMy && (
+        <button
+          onClick={() => {
+            modeHandler('edit');
+            navColorChange(1);
+          }}
+          className="navbtn text-sm p-2 bg-indigo-200 text-center rounded font-semibold hover:bg-indigo-700 hover:text-gray-200"
+        >
+          Edit Profile
+        </button>
+      )}
 
       <button
         onClick={() => {

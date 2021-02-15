@@ -6,6 +6,7 @@ import Home from './screens/Home';
 import Login from './screens/Login';
 import Join from './screens/Join';
 import Detail from './screens/Detail';
+import User from './screens/User';
 import Find from './screens/Find';
 import Profile from './screens/Profile';
 import Search from './screens/Search';
@@ -80,6 +81,9 @@ function App() {
           </Route>
           <Route exact path="/profile">
             <Profile />
+          </Route>
+          <Route exact path="/profile/user/:id">
+            <User />
           </Route>
           <Route exact path="/search/:keyword">
             <Search />

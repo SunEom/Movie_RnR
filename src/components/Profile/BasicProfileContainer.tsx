@@ -1,9 +1,12 @@
-import React from 'react';
-import store from '../../store';
 import BasicProfilePresenter from './BasicProfilePresenter';
-const BasicProfileContainer = () => {
-  const user = store.getState().user;
-  return <BasicProfilePresenter user={user} />;
+import { connect } from 'react-redux';
+
+const mapStateToProps = (state: any, props: any) => {
+  return {
+    user: props.user,
+  };
 };
 
-export default BasicProfileContainer;
+const mapDispatchToProps = () => {};
+
+export default connect(mapStateToProps)(BasicProfilePresenter);

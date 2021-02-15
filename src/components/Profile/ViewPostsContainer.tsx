@@ -3,7 +3,11 @@ import ViewPostsPresenter from './ViewPostsPresenter';
 import axios from 'axios';
 import store from '../../store';
 
-const ViewPostsContainer = () => {
+type ViewPostsContainerProps = {
+  user: any;
+};
+
+const ViewPostsContainer = ({ user }: ViewPostsContainerProps) => {
   const [posts, setPosts] = useState([
     {
       id: 1,
@@ -103,7 +107,6 @@ const ViewPostsContainer = () => {
     },
   ]);
   const [loading, setloading] = useState(true);
-  const user = store.getState().user;
   const [page, setPage] = useState(1);
 
   const getMyPosts = () => {
