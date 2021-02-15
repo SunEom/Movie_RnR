@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import UserPresenter from './UserPresenter';
 import { useHistory, useParams } from 'react-router';
 import axios from 'axios';
+import store from '../../store';
 
 const UserContainer = () => {
   const history = useHistory();
@@ -15,6 +16,9 @@ const UserContainer = () => {
       .get(`http://localhost:8000/user/${params.id}`, { withCredentials: true })
       .then((response) => {
         setUser(response.data.data[0]);
+        if (store.getState().user?.id == response.data.data[0]?.id) {
+          history.push({ pathname: '/profile' });
+        }
         setLoading(false);
       })
       .catch((err) => console.error(err));
