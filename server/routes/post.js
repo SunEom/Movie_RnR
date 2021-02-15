@@ -37,15 +37,15 @@ router.post('/', function (req, res, next) {
   );
 });
 
-router.post('/update_process', function (req, res, next) {
+router.patch('/update', function (req, res, next) {
   if (!authCheck.IsOwner(req, res)) {
     return res.status(400).send({ code: 400, error: 'not login' });
   }
-  const post = req.body;
-  if (post.rates > 10) {
-    post.rates = 10;
+  const patch = req.body;
+  if (patch.rates > 10) {
+    patch.rates = 10;
   }
-  db.query(`SELECT user_id FROM movie WHERE id=?`, [post.id], function (error, result) {
+  db.query(`SELECT user_id FROM movie WHERE id=?`, [patch.id], function (error, result) {
     if (error) {
       next(error);
     }
@@ -55,12 +55,12 @@ router.post('/update_process', function (req, res, next) {
       //글 수정
       db.query(
         `UPDATE movie SET title=?, overview=?, genres=?, rates=?, updated=NOW() WHERE id=?;`,
-        [post.title, post.overview, post.genres, post.rates, post.id],
+        [patch.title, patch.overview, patch.genres, patch.rates, patch.id],
         function (error, result) {
           if (error) {
             next(error);
           }
-          db.query(`SELECT * FROM movie WHERE id=?`, [post.id], function (error, result) {
+          db.query(`SELECT * FROM movie WHERE id=?`, [patch.id], function (error, result) {
             if (error) {
               next(error);
             }
