@@ -107,4 +107,15 @@ router.post('/password', async function (req, res, next) {
   });
 });
 
+router.get('/:id', async function (req, res, next){
+  await db.query(`SELECT id, user_id, password, nickname, gender FROM user WHERE id=?`,[req.params.id],
+  function(error,result){
+    if (error) {
+      next(error);
+    }
+    console.log(result);
+    res.status(200).send({ code: 200, data: result});
+  })
+});
+
 module.exports = router;

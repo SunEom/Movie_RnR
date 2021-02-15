@@ -90,7 +90,7 @@ router.patch('/update', function (req, res, next) {
   });
 
   router.get('/:id', async function (req, res, next) {//req.params.id > movie_id
-    await db.query(`SELECT comment.id, contents, created, updated, commenter, movie_id, user.nickname FROM comment LEFT JOIN user ON comment.commenter=user.id WHERE movie_id=?;`,
+    await db.query(`SELECT comment.id, contents, comment.created, comment.updated, commenter, movie_id, user.nickname FROM comment LEFT JOIN user ON comment.commenter=user.id WHERE movie_id=?;`,
      [req.params.id], async function (error, result) {
         if (error) {
             next(error);
