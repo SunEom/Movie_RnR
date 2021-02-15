@@ -37,16 +37,15 @@ router.post('/', function (req, res, next) {
   );
 });
 
-router.get('user/:id', async function(req, res, next){
-  console.log("postuserid");
-  await db.query(`SELECT * FROM movie WHERE user_id=?`,[req.params.id],
-  function(error,result){
-    if(error){
+router.get('user/:id', async function (req, res, next) {
+  console.log('postuserid');
+  await db.query(`SELECT * FROM movie WHERE user_id=?`, [req.params.id], function (error, result) {
+    if (error) {
       next(error);
     }
     res.status(200).send({ code: 200, data: result });
   });
-})
+});
 
 router.patch('/update', function (req, res, next) {
   if (!authCheck.IsOwner(req, res)) {
@@ -60,7 +59,7 @@ router.patch('/update', function (req, res, next) {
     if (error) {
       next(error);
     }
-    if (result[0].user_id != req.user.user_id) {
+    if (result[0].user_id != req.user.id) {
       return res.status(400).send({ code: 400, error: '다른 사용자가 작성한 글입니다.' });
     } else {
       //글 수정
@@ -91,7 +90,7 @@ router.delete('/:id', function (req, res, next) {
     if (error) {
       next(error);
     }
-    if (result[0].user_id != req.user.user_id) {
+    if (result[0].user_id != req.user.id) {
       return res.status(400).send({ code: 400, error: '다른 사용자가 작성한 글입니다.' });
     } else {
       //글 삭제
@@ -132,7 +131,5 @@ router.get('/:id', async function (req, res, next) {
     );
   });
 });
-
-
 
 module.exports = router;

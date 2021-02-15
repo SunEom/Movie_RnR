@@ -3,6 +3,7 @@ import DetailPresenter from './DetailPresenter';
 import axios from 'axios';
 import { useHistory } from 'react-router';
 import store from '../../store';
+import { genresToArray, genresToString } from '../../util';
 
 type post = {
   id: number;
@@ -42,14 +43,7 @@ const DetailContainer = ({ id }: { id: string }) => {
       return;
     }
 
-    let _genres = '';
-    for (let i = 0; i < genres.length; i++) {
-      if (i + 1 === genres.length) {
-        _genres += genres[i];
-        break;
-      }
-      _genres += `${genres[i]}, `;
-    }
+    const _genres = genresToString(genres);
 
     const data: post = {
       id: +id,
@@ -61,7 +55,6 @@ const DetailContainer = ({ id }: { id: string }) => {
 
     if ((rates as number) > 10) {
       alert('Rates must be lower than 10 !');
-      console.log(e.target);
       return;
     }
 
@@ -69,8 +62,10 @@ const DetailContainer = ({ id }: { id: string }) => {
       .patch('http://localhost:8000/post/update', { ...data }, { withCredentials: true })
       .then((response) => {
         history.push(`/post/${response.data.data[0].id}`);
+        getMovie();
+        setMode('read');
       })
-      .catch((err) => console.log('response: ', err.response.data));
+      .catch((err) => console.error(err));
   };
 
   const onChange = (e: React.FormEvent<HTMLInputElement>) => {
@@ -112,7 +107,7 @@ const DetailContainer = ({ id }: { id: string }) => {
         const user = response.data.data.user[0];
         setMovie({ ...movie, user: { ...user } });
         setTitle(movie.title);
-        setGenres(movie.genres);
+        setGenres(genresToArray(movie.genres));
         setRates(+movie.rates);
         setOverview(movie.overview);
         setLoading(false);
