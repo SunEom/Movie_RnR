@@ -37,6 +37,17 @@ router.post('/', function (req, res, next) {
   );
 });
 
+router.get('user/:id', async function(req, res, next){
+  console.log("postuserid");
+  await db.query(`SELECT * FROM movie WHERE user_id=?`,[req.params.id],
+  function(error,result){
+    if(error){
+      next(error);
+    }
+    res.status(200).send({ code: 200, data: result });
+  });
+})
+
 router.patch('/update', function (req, res, next) {
   if (!authCheck.IsOwner(req, res)) {
     return res.status(400).send({ code: 400, error: 'not login' });
@@ -121,5 +132,7 @@ router.get('/:id', async function (req, res, next) {
     );
   });
 });
+
+
 
 module.exports = router;
