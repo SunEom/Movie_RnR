@@ -90,20 +90,13 @@ router.patch('/update', function (req, res, next) {
   });
 
   router.get('/:id', async function (req, res, next) {//req.params.id > movie_id
-    await db.query(`SELECT * FROM comment WHERE movie_id=?;`, [req.params.id], async function (error, result) {
-      if (error) {
-        next(error);
-      }
-      await db.query(`SELECT user.id, nickname from user LEFT JOIN comment ON user.id=comment.commenter WHERE user.id=?`,[req.user.id],
-      function (error2, result2){
-        if(error2){
-          next(error2);
+    await db.query(`SELECT comment.id, contents, created, updated, commenter, movie_id, user.nickname FROM comment LEFT JOIN user ON comment.commenter=user.id WHERE movie_id=?;`,
+     [req.params.id], async function (error, result) {
+        if (error) {
+            next(error);
         }
-        console.log({...result, user:{...result2}});
-        res.status(200).send({ code: 200, data: { comment: { ...result }, user: { ...result2 } } });
-      }
-      )
-      
+        console.log(result);
+        res.status(200).send({ code: 200, data: result});
     });
   });
 
