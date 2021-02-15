@@ -66,7 +66,7 @@ const DetailContainer = ({ id }: { id: string }) => {
     }
 
     await axios
-      .post('http://localhost:8000/post/update', { ...data }, { withCredentials: true })
+      .patch('http://localhost:8000/post/update', { ...data }, { withCredentials: true })
       .then((response) => {
         history.push(`/post/${response.data.data[0].id}`);
       })
