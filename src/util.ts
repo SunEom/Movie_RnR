@@ -1,6 +1,7 @@
 export const genre = {
   genresToArray: (genreString: string): Array<string> => {
-    return [];
+    const genreArray = genreString.split(', ');
+    return genreArray;
   },
 
   genresToString: (genres: Array<string>): string => {
