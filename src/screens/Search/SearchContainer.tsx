@@ -12,18 +12,19 @@ const SearchContainer = () => {
 
   const getData = () => {
     axios
-      .get(`http://localhost:8000/post/search/${keyword}`, { withCredentials: true })
+      .post(`http://localhost:8000/search`, { keyword }, { withCredentials: true })
       .then((response) => {
+        console.log(response);
         setResult(response.data.data);
         setLoading(false);
       })
       .catch((err) => console.error(err));
   };
-  return <SearchPresenter result={result} loading={loading} keyword={keyword} />;
-
   useEffect(() => {
     getData();
   }, []);
+
+  return <SearchPresenter result={result} loading={loading} keyword={keyword} />;
 };
 
 export default SearchContainer;
