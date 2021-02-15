@@ -3,6 +3,7 @@ import axios from 'axios';
 import CreatePresenter from './CreatePresenter';
 import { useHistory } from 'react-router';
 import store from '../../store';
+import { genre } from '../../util';
 
 const CreateContainer = () => {
   const [title, setTitle] = useState<string>('');
@@ -46,14 +47,7 @@ const CreateContainer = () => {
       return;
     }
 
-    let _genres = '';
-    for (let i = 0; i < genres.length; i++) {
-      if (i + 1 === genres.length) {
-        _genres += genres[i];
-        break;
-      }
-      _genres += `${genres[i]}, `;
-    }
+    const _genres: string = genre.genresToString(genres);
 
     const data: post = {
       title,
