@@ -13,6 +13,7 @@ const session = require('express-session');
 const postRouter = require('./routes/post');
 const joinRouter = require('./routes/join');
 const authRouter = require('./routes/auth');
+const commentRouter = require('./routes/comment');
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -39,6 +40,7 @@ app.get('/', (req, res, next) => {
 app.use('/auth', authRouter);
 app.use('/post', postRouter);
 app.use('/join', joinRouter);
+app.use('/comment',commentRouter);
 
 app.use(function (req, res, next) {
   res.status(404).send('Sorry cant find that!');
