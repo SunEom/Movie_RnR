@@ -12,7 +12,7 @@ const EditProfileContainer = ({ user }: EditProfileContainerProps) => {
   const history = useHistory();
   const [nickname, setNickname] = useState(user.nickname);
   const [gender, setGender] = useState(user.gender);
-  const [nickConfirmation, setNickConfirmation] = useState(false);
+  const [nickConfirmation, setNickConfirmation] = useState(true);
 
   const nickConfirm = async (e: any) => {
     e.preventDefault();
@@ -56,6 +56,7 @@ const EditProfileContainer = ({ user }: EditProfileContainerProps) => {
   const onChange = (e: React.FormEvent<HTMLInputElement>) => {
     switch (e.currentTarget.id) {
       case 'nickname': {
+        setNickConfirmation(false);
         setNickname(e.currentTarget.value);
         break;
       }
