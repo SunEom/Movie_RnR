@@ -51,7 +51,7 @@ router.post('/', async function (req, res, next) {
   });
 });
 
-router.post('/pofile', async function (req, res, next) {
+router.post('/profile', async function (req, res, next) {
   //nickname, gender변경
   if (!authCheck.IsOwner(req, res)) {
     console.log('not login');
@@ -108,7 +108,7 @@ router.post('/password', async function (req, res, next) {
 });
 
 router.get('/:id', async function (req, res, next){
-  await db.query(`SELECT id, user_id, password, nickname, gender FROM user WHERE id=?`,[req.params.id],
+  await db.query(`SELECT id, nickname, gender FROM user WHERE id=?`,[req.params.id],
   function(error,result){
     if (error) {
       next(error);
