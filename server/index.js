@@ -14,6 +14,7 @@ const postRouter = require('./routes/post');
 const joinRouter = require('./routes/join');
 const authRouter = require('./routes/auth');
 const commentRouter = require('./routes/comment');
+const userRouter = require('./routes/user');
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -41,6 +42,7 @@ app.use('/auth', authRouter);
 app.use('/post', postRouter);
 app.use('/join', joinRouter);
 app.use('/comment',commentRouter);
+app.use('/user',userRouter);
 
 app.use(function (req, res, next) {
   res.status(404).send('Sorry cant find that!');
