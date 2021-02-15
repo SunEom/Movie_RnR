@@ -7,16 +7,16 @@ type CommentsProps = {
   commenter: number;
   contents: string;
   user: any;
+  setComments: any;
+  comments: any;
 };
 
 const onDelete = (id: number) => {
   axios.delete(`http://localhost:8000/comment/${id}`, { withCredentials: true }).catch((err) => console.error(err));
-  console.log('Delete', id);
 };
 
 const onSave = (data: any) => {
   axios.patch('http://localhost:8000/comment/update', { ...data }, { withCredentials: true });
-  console.log('Save');
 };
 
 const onChange = (data: any, cb: any) => {
@@ -31,8 +31,8 @@ const modeToggle = (mode: 'default' | 'edit', modeHandler: any) => {
   }
 };
 
-const mapStateToProps = (state: any, { commenter, contents, user }: CommentsProps) => {
-  return { commenter, contents, onDelete, modeToggle, user, onChange, onSave };
+const mapStateToProps = (state: any, { commenter, contents, user, setComments, comments }: CommentsProps) => {
+  return { commenter, contents, onDelete, modeToggle, user, onChange, onSave, setComments, comments };
 };
 
 export default connect(mapStateToProps)(Comments);

@@ -5,10 +5,11 @@ type CommentContainerProps = {
   comments: Array<any>;
   onSubmit: (e: any) => void;
   onChange: (e: any) => void;
+  setComments: any;
   user: any;
 };
 
-const CommentContainer = ({ onSubmit, onChange, contents, comments, user }: CommentContainerProps) => {
+const CommentContainer = ({ onSubmit, onChange, contents, comments, user, setComments }: CommentContainerProps) => {
   return (
     <div>
       <section className="rounded-b-lg  mt-8 ">
@@ -38,7 +39,7 @@ const CommentContainer = ({ onSubmit, onChange, contents, comments, user }: Comm
 
         <div id="task-comments" className="pt-4">
           {comments.map((comment, idx) => (
-            <Comments id={idx} key={idx} user={user} {...comment} />
+            <Comments id={idx} key={idx} user={user} {...comment} setComments={setComments} comments={comments} />
           ))}
         </div>
       </section>

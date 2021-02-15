@@ -11,9 +11,23 @@ type CommentsProps = {
   id: number;
   onChange: any;
   onSave: any;
+  setComments: any;
+  comments: any;
 };
 
-const Comments = ({ commenter, contents, user, onDelete, modeToggle, id, onChange, onSave, nickname }: CommentsProps) => {
+const Comments = ({
+  commenter,
+  contents,
+  user,
+  onDelete,
+  modeToggle,
+  id,
+  onChange,
+  onSave,
+  nickname,
+  comments,
+  setComments,
+}: CommentsProps) => {
   const [mode, setMode] = useState('default');
   const [comment, setComment] = useState(contents);
 
@@ -45,6 +59,8 @@ const Comments = ({ commenter, contents, user, onDelete, modeToggle, id, onChang
                 className="mx-2 bg-gray px-3 py-1 rounded-md focus:outline-none"
                 onClick={() => {
                   onDelete(id);
+                  const newComments = comments.concat();
+                  setComments(newComments.filter((c: any) => c.id !== id));
                 }}
               >
                 Delete

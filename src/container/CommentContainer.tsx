@@ -23,7 +23,6 @@ const CommentContainerContainer = ({ movie }: CommentContainerProps) => {
     axios
       .get(`http://localhost:8000/comment/${movie.id}`, { withCredentials: true })
       .then((response) => {
-        console.log(response);
         setComments(response.data.data);
       })
       .catch((err) => console.error(err));
@@ -45,11 +44,13 @@ const CommentContainerContainer = ({ movie }: CommentContainerProps) => {
     axios
       .post('http://localhost:8000/comment', { ...data }, { withCredentials: true })
       .then((response) => {
-        setComments([...response.data.data, ...comments]);
+        console.log(response);
+        setComments([...comments, ...response.data.data]);
         setContents('');
       })
       .catch((err) => console.error(err));
-    setComments([...comments, { commenter: user.user_id, contents }]);
+
+    // setComments([...comments, { commenter: user.user_id, contents }]);
     setContents('');
   };
 
@@ -61,7 +62,16 @@ const CommentContainerContainer = ({ movie }: CommentContainerProps) => {
     getComments();
   }, []);
 
-  return <CommentContainer onSubmit={onSubmit} onChange={onChange} contents={contents} comments={comments} user={user} />;
+  return (
+    <CommentContainer
+      onSubmit={onSubmit}
+      onChange={onChange}
+      contents={contents}
+      comments={comments}
+      user={user}
+      setComments={setComments}
+    />
+  );
 };
 
 export default CommentContainerContainer;
