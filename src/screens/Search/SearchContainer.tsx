@@ -22,7 +22,7 @@ const SearchContainer = () => {
   };
   useEffect(() => {
     getData();
-  }, []);
+  }, [keyword]);
 
   return <SearchPresenter result={result} loading={loading} keyword={keyword} />;
 };
