@@ -20,7 +20,7 @@ type DetailProps = {
   onDeleteClick: any;
   mode: string;
   modeToggle: any;
-  user?: { user_id: number };
+  user?: { id: number };
   onChange: any;
   onSubmit: any;
   onCheck: any;
@@ -60,7 +60,7 @@ const Detail = ({ movie, loading, onDeleteClick, mode, modeToggle, user, onChang
                     </Link>
                   </div>
                 </div>
-                {user?.user_id === movie.user_id ? (
+                {user?.id === movie.user.id ? (
                   <div className="flex justify-end">
                     <button
                       type="button"
