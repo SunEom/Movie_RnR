@@ -6,12 +6,14 @@ const qs = require('querystring');
 
 router.post('/', async function (req, res, next) {
     const post = req.body;
-    await db.query(`SELECT * FROM movie WHERE title LIKE '%?%' OR overview LIKE '%?%'`,
-    [post.keyword, post.keyword],
+    let keyword = "%" + post.keyword + "%";
+    await db.query(`SELECT * FROM movie WHERE title LIKE ? OR overview LIKE ?`,
+    [keyword,keyword],
     function(error,result){
         if(error){
             next(error);
         }
+        console.log(result)
         res.status(200).send({ code: 200, data: result });
     })
 });
