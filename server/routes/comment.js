@@ -40,7 +40,7 @@ router.patch('/update', function (req, res, next) {
     }
     const patch = req.body;
 
-    db.query(`SELECT commenter FROM user WHERE id=?`, [patch.id], function (error, result) {
+    db.query(`SELECT commenter FROM comment WHERE id=?`, [patch.id], function (error, result) {
       if (error) {
         next(error);
       }
