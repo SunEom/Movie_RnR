@@ -11,6 +11,7 @@ type movie = {
   overview: string;
   created: any;
   user_id: number;
+  user: any;
 };
 
 type DetailProps = {
@@ -54,8 +55,8 @@ const Detail = ({ movie, loading, onDeleteClick, mode, modeToggle, user, onChang
                   </div>
                   <div className="flex flex-wrap justify-between pt-5w-full">
                     <div className="text-sm font-medium">{movie.created}</div>
-                    <Link className="text-sm font-medium text-gray-dark hover:underline" to={`/profile/user/${movie.user_id}`}>
-                      by {movie.user_id}
+                    <Link className="text-sm font-medium text-gray-dark hover:underline" to={`/profile/user/${movie.user.id}`}>
+                      by {movie.user.nickname}
                     </Link>
                   </div>
                 </div>

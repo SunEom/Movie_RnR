@@ -107,13 +107,14 @@ const DetailContainer = ({ id }: { id: string }) => {
   const getMovie = async () => {
     axios
       .get(`/post/${id}`)
-      .then(({ data }) => {
-        console.log(data);
-        setMovie(data[0]);
-        setTitle(data[0].title);
-        setGenres(data[0].genres.split(', '));
-        setRates(+data[0].rates);
-        setOverview(data[0].overview);
+      .then((response) => {
+        const movie = response.data.data.movie[0];
+        const user = response.data.data.user[0];
+        setMovie({ ...movie, user: { ...user } });
+        setTitle(movie.title);
+        setGenres(movie.genres);
+        setRates(+movie.rates);
+        setOverview(movie.overview);
         setLoading(false);
       })
       .catch((err) => console.error(err));

@@ -108,16 +108,17 @@ router.get('/:id', async function (req, res, next) {
     if (error) {
       next(error);
     }
-    await db.query(`SELECT user.id, nickname from user LEFT JOIN movie ON user.id=movie.user_id WHERE movie.id=?`,[req.params.id],
-    function (error2, result2){
-      if(error2){
-        next(error2);
+    await db.query(
+      `SELECT user.id, nickname from user LEFT JOIN movie ON user.id=movie.user_id WHERE movie.id=?`,
+      [req.params.id],
+      function (error2, result2) {
+        if (error2) {
+          next(error2);
+        }
+        console.log({ ...result, user: { ...result2 } });
+        res.status(200).send({ code: 200, data: { movie: { ...result }, user: { ...result2 } } });
       }
-      console.log({...result, user:{...result2}});
-      res.json({...result, user:{...result2}});
-    }
-    )
-    
+    );
   });
 });
 
