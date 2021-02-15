@@ -18,7 +18,7 @@ router.post('/', function (req, res, next) {
   db.query(
     `INSERT INTO movie(title,overview,genres,rates,created,user_id)
             VALUES(?,?,?,?,NOW(),?);`,
-    [post.title, post.overview, post.genres, post.rates, req.user.user_id],
+    [post.title, post.overview, post.genres, post.rates, req.user.id],
     function (error, result) {
       if (error) {
         next(error);
@@ -104,11 +104,20 @@ router.get('/', async function (req, res, next) {
 });
 
 router.get('/:id', async function (req, res, next) {
-  await db.query(`SELECT * FROM movie WHERE id=?;`, [req.params.id], function (error, result) {
+  await db.query(`SELECT * FROM movie WHERE id=?;`, [req.params.id], async function (error, result) {
     if (error) {
       next(error);
     }
-    res.json(result);
+    await db.query(`SELECT user.id, nickname from user LEFT JOIN movie ON user.id=movie.user_id WHERE movie.id=?`,[req.params.id],
+    function (error2, result2){
+      if(error2){
+        next(error2);
+      }
+      console.log({...result, user:{...result2}});
+      res.json({...result, user:{...result2}});
+    }
+    )
+    
   });
 });
 
