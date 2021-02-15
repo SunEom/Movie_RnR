@@ -96,6 +96,7 @@ const Detail = ({ movie, loading, onDeleteClick, mode, modeToggle, user, onChang
               spellCheck="false"
               placeholder="Title"
               type="text"
+              onChange={onChange}
               defaultValue={movie.title}
             />
 
