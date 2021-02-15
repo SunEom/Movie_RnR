@@ -15,7 +15,7 @@ type CommentsFormat = {
 
 const CommentContainerContainer = ({ movie }: CommentContainerProps) => {
   const [contents, setContents] = useState('');
-  const user_id = store.getState().user?.user_id;
+  const user = store.getState().user;
   const [comments, setComments] = useState<Array<any>>([]);
   const movie_id = movie.id;
 
@@ -23,6 +23,7 @@ const CommentContainerContainer = ({ movie }: CommentContainerProps) => {
     axios
       .get(`http://localhost:8000/comment/${movie.id}`, { withCredentials: true })
       .then((response) => {
+        console.log(response);
         setComments(response.data.data);
       })
       .catch((err) => console.error(err));
@@ -37,18 +38,18 @@ const CommentContainerContainer = ({ movie }: CommentContainerProps) => {
 
     const data: CommentsFormat = {
       movie_id,
-      user_id,
+      user_id: user.user_id,
       contents,
     };
 
     axios
       .post('http://localhost:8000/comment', { ...data }, { withCredentials: true })
       .then((response) => {
-        setComments(response.data.data);
+        setComments([...response.data.data, ...comments]);
         setContents('');
       })
       .catch((err) => console.error(err));
-    setComments([...comments, { commenter: user_id, contents }]);
+    setComments([...comments, { commenter: user.user_id, contents }]);
     setContents('');
   };
 
@@ -60,7 +61,7 @@ const CommentContainerContainer = ({ movie }: CommentContainerProps) => {
     getComments();
   }, []);
 
-  return <CommentContainer onSubmit={onSubmit} onChange={onChange} contents={contents} comments={comments} user_id={user_id} />;
+  return <CommentContainer onSubmit={onSubmit} onChange={onChange} contents={contents} comments={comments} user={user} />;
 };
 
 export default CommentContainerContainer;

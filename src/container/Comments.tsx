@@ -1,13 +1,12 @@
-import React from 'react';
 import Comments from '../components/Comments';
 import { connect } from 'react-redux';
 import axios from 'axios';
 
 type CommentsProps = {
   id: number;
-  commenter: string;
+  commenter: number;
   contents: string;
-  user_id: string;
+  user: any;
 };
 
 const onDelete = (id: number) => {
@@ -32,8 +31,8 @@ const modeToggle = (mode: 'default' | 'edit', modeHandler: any) => {
   }
 };
 
-const mapStateToProps = (state: any, { commenter, contents, user_id }: CommentsProps) => {
-  return { commenter, contents, onDelete, modeToggle, user_id, onChange, onSave };
+const mapStateToProps = (state: any, { commenter, contents, user }: CommentsProps) => {
+  return { commenter, contents, onDelete, modeToggle, user, onChange, onSave };
 };
 
 export default connect(mapStateToProps)(Comments);

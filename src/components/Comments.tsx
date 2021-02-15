@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 type CommentsProps = {
-  commenter: string;
+  commenter: number;
   contents: string;
-  user_id: string;
+  user: any;
+  nickname: string;
   onDelete: any;
   modeToggle: any;
   id: number;
@@ -11,7 +13,7 @@ type CommentsProps = {
   onSave: any;
 };
 
-const Comments = ({ commenter, contents, user_id, onDelete, modeToggle, id, onChange, onSave }: CommentsProps) => {
+const Comments = ({ commenter, contents, user, onDelete, modeToggle, id, onChange, onSave, nickname }: CommentsProps) => {
   const [mode, setMode] = useState('default');
   const [comment, setComment] = useState(contents);
 
@@ -21,10 +23,15 @@ const Comments = ({ commenter, contents, user_id, onDelete, modeToggle, id, onCh
         <div className="bg-white rounded-lg p-3  flex flex-col justify-center items-center md:items-start shadow-lg mb-4">
           <div className="flex flex-row justify-center items-center mr-2">
             <i className="fas fa-user-circle text-xl mr-3"></i>
-            <h3 className="text-purple-600 font-semibold text-base text-center md:text-left ">{commenter}</h3>
+            <Link
+              className="text-purple-600 font-semibold text-base text-center md:text-left hover:underline"
+              to={`/profile/user/${commenter}`}
+            >
+              {nickname}
+            </Link>
           </div>
           <p className="text-gray-600 text-base text-center md:text-left ">{comment}</p>
-          {commenter === user_id && (
+          {commenter === user?.id && (
             <div className="flex justify-end w-full">
               <button
                 className="mx-2 bg-gray px-3 py-1 rounded-md focus:outline-none"
@@ -46,7 +53,7 @@ const Comments = ({ commenter, contents, user_id, onDelete, modeToggle, id, onCh
           )}
         </div>
       )}
-      {mode === 'edit' && commenter === user_id && (
+      {mode === 'edit' && commenter === user?.id && (
         <div className="bg-white rounded-lg p-3  flex flex-col justify-center items-center md:items-start shadow-lg mb-4">
           <div className="flex flex-row justify-center items-center mr-2">
             <i className="fas fa-user-circle text-xl mr-3"></i>
@@ -61,7 +68,7 @@ const Comments = ({ commenter, contents, user_id, onDelete, modeToggle, id, onCh
             }}
           />
 
-          {commenter === user_id && (
+          {commenter === user?.id && (
             <div className="flex justify-end w-full">
               <button
                 className="mx-2 bg-gray px-3 py-1 rounded-md focus:outline-none"
