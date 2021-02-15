@@ -113,7 +113,7 @@ router.get('/:id', async function (req, res, next){
     if (error) {
       next(error);
     }
-    console.log(result);
+    console.log("프로필",result);
     res.status(200).send({ code: 200, data: result});
   })
 });
