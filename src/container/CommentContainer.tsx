@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import CommentContainer from '../components/CommentContainer';
 import store from '../store';
-import { useHistory } from 'react-router';
 import axios from 'axios';
 
 type CommentContainerProps = {
@@ -17,8 +16,17 @@ type CommentsFormat = {
 const CommentContainerContainer = ({ movie }: CommentContainerProps) => {
   const [contents, setContents] = useState('');
   const user_id = store.getState().user?.user_id;
-  const [comments, setComments] = useState<Array<{ commenter: string; contents: string }>>([]);
+  const [comments, setComments] = useState<Array<any>>([]);
   const movie_id = movie.id;
+
+  const getComments = () => {
+    axios
+      .get(`http://localhost:8000/comment/${movie.id}`, { withCredentials: true })
+      .then((response) => {
+        setComments(response.data.data);
+      })
+      .catch((err) => console.error(err));
+  };
 
   const onSubmit = async (e: any) => {
     e.preventDefault();
@@ -33,13 +41,13 @@ const CommentContainerContainer = ({ movie }: CommentContainerProps) => {
       contents,
     };
 
-    // axios
-    //   .post('http://localhost:8000/comments', { ...data }, { withCredentials: true })
-    //   .then((response) => {
-    //     setComments(response.data.data);
-    //     setContents('');
-    //   })
-    //   .catch((err) => console.error(err));
+    axios
+      .post('http://localhost:8000/comment', { ...data }, { withCredentials: true })
+      .then((response) => {
+        setComments(response.data.data);
+        setContents('');
+      })
+      .catch((err) => console.error(err));
     setComments([...comments, { commenter: user_id, contents }]);
     setContents('');
   };
@@ -47,6 +55,10 @@ const CommentContainerContainer = ({ movie }: CommentContainerProps) => {
   const onChange = (e: any) => {
     setContents(e.currentTarget.value);
   };
+
+  useEffect(() => {
+    getComments();
+  }, []);
 
   return <CommentContainer onSubmit={onSubmit} onChange={onChange} contents={contents} comments={comments} user_id={user_id} />;
 };

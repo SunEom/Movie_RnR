@@ -11,13 +11,12 @@ type CommentsProps = {
 };
 
 const onDelete = (id: number) => {
-  // axios.delete(`http://localhost:8000/comment/${id}`).catch((err) => console.error(err));
+  axios.delete(`http://localhost:8000/comment/${id}`, { withCredentials: true }).catch((err) => console.error(err));
   console.log('Delete', id);
 };
 
 const onSave = (data: any) => {
-  // axios.patch('http://localhost:8000/comment/update', { ...data }, { withCredentials: true });
-  console.log(data);
+  axios.patch('http://localhost:8000/comment/update', { ...data }, { withCredentials: true });
   console.log('Save');
 };
 
