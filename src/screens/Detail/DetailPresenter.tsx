@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import ActivityIndicator from '../../components/ActivityIndicator';
 import CommentContainer from '../../container/CommentContainer';
 
@@ -53,7 +54,9 @@ const Detail = ({ movie, loading, onDeleteClick, mode, modeToggle, user, onChang
                   </div>
                   <div className="flex flex-wrap justify-between pt-5w-full">
                     <div className="text-sm font-medium">{movie.created}</div>
-                    <div className="text-sm font-medium text-gray-dark">by {movie.user_id}</div>
+                    <Link className="text-sm font-medium text-gray-dark hover:underline" to={`/profile/user/${movie.user_id}`}>
+                      by {movie.user_id}
+                    </Link>
                   </div>
                 </div>
                 {user?.user_id === movie.user_id ? (

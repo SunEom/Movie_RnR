@@ -4,13 +4,13 @@ import BasicProfile from '../../components/Profile/BasicProfileContainer';
 import EditProfile from '../../components/Profile/EditProfileContainer';
 import ViewPosts from '../../components/Profile/ViewPostsContainer';
 
-type ProfileProps = {
+type UserProps = {
   user: any;
   modeHandler: any;
-  mode: 'basic' | 'edit' | 'posts';
+  mode: 'basic' | 'posts';
 };
 
-const Profile = ({ user, modeHandler, mode }: ProfileProps) => {
+const User = ({ user, modeHandler, mode }: UserProps) => {
   return (
     <>
       {user && (
@@ -32,9 +32,9 @@ const Profile = ({ user, modeHandler, mode }: ProfileProps) => {
             </div>
           </div>
           <div className="grid grid-cols-12 bg-gray ">
-            <ProfileNav isMy={true} modeHandler={modeHandler} />
+            <ProfileNav isMy={false} modeHandler={modeHandler} />
             <div className="col-span-12 md:border-solid md:border-l md:border-black md:border-opacity-25 h-full pb-12 md:col-span-10">
-              {mode === 'basic' ? <BasicProfile user={user} /> : mode === 'edit' ? <EditProfile user={user} /> : <ViewPosts user={user} />}
+              {mode === 'basic' ? <BasicProfile user={user} /> : <ViewPosts user={user} />}
             </div>
           </div>
         </div>
@@ -43,4 +43,4 @@ const Profile = ({ user, modeHandler, mode }: ProfileProps) => {
   );
 };
 
-export default Profile;
+export default User;

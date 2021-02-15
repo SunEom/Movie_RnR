@@ -4,9 +4,12 @@ import store from '../../store';
 import { useHistory } from 'react-router';
 import axios from 'axios';
 
-const EditProfileContainer = () => {
+type EditProfileContainerProps = {
+  user: any;
+};
+
+const EditProfileContainer = ({ user }: EditProfileContainerProps) => {
   const history = useHistory();
-  const user = store.getState().user;
   const [nickname, setNickname] = useState(user.nickname);
   const [gender, setGender] = useState(user.gender);
   const [nickConfirmation, setNickConfirmation] = useState(false);
