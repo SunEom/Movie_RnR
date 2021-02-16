@@ -4,6 +4,10 @@ module.exports = {
   purge: [],
   darkMode: false, // or 'media' or 'class'
   theme: {
+    fontFamily: {
+      carter: ['Carter One', 'sans-serif'],
+      MyFont: ['"My Font"', 'serif'], // Ensure fonts with spaces have " " surrounding it.
+    },
     extend: {},
     minWidth: {
       0: '0',
