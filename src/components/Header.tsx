@@ -20,7 +20,7 @@ const Header = ({ user, onClick, onLogout }: HeaderProps) => {
         <div className="container px-4 mx-auto flex flex-wrap items-center justify-between">
           <div className="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
             <Link
-              className="header text-xl font-medium leading-relaxed inline-block mr-4 py-2 whitespace-no-wrap uppercase text-white font-carter"
+              className="header text-xl font-medium leading-relaxed inline-block mr-4 py-2 whitespace-no-wrap uppercase text-white font-MyFont"
               to="/"
             >
               Movie R&R 🎬
