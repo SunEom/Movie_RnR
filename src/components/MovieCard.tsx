@@ -50,7 +50,7 @@ const MovieCard = ({ id, title, genres, rates, overview, commentCount }: MovieCa
   return (
     <div className="wrapper max-w-xs rounded-b-md shadow-xl overflow-hidden mx-6 my-10 relative break-words flex flex-col justify-between">
       <div>
-        <img className="w-320 h-160" src={randomImg() as string} alt="montaña" />
+        <img className="w-320 h-160" src={randomImg() as string} alt="montaña" style={{ width: '320px', height: '160px' }} />
         <div className="p-3 space-y-3 bg-gray-light flex flex-col justify-between ">
           <h3 className="text-gray-700 self-center text-xl font-MyFont mb-3">{title.length > 15 ? `${title.slice(0, 15)}...` : title}</h3>
           <p className="text-sm text-gray-900 leading-sm font-MyFont">{genres}</p>
