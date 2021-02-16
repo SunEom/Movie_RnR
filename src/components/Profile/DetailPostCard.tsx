@@ -20,10 +20,10 @@ const DetailPostCard = ({ id, title, overview, created, genres }: DetailPostCard
           <div className="px-2 py-1 bg-gray-darker text-gray-light font-bold rounded hover:bg-gray-500">{mainGenres}</div>
         </div>
         <div className="mt-2">
-          <Link to={`/post/${id}`} className="text-2xl text-gray-700 font-bold hover:underline">
-            {title}
+          <Link to={`/post/${id}`} className="text-2xl text-gray-700 font-bold hover:underline break-words">
+            {title.length > 25 ? `${title.slice(0, 25)}...` : title}
           </Link>
-          <p className="mt-2 text-gray-600">{overview}</p>
+          <p className="mt-2 text-gray-600 break-words">{overview.length > 250 ? `${overview.slice(0, 250)}...` : overview}</p>
         </div>
       </div>
     </div>

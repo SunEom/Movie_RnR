@@ -18,7 +18,7 @@ const MovieCard = ({ id, title, genres, rates, overview }: MovieCardProps) => {
           {title.length > 15 ? `${title.slice(0, 15)}...` : title}
         </h1>
 
-        <p className="leading-relaxed mb-3">{overview.length > 120 ? `${overview.slice(0, 120)}...` : overview}</p>
+        <p className="leading-relaxed mb-3 break-words">{overview.length > 120 ? `${overview.slice(0, 120)}...` : overview}</p>
 
         <Link className="text-indigo-400 inline-flex items-center" to={`/post/${id}`}>
           Learn More

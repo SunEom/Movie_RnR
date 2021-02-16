@@ -48,11 +48,11 @@ const Detail = ({ movie, loading, onDeleteClick, mode, modeToggle, user, onChang
                   />
                 </div>
                 <div className="px-4 py-4 md:px-10">
-                  <h1 className="font-bold text-lg">{movie.title}</h1>
+                  <h1 className="font-bold text-lg break-words">{movie.title}</h1>
                   <div className="w-full md:w-1/3 text-xs font-medium">{movie.genres}</div>
                   <div className="w-full md:w-1/3 text-sm font-medium pt-1">⭐ {movie.rates} / 10</div>
                   <div>
-                    <p className="py-4">{movie.overview}</p>
+                    <p className="py-4 break-words">{movie.overview}</p>
                   </div>
                   <div className="flex flex-wrap justify-between pt-5w-full">
                     <div className="text-sm font-medium">{dateFormat(movie.created)}</div>
