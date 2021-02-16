@@ -55,7 +55,7 @@ router.patch('/update', function (req, res, next) {
   if (patch.rates > 10) {
     patch.rates = 10;
   }
-  db.query(`SELECT user_id FROM movie WHERE id=?`, [patch.id], function (error, result) {
+  db.query(`SELECT id FROM movie WHERE id=?`, [patch.id], function (error, result) {
     if (error) {
       next(error);
     }
@@ -94,11 +94,16 @@ router.delete('/:id', function (req, res, next) {
       return res.status(400).send({ code: 400, error: '다른 사용자가 작성한 글입니다.' });
     } else {
       //글 삭제
-      db.query(`DELETE FROM movie WHERE id = ?;`, [req.params.id], function (error, result) {
-        if (error) {
+      db.query(`DELETE FROM comment WHERE movie_id = ?`,[req.params.id],function(error,result){ //comment 먼저 삭제
+        if(error){
           next(error);
         }
-        res.status(200).send({ code: 200 });
+        db.query(`DELETE FROM movie WHERE id = ?;`, [req.params.id], function (error, result) {
+          if (error) {
+            next(error);
+          }
+          res.status(200).send({ code: 200 });
+        });
       });
     }
   });
