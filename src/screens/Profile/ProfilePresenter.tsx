@@ -8,9 +8,10 @@ type ProfileProps = {
   user: any;
   modeHandler: any;
   mode: 'basic' | 'edit' | 'posts';
+  setMode: any;
 };
 
-const Profile = ({ user, modeHandler, mode }: ProfileProps) => {
+const Profile = ({ user, modeHandler, mode, setMode }: ProfileProps) => {
   return (
     <>
       {user && (
@@ -34,7 +35,13 @@ const Profile = ({ user, modeHandler, mode }: ProfileProps) => {
           <div className="grid grid-cols-12 bg-gray ">
             <ProfileNav isMy={true} modeHandler={modeHandler} />
             <div className="col-span-12 md:border-solid md:border-l md:border-black md:border-opacity-25 h-full pb-12 md:col-span-10">
-              {mode === 'basic' ? <BasicProfile user={user} /> : mode === 'edit' ? <EditProfile user={user} /> : <ViewPosts user={user} />}
+              {mode === 'basic' ? (
+                <BasicProfile user={user} />
+              ) : mode === 'edit' ? (
+                <EditProfile user={user} setMode={setMode} />
+              ) : (
+                <ViewPosts user={user} />
+              )}
             </div>
           </div>
         </div>

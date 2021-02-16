@@ -6,9 +6,10 @@ import axios from 'axios';
 
 type EditProfileContainerProps = {
   user: any;
+  setMode: any;
 };
 
-const EditProfileContainer = ({ user }: EditProfileContainerProps) => {
+const EditProfileContainer = ({ user, setMode }: EditProfileContainerProps) => {
   const history = useHistory();
   const [nickname, setNickname] = useState(user.nickname);
   const [gender, setGender] = useState(user.gender);
@@ -47,8 +48,21 @@ const EditProfileContainer = ({ user }: EditProfileContainerProps) => {
 
     await axios
       .post('http://localhost:8000/user/profile', data, { withCredentials: true })
-      .then(() => {
-        history.push('/profile');
+      .then(async (response) => {
+        await store.dispatch({ type: 'USER_UPDATED', user: response.data.data[0] });
+        alert('Updated Complete!');
+        setMode('basic');
+        document.querySelectorAll('.navbtn').forEach((btn, idx) => {
+          if (idx === 0) {
+            btn.setAttribute('class', 'navbtn text-sm p-2 w-full bg-indigo-900 text-white text-center rounded font-bold');
+          } else {
+            btn.setAttribute(
+              'class',
+              'navbtn text-sm p-2 bg-indigo-200 text-center rounded font-semibold hover:bg-indigo-700 hover:text-gray-200'
+            );
+          }
+        });
+        window.scrollTo(0, 0);
       })
       .catch((err) => console.log(err));
   };
