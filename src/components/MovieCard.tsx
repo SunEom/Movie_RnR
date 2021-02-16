@@ -21,11 +21,12 @@ const MovieCard = ({ id, title, genres, rates, overview, commentCount }: MovieCa
   }
 
   const randomImg = () => {
-    const random = Math.floor(Math.random() * 5);
+    const random = Math.floor(Math.random() * 10);
     let imgURL;
     switch (random) {
       case 0:
-        imgURL = 'https://cdn.pixabay.com/photo/2016/05/24/16/48/mountains-1412683_1280.png';
+        imgURL =
+          'https://images.unsplash.com/photo-1523207911345-32501502db22?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1350&q=80';
         break;
       case 1:
         imgURL =
@@ -43,12 +44,32 @@ const MovieCard = ({ id, title, genres, rates, overview, commentCount }: MovieCa
         imgURL =
           'https://images.unsplash.com/photo-1535016120720-40c646be5580?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80';
         break;
+      case 5:
+        imgURL =
+          'https://images.unsplash.com/photo-1509564324749-471bd272e1ff?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1950&q=80';
+        break;
+      case 6:
+        imgURL =
+          'https://images.unsplash.com/photo-1485846234645-a62644f84728?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1340&q=80';
+        break;
+      case 7:
+        imgURL =
+          'https://images.unsplash.com/photo-1478720568477-152d9b164e26?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1350&q=80';
+        break;
+      case 8:
+        imgURL =
+          'https://images.unsplash.com/photo-1524985069026-dd778a71c7b4?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1351&q=80';
+        break;
+      case 9:
+        imgURL =
+          'https://images.unsplash.com/photo-1458053688450-eef5d21d43b3?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1952&q=80';
+        break;
     }
     return imgURL;
   };
 
   return (
-    <div className="wrapper max-w-xs rounded-b-md shadow-xl overflow-hidden mx-6 my-10 relative break-words flex flex-col justify-between">
+    <div className="wrapper max-w-xs rounded-b-md shadow-2xl overflow-hidden mx-6 my-10 relative break-words  flex flex-col justify-between border ">
       <div>
         <img className="w-320 h-160" src={randomImg() as string} alt="montaña" style={{ width: '320px', height: '160px' }} />
         <div className="p-3 space-y-3 bg-gray-light flex flex-col justify-between ">
@@ -82,6 +103,3 @@ const MovieCard = ({ id, title, genres, rates, overview, commentCount }: MovieCa
 };
 
 export default MovieCard;
-// https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80
-// https://cdn.pixabay.com/photo/2016/05/24/16/48/mountains-1412683_1280.png
-// https://images.unsplash.com/photo-1524985069026-dd778a71c7b4?ixid=MXwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDd8fHxlbnwwfHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60
