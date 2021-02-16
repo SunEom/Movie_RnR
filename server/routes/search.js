@@ -7,7 +7,7 @@ const qs = require('querystring');
 router.post('/', async function (req, res, next) {
     const post = req.body;
     let keyword = "%" + post.keyword + "%";
-    await db.query(`SELECT * FROM movie WHERE title LIKE ? OR overview LIKE ?`,
+    await db.query(`SELECT movie.id, title, overview, movie.created, genres, movie.rates, movie.updated, user_id, count(*) as commentCount FROM movie LEFT OUTER JOIN comment ON movie.id=comment.movie_id WHERE title LIKE ? OR overview LIKE ? GROUP BY movie_id`,
     [keyword,keyword],
     function(error,result){
         if(error){
