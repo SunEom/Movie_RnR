@@ -8,10 +8,15 @@ const HomeContainer = () => {
   const [loading, setLoading] = useState<boolean>(true);
 
   const getRecent = async () => {
-    const { data } = await axios.get('/post/');
-    setRecent(data);
-    store.dispatch({ type: 'GET_RECENT', recent: data });
-    setLoading(false);
+    axios
+      .get('/post', { withCredentials: true })
+      .then((response) => {
+        console.log(response.data.data);
+        store.dispatch({ type: 'GET_RECENT', recent: response.data.data });
+        setRecent(response.data.data);
+        setLoading(false);
+      })
+      .catch((err) => console.error(err));
   };
 
   useEffect(() => {

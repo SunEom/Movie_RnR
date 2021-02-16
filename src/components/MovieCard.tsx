@@ -7,9 +7,10 @@ type MovieCardProps = {
   genres: string;
   rates: number;
   overview: string;
+  commentCount: number;
 };
 
-const MovieCard = ({ id, title, genres, rates, overview }: MovieCardProps) => {
+const MovieCard = ({ id, title, genres, rates, overview, commentCount }: MovieCardProps) => {
   return (
     <div className="p-4 w-11/12 sm:w-3/4 md:w-1/2 lg:w-1/3 min-w-20">
       <div className="h-full bg-gray-dark bg-opacity-40 px-8 pt-16 pb-24 rounded-lg overflow-hidden text-center relative">
@@ -36,21 +37,6 @@ const MovieCard = ({ id, title, genres, rates, overview }: MovieCardProps) => {
           </svg>
         </Link>
         <div className="text-center mt-2 leading-none flex justify-center absolute bottom-0 left-0 w-full py-4">
-          <span className="text-gray-500 mr-3 inline-flex items-center leading-none text-sm pr-3 py-1 border-r-2 border-gray-700 border-opacity-50">
-            <svg
-              className="w-4 h-4 mr-1"
-              stroke="currentColor"
-              strokeWidth="2"
-              fill="none"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              viewBox="0 0 24 24"
-            >
-              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-              <circle cx="12" cy="12" r="3"></circle>
-            </svg>
-            1.2K
-          </span>
           <span className="text-gray-500 inline-flex items-center leading-none text-sm">
             <svg
               className="w-4 h-4 mr-1"
@@ -63,7 +49,7 @@ const MovieCard = ({ id, title, genres, rates, overview }: MovieCardProps) => {
             >
               <path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"></path>
             </svg>
-            6
+            {commentCount}
           </span>
         </div>
       </div>
