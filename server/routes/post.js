@@ -55,7 +55,7 @@ router.patch('/update', function (req, res, next) {
   if (patch.rates > 10) {
     patch.rates = 10;
   }
-  db.query(`SELECT id FROM movie WHERE id=?`, [patch.id], function (error, result) {
+  db.query(`SELECT * FROM movie WHERE id=?`, [patch.id], function (error, result) {
     if (error) {
       next(error);
     }
