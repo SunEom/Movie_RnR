@@ -37,7 +37,7 @@ router.post('/', function (req, res, next) {
   );
 });
 
-router.get('user/:id', async function (req, res, next) {
+router.get('/user/:id', async function (req, res, next) {
   console.log('postuserid');
   await db.query(`SELECT * FROM movie WHERE user_id=?`, [req.params.id], function (error, result) {
     if (error) {

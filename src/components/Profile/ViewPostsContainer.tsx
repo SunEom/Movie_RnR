@@ -110,13 +110,13 @@ const ViewPostsContainer = ({ user }: ViewPostsContainerProps) => {
   const [page, setPage] = useState(1);
 
   const getMyPosts = () => {
-    // axios
-    //   .get(`http://localhost:8000/post/user/${user.user_id}`, { withCredentials: true })
-    //   .then((response) => {
-    //     setPosts(response.data.data);
-    //     setloading(false);
-    //   })
-    //   .catch((err) => console.error(err));
+    axios
+      .get(`http://localhost:8000/post/user/${user.id}`, { withCredentials: true })
+      .then((response) => {
+        setPosts(response.data.data);
+        setloading(false);
+      })
+      .catch((err) => console.error(err));
 
     setTimeout(() => setloading(false), 1);
   };
