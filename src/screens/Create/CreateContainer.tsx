@@ -101,7 +101,7 @@ const CreateContainer = () => {
     }
   };
 
-  return <CreatePresenter onSubmit={onSubmit} onChange={onChange} onCheck={onCheck} />;
+  return <CreatePresenter onSubmit={onSubmit} onChange={onChange} onCheck={onCheck} overview={overview} />;
 };
 
 export default CreateContainer;
