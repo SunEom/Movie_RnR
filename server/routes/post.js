@@ -110,11 +110,16 @@ router.delete('/:id', function (req, res, next) {
 });
 
 router.get('/', async function (req, res, next) {
-  await db.query(`SELECT * FROM movie ORDER BY created desc LIMIT 20;`, function (error, result) {
+  await db.query(`SELECT * FROM movie ORDER BY created desc LIMIT 20;`, async function (error, result) { //홈화면
     if (error) {
       next(error);
     }
-    res.json(result);
+    await db.query(`SELECT movie_id, count(*) as commentsCount from comment group by movie_id`,function(error2, result2){
+      if(error2){
+        next(error2);
+      }
+      res.status(200).send({code: 200, data: {...result, NumberOfcomments: {...result2}}});
+    });
   });
 });
 
