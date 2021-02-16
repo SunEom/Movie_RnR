@@ -58,8 +58,9 @@ router.post('/profile', async function (req, res, next) {
     res.status(400).send({ code: 400, error: 'not login' });
   }
   const post = req.body;
-  await db.query(`UPDATE user SET nickname=?, gender=? WHERE user_id=?`),
-    [post.nickname, post.gender, req.user.user_id],
+  console.log(req.user.id);
+  await db.query(`UPDATE user SET nickname=?, gender=? WHERE id=?`,
+    [post.nickname, post.gender, req.user.id],
     async (error, result) => {
       if (error) {
         next(err);
@@ -70,7 +71,7 @@ router.post('/profile', async function (req, res, next) {
         }
         res.status(201).send({ code: 201, data: result });
       });
-    };
+    });
 });
 
 router.post('/password', async function (req, res, next) {
