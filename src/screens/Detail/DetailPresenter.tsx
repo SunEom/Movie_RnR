@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import ActivityIndicator from '../../components/ActivityIndicator';
 import CommentContainer from '../../container/CommentContainer';
+import { dateFormat } from '../../util';
 
 type movie = {
   id: number;
@@ -54,7 +55,7 @@ const Detail = ({ movie, loading, onDeleteClick, mode, modeToggle, user, onChang
                     <p className="py-4">{movie.overview}</p>
                   </div>
                   <div className="flex flex-wrap justify-between pt-5w-full">
-                    <div className="text-sm font-medium">{movie.created}</div>
+                    <div className="text-sm font-medium">{dateFormat(movie.created)}</div>
                     <Link className="text-sm font-medium text-gray-dark hover:underline" to={`/profile/user/${movie.user.id}`}>
                       by {movie.user.nickname}
                     </Link>

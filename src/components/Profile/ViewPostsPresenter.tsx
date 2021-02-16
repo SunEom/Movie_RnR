@@ -18,22 +18,16 @@ type ViewPostsPresenterProps = {
 const ViewPostsPresenter = ({ posts, loading, page, pageHandler }: ViewPostsPresenterProps) => {
   return (
     <>
-      {
-        loading ? (
-          <ActivityIndicator />
-        ) : (
-          <div className="w-full flex flex-col items-center">
-            {posts.slice(4 * (page - 1), 4 * page).map((post, idx) => (
-              <DetailPostCard key={idx} id={1} title={post.title} overview={post.overview} created={post.created} genres={post.genres} />
-            ))}
-            <Pagination maxPage={posts.length / 4} page={page} pageHandler={pageHandler} />
-          </div>
-        )
-
-        // {posts.map((post) => (
-        //   <DetailPostCard {...post} />
-        // ))}
-      }
+      {loading ? (
+        <ActivityIndicator />
+      ) : (
+        <div className="w-full flex flex-col items-center">
+          {posts.slice(4 * (page - 1), 4 * page).map((post, idx) => (
+            <DetailPostCard key={idx} id={1} title={post.title} overview={post.overview} created={post.created} genres={post.genres} />
+          ))}
+          <Pagination maxPage={posts.length / 4} page={page} pageHandler={pageHandler} />
+        </div>
+      )}
     </>
   );
 };

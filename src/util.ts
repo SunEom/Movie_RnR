@@ -14,3 +14,8 @@ export const genresToString = (genres: Array<string>): string => {
   }
   return _genres;
 };
+
+export const dateFormat = (date: string): string => {
+  const formattedDate = date.substr(0, 10);
+  return formattedDate;
+};
