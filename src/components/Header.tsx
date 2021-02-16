@@ -33,11 +33,13 @@ const Header = ({ user, onClick, onLogout }: HeaderProps) => {
               <i className="fas fa-bars"></i>
             </button>
           </div>
-          <Searchbar />
 
           {user ? (
             <div className={'lg:flex flex-grow items-center' + (navbarOpen ? ' flex' : ' hidden')} id="example-navbar-danger">
               <ul className="flex flex-col lg:flex-row list-none lg:ml-auto">
+                <li className="nav-item">
+                  <Searchbar />
+                </li>
                 <li className="nav-item">
                   <Link className={navItemLink} to="/profile">
                     <i className="fas fa-user-cog text-lg leading-lg text-white opacity-75"></i>
@@ -69,6 +71,9 @@ const Header = ({ user, onClick, onLogout }: HeaderProps) => {
           ) : (
             <div className={'lg:flex flex-grow items-center' + (navbarOpen ? ' flex' : ' hidden')} id="example-navbar-danger">
               <ul className="flex flex-col lg:flex-row list-none lg:ml-auto">
+                <li className="nav-item">
+                  <Searchbar />
+                </li>
                 <li className="nav-item">
                   <Link className={navItemLink} to="/login">
                     <i className="fas fa-sign-in-alt text-lg leading-lg text-white opacity-75"></i>

@@ -7,7 +7,7 @@ type SearchBarProps = {
 
 const SearchBar = ({ onSubmit, onChange }: SearchBarProps) => {
   return (
-    <form className="pt-2 relative -top-1 text-gray-600 flex items-center" onSubmit={onSubmit}>
+    <form className="pt-2 relative -top-1 text-gray-600 flex items-center mr-10" onSubmit={onSubmit}>
       <input
         className="border-b-2 border-gray bg-gray-dark placeholder-gray plcaeholder h-10 pl-3 pr-10  text-base focus:outline-none"
         type="text"
