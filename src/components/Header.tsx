@@ -3,8 +3,6 @@ import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router';
 import Searchbar from '../container/Searchbar';
 
-import './Header.css';
-
 type HeaderProps = {
   user: any;
   onClick: any;
@@ -22,7 +20,7 @@ const Header = ({ user, onClick, onLogout }: HeaderProps) => {
         <div className="container px-4 mx-auto flex flex-wrap items-center justify-between">
           <div className="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
             <Link
-              className="header text-xl font-medium leading-relaxed inline-block mr-4 py-2 whitespace-no-wrap uppercase text-white"
+              className="header text-xl font-medium leading-relaxed inline-block mr-4 py-2 whitespace-no-wrap uppercase text-white font-carter"
               to="/"
             >
               Movie R&R 🎬
