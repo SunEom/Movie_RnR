@@ -16,4 +16,8 @@ export default createStore((state, action) => {
   if (action.type === 'GET_RECENT') {
     return { ...state, recent: action.recent };
   }
+
+  if (action.type === 'USER_UPDATED') {
+    return { ...state, user: action.user };
+  }
 }, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());

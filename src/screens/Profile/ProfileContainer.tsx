@@ -11,7 +11,7 @@ const ProfileContainer = () => {
   if (!user?.user_id) {
     history.push({ pathname: '/' });
   }
-  return <ProfilePresenter user={user} modeHandler={setMode} mode={mode} />;
+  return <ProfilePresenter user={user} modeHandler={setMode} mode={mode} setMode={setMode} />;
 };
 
 export default ProfileContainer;

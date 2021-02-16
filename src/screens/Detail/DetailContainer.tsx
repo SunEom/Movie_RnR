@@ -135,7 +135,7 @@ const DetailContainer = ({ id }: { id: string }) => {
 
   useEffect(() => {
     getMovie();
-  }, []);
+  }, [user]);
 
   return (
     <DetailPresenter
