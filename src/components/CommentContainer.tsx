@@ -34,9 +34,7 @@ const CommentContainer = ({ onSubmit, onChange, contents, comments, user, setCom
             Comment
           </button>
         </form>
-
-        <div className="mt-10">Comments</div>
-
+        {comments.length !== 0 && <div className="mt-10">Comments</div>}
         <div id="task-comments" className="pt-4">
           {comments.map((comment, idx) => (
             <Comments id={idx} key={idx} user={user} {...comment} setComments={setComments} comments={comments} />
