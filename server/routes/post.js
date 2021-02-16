@@ -111,7 +111,7 @@ router.delete('/:id', function (req, res, next) {
 
 router.get('/', async function (req, res, next) {
 
-  await db.query(`SELECT movie.id, title, overview, movie.created, genres, movie.rates, movie.updated, user_id, count(comment.id) as commentCount FROM movie LEFT JOIN comment ON movie.id=comment.movie_id GROUP BY movie_id ORDER BY movie.created desc LIMIT 20;`, 
+  await db.query(`select movie.id, title, overview, movie.created, genres, rates, movie.updated, user_id, C.commentCount from movie left outer join(select id, count(id) as commentCount ,movie_id from comment group by movie_id) AS C on (movie.id=C.movie_id) GROUP BY id ORDER BY movie.created DESC LIMIT 20;`, 
 
   async function (error, result) { //홈화면
     if (error) {
