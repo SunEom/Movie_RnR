@@ -5,10 +5,15 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     fontFamily: {
-      carter: ['Carter One', 'sans-serif'],
-      MyFont: ['"My Font"', 'serif'], // Ensure fonts with spaces have " " surrounding it.
+      MyFont: ['Carter One', 'Do Hyeon', 'sans-serif'], // Ensure fonts with spaces have " " surrounding it.
     },
     extend: {},
+    height: {
+      160: '160px',
+    },
+    width: {
+      320: '320px',
+    },
     minWidth: {
       0: '0',
       5: '5rem',

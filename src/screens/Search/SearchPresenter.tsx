@@ -15,11 +15,11 @@ const SearchPresenter = ({ result, loading, keyword }: SearchPresenterProps) => 
         <ActivityIndicator />
       ) : (
         <>
-          <div className="w-screen text-center text-2xl pt-10 font-carter">Search for : {keyword}</div>
+          <div className="w-screen text-center text-2xl pt-10 font-MyFont">Search for : {keyword}</div>
           <div className="flex justify-center pt-10 ">
             <div className="flex justify-center flex-wrap md:w-11/12">
               {result.length === 0 ? (
-                <div className="text-xl font-carter">There is no posting for ${keyword} 😅</div>
+                <div className="text-xl font-MyFont">There is no posting for {keyword} 😅</div>
               ) : (
                 result?.map((m) => (
                   <MovieCard
