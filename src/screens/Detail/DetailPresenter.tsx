@@ -37,7 +37,7 @@ const Detail = ({ movie, loading, onDeleteClick, mode, modeToggle, user, onChang
         <ActivityIndicator />
       ) : movie ? (
         mode === 'read' ? (
-          <div className="flex justify-center pt-10">
+          <div className="flex justify-center pt-10 font-Jua">
             <div className=" w-11/12 lg:w-1/2 md:px-4 lg:px-6 py-5">
               <div className="bg-white shadow-xl">
                 <div className="">
@@ -48,15 +48,17 @@ const Detail = ({ movie, loading, onDeleteClick, mode, modeToggle, user, onChang
                   />
                 </div>
                 <div className="px-4 py-4 md:px-10">
-                  <h1 className="font-bold text-lg break-words">{movie.title}</h1>
-                  <div className="w-full md:w-1/3 text-xs font-medium">{movie.genres}</div>
-                  <div className="w-full md:w-1/3 text-sm font-medium pt-1">⭐ {movie.rates} / 10</div>
+                  <h1 className="text-2xl break-words mb-3 text-center">{movie.title}</h1>
+                  <div className="w-full flex justify-between mb-1">
+                    <div className="w-full md:w-1/3 text-md font-medium">{movie.genres}</div>
+                    <div className="w-full md:w-1/3 text-sm font-medium pt-1 text-right">⭐ {movie.rates} / 10</div>
+                  </div>
                   <div>
-                    <p className="py-4 break-words">{movie.overview}</p>
+                    <p className="py-4 break-words text-lg">{movie.overview}</p>
                   </div>
                   <div className="flex flex-wrap justify-between pt-5w-full">
                     <div className="text-sm font-medium">{dateFormat(movie.created)}</div>
-                    <Link className="text-sm font-medium text-gray-dark hover:underline" to={`/profile/user/${movie.user.id}`}>
+                    <Link className="text-md font-medium text-gray-dark hover:underline" to={`/profile/user/${movie.user.id}`}>
                       by {movie.user.nickname}
                     </Link>
                   </div>

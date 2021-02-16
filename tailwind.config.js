@@ -5,6 +5,7 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     fontFamily: {
+      Jua: ['Jua', 'sans-serif'],
       MyFont: ['Carter One', 'Do Hyeon', 'sans-serif'], // Ensure fonts with spaces have " " surrounding it.
     },
     extend: {},
