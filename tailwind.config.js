@@ -6,7 +6,7 @@ module.exports = {
   theme: {
     fontFamily: {
       Jua: ['Jua', 'sans-serif'],
-      MyFont: ['Carter One', 'Do Hyeon', 'sans-serif'], // Ensure fonts with spaces have " " surrounding it.
+      MyFont: ['Carter One', 'Do Hyeon', 'Jua', 'sans-serif'], // Ensure fonts with spaces have " " surrounding it.
     },
     extend: {},
     minWidth: {
