@@ -75,7 +75,7 @@ router.post('/password', async function (req, res, next) {
       });
 });
 
-router.delete('/',async function (req, res, next){
+router.delete('/',async function (req, res, next){//회원탈퇴
   if (!authCheck.IsOwner(req, res)) {
     res.status(400).send({ code: 400, error: 'not login' });
   }
@@ -95,6 +95,10 @@ router.delete('/',async function (req, res, next){
           if(error4){
             next(error4);
           }
+          req.logout();
+          req.session.save(function () {
+            res.status(200).send({ code: 200 });
+          });
           res.status(200).send({ code: 200 });
         })
       })
