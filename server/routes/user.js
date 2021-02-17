@@ -18,7 +18,7 @@ router.post('/profile', async function (req, res, next) {
       if (error) {
         next(err);
       }
-      await db.query(`UPDATE aboutme SET biography=?, instagram=? ,facebook=? ,twitter=? WHERE id=`,
+      await db.query(`UPDATE aboutme SET biography=?, instagram=? ,facebook=? ,twitter=? WHERE id=?`,
       [post.biography, post.instagram, post.facebook, post.twitter, req.aboutme.id], 
       async function(error2,result2){
         if(error2){
@@ -34,23 +34,7 @@ router.post('/profile', async function (req, res, next) {
     });
 });
 
-router.post('/progile/aboutme', async function(req,res,next){
 
-  const post = req.body;
-  await db.query(`UPDATE aboutme SET biography=?, instagram=? ,facebook=? ,twitter=? WHERE id=`,
-  [post.biography, post.instagram, post.facebook, post.twitter, req.user.id], 
-  async function(error,result){
-    if(error){
-      next(error);
-    }
-    await db.query(`SELECT * FROM aboutme WHERE my_id=?`,[req.user.id],function(error2,result2){
-      if(error2){
-        next(error);
-      }
-      res.status(201).send({ code: 201, data: result2 });
-    });
-  });
-})
 
 router.post('/password', async function (req, res, next) {
   //password 변경
