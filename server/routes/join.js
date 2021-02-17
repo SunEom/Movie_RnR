@@ -45,11 +45,24 @@ router.post('/', async function (req, res, next) {
       `INSERT INTO user(user_id,password,nickname,gender) 
               VALUES(?,?,?,?);`,
       [post.id, hash, post.nickname, post.gender],
-      function (error, result) {
+      async function (error, result) {
         if (error) {
           next(error);
         }
         console.log('insert complete');
+        await db.query(`SELECT id from user where user_id=?`,[post.id],async function(error2,result2){
+          if(error2){
+            next(error2);
+          }
+          let my_id = result2[0].id;
+
+          await db.query(`INSERT INTO aboutme(biography,instagram,facebook,twitter,my_id) VALUES '','https://instagram.com/','https://facebook.com/','https://twitter.com/',? `,
+          [my_id],function(error3, result3){
+            if(error3){
+              next(error3);
+            }
+          })
+        })
       }
     );
   });

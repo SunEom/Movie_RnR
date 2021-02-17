@@ -11,7 +11,7 @@ module.exports = function () {
 
   passport.deserializeUser(function (id, done) {
     //페이지에 방문할 때 마다 콜백함수가 호출. id에는 serializeUser의 식별자값이 들어옴.
-    db.query('SELECT * FROM user WHERE user_id=?;', [id], function (err, result) {
+    db.query('SELECT * FROM user LEFT JOIN aboutme on user.id=aboutme.my_id WHERE user_id=?;', [id], function (err, result) {
       if (err) {
         throw err;
       }
