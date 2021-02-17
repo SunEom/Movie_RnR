@@ -47,7 +47,7 @@ router.post('/password', async function (req, res, next) {
   const post = req.body;
   bcrypt.hash(post.password, 10, async function (err, hash) {
     //기존pwd
-    await db.query(`SELECT password FROM user WHERE id=?`),
+    await db.query(`SELECT password FROM user WHERE id=?`,
       [req.user.id],
       async (error, result) => {
         if (error) {
@@ -68,7 +68,7 @@ router.post('/password', async function (req, res, next) {
               };
           });
         }
-      };
+      });
   });
 });
 
