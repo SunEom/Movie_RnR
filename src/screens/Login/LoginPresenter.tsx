@@ -68,9 +68,9 @@ const Login = ({ onChange, onSubmit, id, password }: LoginProps) => {
             </div>
 
             <div className="text-sm">
-              <Link to="/find" className="font-medium text-black hover:text-indigo-500">
+              <a href="#" className="font-medium text-black hover:text-indigo-500">
                 Forgot your password?
-              </Link>
+              </a>
             </div>
           </div>
 

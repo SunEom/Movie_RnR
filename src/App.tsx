@@ -7,7 +7,6 @@ import Login from './screens/Login';
 import Join from './screens/Join';
 import Detail from './screens/Detail';
 import User from './screens/User';
-import Find from './screens/Find';
 import Profile from './screens/Profile';
 import Search from './screens/Search';
 import store from './store';
@@ -75,9 +74,6 @@ function App() {
           </Route>
           <Route exact path="/post/:id">
             <DetailView />
-          </Route>
-          <Route exact path="/find">
-            <Find />
           </Route>
           <Route exact path="/profile">
             <Profile />
