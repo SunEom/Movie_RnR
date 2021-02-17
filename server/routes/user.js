@@ -43,10 +43,10 @@ router.post('/password', async function (req, res, next) {
     res.status(400).send({ code: 400, error: 'not login' });
   }
   const post = req.body;
-  bcrypt.hash(req.user.password, 10, async function (err, hash) {
+  bcrypt.hash(post.password, 10, async function (err, hash) {
     //기존pwd
-    await db.query(`SELECT password FROM user WHERE user_id=?`),
-      [req.user.user_id],
+    await db.query(`SELECT password FROM user WHERE id=?`),
+      [req.user.id],
       async (error, result) => {
         if (error) {
           next(error);
@@ -54,10 +54,10 @@ router.post('/password', async function (req, res, next) {
         if (result[0].password != hash) {
           res.status(400).send({ code: 400, error: '현재 비밀번호를 잘못 입력하였습니다.' });
         } else {
-          bcrypt.hash(post.password, 10, async function (err2, hash2) {
+          bcrypt.hash(post.newPassword, 10, async function (err2, hash2) {
             //변경할 pwd
-            await db.query(`UPDATE user SET password=? WHERE user_id=?`),
-              [hash2, req.user.user_id],
+            await db.query(`UPDATE user SET password=? WHERE id=?`),
+              [hash2, req.user.id],
               async (error, result) => {
                 if (error) {
                   next(error);
