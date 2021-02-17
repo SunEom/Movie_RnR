@@ -19,12 +19,12 @@ router.post('/profile', async function (req, res, next) {
         next(err);
       }
       await db.query(`UPDATE aboutme SET biography=?, instagram=? ,facebook=? ,twitter=? WHERE id=?`,
-      [post.biography, post.instagram, post.facebook, post.twitter, req.aboutme.id], 
+      [post.biography, post.instagram, post.facebook, post.twitter, req.user.aboutId], 
       async function(error2,result2){
         if(error2){
           next(error2);
         }
-        await db.query(`SELECT * FROM user LEFT JOIN aboutme on user.id=aboutme.my_id WHERE user.id=?`, [req.user.id], async (error3, result3) => {
+        await db.query(`SELECT user.id,user_id,password,nickname,gender,aboutme.id AS aboutId,biography,instagram,facebook,twitter,my_id FROM user LEFT JOIN aboutme on user.id=aboutme.my_id WHERE user.id=?`, [req.user.id], async (error3, result3) => {
           if (error3) {
             next(error3);
           }
