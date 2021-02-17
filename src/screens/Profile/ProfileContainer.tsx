@@ -6,7 +6,7 @@ import store from '../../store';
 const ProfileContainer = () => {
   const history = useHistory();
   const user = store.getState().user;
-  const [mode, setMode] = useState<'basic' | 'edit' | 'pwd' | 'posts'>('basic');
+  const [mode, setMode] = useState<'basic' | 'edit' | 'pwd' | 'posts' | 'danger'>('basic');
 
   if (!user?.user_id) {
     history.push({ pathname: '/' });

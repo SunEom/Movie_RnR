@@ -63,6 +63,18 @@ const ProfileNav = ({ modeHandler, isMy }: ProfileNavProps) => {
       >
         View Postings
       </button>
+
+      {isMy && (
+        <button
+          onClick={() => {
+            modeHandler('danger');
+            navColorChange(4);
+          }}
+          className="navbtn text-sm p-2 bg-indigo-200 text-center rounded font-semibold hover:bg-indigo-700 hover:text-gray-200"
+        >
+          Danger Zone
+        </button>
+      )}
     </div>
   );
 };
