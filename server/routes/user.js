@@ -7,11 +7,9 @@ const bcrypt = require('bcrypt');
 router.post('/profile', async function (req, res, next) {
   //nickname, gender변경
   if (!authCheck.IsOwner(req, res)) {
-    console.log('not login');
     res.status(400).send({ code: 400, error: 'not login' });
   }
   const post = req.body;
-  console.log(req.user.id);
   await db.query(`UPDATE user SET nickname=?, gender=? WHERE id=?`, [post.nickname, post.gender, req.user.id], async (error, result) => {
     if (error) {
       next(error);
@@ -41,7 +39,6 @@ router.post('/profile', async function (req, res, next) {
 router.post('/password', async function (req, res, next) {
   //password 변경
   if (!authCheck.IsOwner(req, res)) {
-    console.log('not login');
     res.status(400).send({ code: 400, error: 'not login' });
   }
   const post = req.body;
@@ -51,9 +48,6 @@ router.post('/password', async function (req, res, next) {
       next(error);
     }
     bcrypt.compare(post.password, result[0].password, async function (err, result2) {
-      console.log('입력한 현재 pwd', post.password);
-      console.log('입력한 pwd의 해시값', result2);
-      console.log('데이터베이스 패스워드', result[0].password);
       if (!result2) {
         res.status(400).send({ code: 400, error: '현재 비밀번호를 잘못 입력하였습니다.' });
       } else {
@@ -107,7 +101,6 @@ router.get('/:id', async function (req, res, next) {
     if (error) {
       next(error);
     }
-    console.log('프로필', result);
     res.status(200).send({ code: 200, data: result });
   });
 });

@@ -27,7 +27,6 @@ router.post('/nick', async function (req, res, next) {
       next(error);
     }
     if (result.length === 0) {
-      console.log('nickname ok');
       res.json({ already: false }); //중복없으면
     } else {
       res.json({ already: true }); //중복있으면
@@ -49,7 +48,6 @@ router.post('/', async function (req, res, next) {
         if (error) {
           next(error);
         }
-        console.log('insert complete');
         await db.query(`SELECT id from user where user_id=?;`,[post.id],async function(error2,result2){
           if(error2){
             next(error2);
@@ -75,7 +73,6 @@ router.post('/', async function (req, res, next) {
     user = result[0];
 
     req.login(user, function (err) {
-      console.log('회원가입성공, 로그인');
       return res.status(200).send({ code: 200, data: user });
     });
   });
