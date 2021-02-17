@@ -63,32 +63,38 @@ const BasicProfilePresenter = ({ user }: BasicProfilePresenterProps) => {
           <h3 className="text-2xl font-semibold font-Jua">My Social Media</h3>
         </div>
 
-        <div className="form-item">
+        <div className="form-item flex flex-col">
           <label className="text-xl font-Jua">Instagram</label>
-          <input
+          <a
             type="text"
-            value={user.instagram}
-            className="w-full appearance-none text-black text-opacity-50 rounded shadow py-1 px-2 mr-2 focus:outline-none focus:shadow-outline focus:border-blue-200 text-opacity-25 "
-            disabled
-          />
+            target="_blank"
+            href={user.instagram}
+            className="w-full appearance-none text-black  rounded shadow py-1 px-2  mr-2 focus:outline-none focus:shadow-outline focus:border-blue-200  "
+          >
+            {user.instagram}
+          </a>
         </div>
-        <div className="form-item">
+        <div className="form-item flex flex-col">
           <label className="text-xl font-Jua">Facebook</label>
-          <input
+          <a
             type="text"
-            value={user.facebook}
-            className="w-full appearance-none text-black text-opacity-50 rounded shadow py-1 px-2 mr-2 focus:outline-none focus:shadow-outline focus:border-blue-200 text-opacity-25 "
-            disabled
-          />
+            target="_blank"
+            href={user.facebook}
+            className="w-full appearance-none text-black  rounded shadow py-1 px-2  mr-2 focus:outline-none focus:shadow-outline focus:border-blue-200  "
+          >
+            {user.facebook}
+          </a>
         </div>
-        <div className="form-item">
+        <div className="form-item flex flex-col">
           <label className="text-xl font-Jua">Twitter</label>
-          <input
+          <a
             type="text"
-            value={user.twitter}
-            className="w-full appearance-none text-black text-opacity-50 rounded shadow py-1 px-2  mr-2 focus:outline-none focus:shadow-outline focus:border-blue-200  "
-            disabled
-          />
+            target="_blank"
+            href={user.twitter}
+            className="w-full appearance-none text-black  rounded shadow py-1 px-2  mr-2 focus:outline-none focus:shadow-outline focus:border-blue-200  "
+          >
+            {user.twitter}
+          </a>
         </div>
       </form>
     </div>
