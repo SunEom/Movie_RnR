@@ -45,7 +45,6 @@ router.post('/password', async function (req, res, next) {
     res.status(400).send({ code: 400, error: 'not login' });
   }
   const post = req.body;
-  bcrypt.hash(post.password, 10, async function (err, hash) {
     //기존pwd
     await db.query(`SELECT password FROM user WHERE id=?`,
       [req.user.id],
@@ -53,23 +52,27 @@ router.post('/password', async function (req, res, next) {
         if (error) {
           next(error);
         }
-        if (result[0].password != hash) {
-          res.status(400).send({ code: 400, error: '현재 비밀번호를 잘못 입력하였습니다.' });
-        } else {
-          bcrypt.hash(post.newPassword, 10, async function (err2, hash2) {
-            //변경할 pwd
-            await db.query(`UPDATE user SET password=? WHERE id=?`),
-              [hash2, req.user.id],
-              async (error, result) => {
-                if (error) {
-                  next(error);
-                }
-                res.stauts(201).send({ code: 201 });
-              };
-          });
+        bcrypt.compare(post.password, result[0].password, async function (err, result2){
+          console.log("입력한 현재 pwd",post.password);
+          console.log("입력한 pwd의 해시값",result2);
+          console.log("데이터베이스 패스워드",result[0].password);
+          if (!result2) {
+            res.status(400).send({ code: 400, error: '현재 비밀번호를 잘못 입력하였습니다.' });
+          } else {
+            bcrypt.hash(post.newPassword, 10, async function (err2, hash2) {
+              //변경할 pwd
+              await db.query(`UPDATE user SET password=? WHERE id=?`,
+                [hash2, req.user.id],
+                async (error, result3) => {
+                  if (error) {
+                    next(error);
+                  }
+                  res.status(201).send({ code: 201 });
+                });
+            });
         }
+        })
       });
-  });
 });
 
 router.get('/:id', async function (req, res, next) {
