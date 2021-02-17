@@ -7,7 +7,6 @@ const authCheck = require('../lib/authCheck');
 
 router.post('/', function (req, res, next) {
   if (!authCheck.IsOwner(req, res)) {
-    console.log('not login');
     return res.status(400).send({ code: 400, error: 'not login' });
   }
   //글 쓰기
@@ -38,7 +37,6 @@ router.post('/', function (req, res, next) {
 });
 
 router.get('/user/:id', async function (req, res, next) {
-  console.log('postuserid');
   await db.query(`SELECT * FROM movie WHERE user_id=?`, [req.params.id], function (error, result) {
     if (error) {
       next(error);
@@ -117,7 +115,6 @@ router.get('/', async function (req, res, next) {
     if (error) {
       next(error);
     }
-    console.log(result);
     res.status(200).send({code: 200, data: result});
   });
 });
@@ -134,7 +131,6 @@ router.get('/:id', async function (req, res, next) {
         if (error2) {
           next(error2);
         }
-        console.log({ ...result, user: { ...result2 } });
         res.status(200).send({ code: 200, data: { movie: { ...result }, user: { ...result2 } } });
       }
     );

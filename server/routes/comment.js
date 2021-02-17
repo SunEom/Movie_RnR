@@ -7,7 +7,6 @@ const authCheck = require('../lib/authCheck');
 
 router.post('/', function (req, res, next) {
   if (!authCheck.IsOwner(req, res)) {
-    console.log("댓글",'not login');
     return res.status(400).send({ code: 400, error: 'not login' });
   }
   //댓글 쓰기
@@ -90,13 +89,11 @@ router.patch('/update', function (req, res, next) {
   });
 
   router.get('/:id', async function (req, res, next) {//req.params.id > movie_id
-    console.log("comment");
     await db.query(`SELECT comment.id, contents, comment.created, comment.updated, commenter, movie_id, user.nickname FROM comment LEFT JOIN user ON comment.commenter=user.id WHERE movie_id=?;`,
      [req.params.id], async function (error, result) {
         if (error) {
             next(error);
         }
-        console.log("댓글",result);
         res.status(200).send({ code: 200, data: result});
     });
   });
