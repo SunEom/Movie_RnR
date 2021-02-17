@@ -11,40 +11,39 @@ type PwdChangePresenterProps = {
 
 const PwdChangePresenter = ({ user, password, newPassword, newPasswordCheck, onSubmit, onChange }: PwdChangePresenterProps) => {
   return (
-    <div className="px-4 pt-4">
-      <form action="#" className="flex flex-col space-y-8" onSubmit={onSubmit}>
-        <div>
-          <h3 className="text-2xl font-semibold font-Jua">Change Password</h3>
-        </div>
-
-        <div className="form-item flex flex-col">
+    <div className="px-4 pt-4 flex flex-col justify center">
+      <div>
+        <h3 className="text-2xl font-semibold font-Jua">Change Password</h3>
+      </div>
+      <form action="#" className="flex flex-col space-y-8 w-1/2 items-center pt-5" onSubmit={onSubmit}>
+        <div className="form-item flex flex-col w-full">
           <label className="text-xl font-Jua">Password</label>
           <input
             type="password"
             id="password"
             value={password}
             onChange={onChange}
-            className="w-1/3 appearance-none text-black  rounded shadow py-1 px-2  mr-2 focus:outline-none focus:shadow-outline focus:border-blue-200 "
+            className="w-1/2 appearance-none text-black  rounded shadow py-1 px-2  mr-2 focus:outline-none focus:shadow-outline focus:border-blue-200 "
           />
         </div>
-        <div className="form-item flex flex-col">
+        <div className="form-item flex flex-col w-full">
           <label className="text-xl font-Jua">New Password</label>
           <input
             type="password"
             id="newPassword"
             value={newPassword}
             onChange={onChange}
-            className="w-1/3 appearance-none text-black  rounded shadow py-1 px-2  mr-2 focus:outline-none focus:shadow-outline focus:border-blue-200"
+            className="w-1/2 appearance-none text-black  rounded shadow py-1 px-2  mr-2 focus:outline-none focus:shadow-outline focus:border-blue-200"
           />
         </div>
-        <div className="form-item flex flex-col">
+        <div className="form-item flex flex-col w-full">
           <label className="text-xl font-Jua">New Password Check</label>
           <input
             type="password"
             id="newPasswordCheck"
             value={newPasswordCheck}
             onChange={onChange}
-            className="w-1/3 appearance-none text-black  rounded shadow py-1 px-2  mr-2 focus:outline-none focus:shadow-outline focus:border-blue-200"
+            className="w-1/2 appearance-none text-black  rounded shadow py-1 px-2  mr-2 focus:outline-none focus:shadow-outline focus:border-blue-200"
           />
         </div>
 

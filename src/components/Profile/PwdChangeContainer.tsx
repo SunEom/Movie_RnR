@@ -28,7 +28,6 @@ const PwdChangeContainer = ({ user, setMode }: PwdChangeContainerProps) => {
       newPasswordCheck,
     };
 
-    console.log(data);
     await axios
       .post('http://localhost:8000/user/password', data, { withCredentials: true })
       .then(async (response) => {
@@ -46,7 +45,12 @@ const PwdChangeContainer = ({ user, setMode }: PwdChangeContainerProps) => {
         });
         window.scrollTo(0, 0);
       })
-      .catch((err) => console.error(err.response));
+      .catch((err) => {
+        if (err.response.data.error === '현재 비밀번호를 잘못 입력하였습니다.') {
+          setPassword('');
+          return alert('Please Check Password!');
+        }
+      });
   };
 
   const onChange = (e: React.FormEvent<HTMLInputElement>) => {
