@@ -7,7 +7,7 @@ const qs = require('querystring');
 router.post('/', async function (req, res, next) {
     const post = req.body;
     let keyword = "%" + post.keyword + "%";
-    await db.query(`select movie.id, title,overview, movie.created, genres, rates, movie.updated, user_id, comment.movie_id as ck, count(*) as commentCount from movie left join comment on movie.id=movie_id group by movie.id having title like ? or overview like ?;`,
+    await db.query(`select movie.id, title,overview, movie.created, genres, rates, movie.updated, user_id, comment.movie_id as ck, count(*) as commentCount from movie left join comment on movie.id=movie_id group by movie.id having title like ? or overview like ? ORDER BY movie.created;`,
     [keyword,keyword],
     function(error,result){
         for(let i=0; i<result.length; i++){
