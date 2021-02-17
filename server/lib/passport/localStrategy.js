@@ -11,7 +11,7 @@ module.exports = () => {
         passwordField: 'password',
       },
       function (username, password, done) {
-        db.query('SELECT * FROM user LEFT JOIN aboutme on user.id=aboutme.my_id WHERE user_id=?;', [username], function (err, result) {
+        db.query('SELECT user.id,user_id,password,nickname,gender,aboutme.id AS aboutId,biography,instagram,facebook,twitter,my_id FROM user LEFT JOIN aboutme on user.id=aboutme.my_id WHERE user_id=?;', [username], function (err, result) {
           if (err) {
             console.log('mysql error');
             return done(err);
