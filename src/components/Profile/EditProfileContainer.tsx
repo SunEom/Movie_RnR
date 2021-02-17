@@ -13,6 +13,11 @@ const EditProfileContainer = ({ user, setMode }: EditProfileContainerProps) => {
   const history = useHistory();
   const [nickname, setNickname] = useState(user.nickname);
   const [gender, setGender] = useState(user.gender);
+  const [biography, setBiography] = useState(user.biography ? user.biography : '');
+  const [instagram, setInstagram] = useState(user.instagram ? user.instagram : 'https://instagram.com/');
+  const [facebook, setFacebook] = useState(user.facebook ? user.facebook : 'https://facebook.com/');
+  const [twitter, setTwitter] = useState(user.twitter ? user.twitter : 'https://twitter.com/');
+
   const [nickConfirmation, setNickConfirmation] = useState(true);
 
   const nickConfirm = async (e: any) => {
@@ -44,8 +49,13 @@ const EditProfileContainer = ({ user, setMode }: EditProfileContainerProps) => {
     const data = {
       nickname,
       gender,
+      biography,
+      instagram,
+      facebook,
+      twitter,
     };
 
+    console.log(data);
     await axios
       .post('http://localhost:8000/user/profile', data, { withCredentials: true })
       .then(async (response) => {
@@ -78,9 +88,38 @@ const EditProfileContainer = ({ user, setMode }: EditProfileContainerProps) => {
         setGender(e.currentTarget.value as 'Man' | 'Woman');
         break;
       }
+      case 'biography': {
+        setBiography(e.currentTarget.value);
+        break;
+      }
+      case 'instagram': {
+        setInstagram(e.currentTarget.value);
+        break;
+      }
+      case 'facebook': {
+        setFacebook(e.currentTarget.value);
+        break;
+      }
+      case 'twitter': {
+        setTwitter(e.currentTarget.value);
+        break;
+      }
     }
   };
-  return <EditProfilePresenter user={user} nickConfirm={nickConfirm} onSubmit={onSubmit} onChange={onChange} />;
+  return (
+    <EditProfilePresenter
+      user={user}
+      nickConfirm={nickConfirm}
+      onSubmit={onSubmit}
+      onChange={onChange}
+      nickname={nickname}
+      gender={gender}
+      biography={biography}
+      instagram={instagram}
+      facebook={facebook}
+      twitter={twitter}
+    />
+  );
 };
 
 export default EditProfileContainer;

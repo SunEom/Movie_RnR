@@ -45,7 +45,7 @@ const ProfileNav = ({ modeHandler, isMy }: ProfileNavProps) => {
       <button
         onClick={() => {
           modeHandler('posts');
-          navColorChange(2);
+          navColorChange(isMy ? 2 : 1);
         }}
         className="navbtn text-sm p-2 bg-indigo-200 text-center rounded font-semibold hover:bg-indigo-700 hover:text-gray-200"
       >

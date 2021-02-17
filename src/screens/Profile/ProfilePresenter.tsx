@@ -28,8 +28,7 @@ const Profile = ({ user, modeHandler, mode, setMode }: ProfileProps) => {
                 alt=""
                 className="h-24 w-24 object-cover rounded-full"
               />
-              <h1 className="text-2xl font-semibold">{user.nickname}</h1>
-              <h4 className="text-sm font-semibold">Joined Since '19</h4>
+              <h1 className="text-2xl font-MyFont">{user.nickname}</h1>
             </div>
           </div>
           <div className="grid grid-cols-12 bg-gray ">
