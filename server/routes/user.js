@@ -97,7 +97,7 @@ router.delete('/', async function (req, res, next) {
 });
 
 router.get('/:id', async function (req, res, next) {
-  await db.query(`SELECT id, nickname, gender FROM user WHERE id=?`, [req.params.id], function (error, result) {
+  await db.query(`SELECT user.id, nickname, gender, biography, instagram, facebook, twitter FROM user left join aboutme on user.id=aboutme.my_id WHERE user.id=?`, [req.params.id], function (error, result) {
     if (error) {
       next(error);
     }
