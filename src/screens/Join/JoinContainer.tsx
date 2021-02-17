@@ -93,8 +93,25 @@ const JoinContainer = () => {
 
     await axios
       .post('http://localhost:8000/join', data)
-      .then(() => {
-        history.push('/login');
+      .then(async () => {
+        await alert('Join Successfully!');
+        axios
+          .post('http://localhost:8000/auth/login', { id: data.id, password: data.password }, { withCredentials: true })
+          .then((response) => {
+            store.dispatch({ type: 'LOGIN', user: response.data.data });
+            history.push({
+              pathname: '/',
+            });
+          })
+          .catch((err) => {
+            if (err.response.data.error === 'Incorrect id') {
+              setPassword('');
+              alert("Can't find a user using this ID !");
+            } else if (err.response.data.error === 'Incorrect password') {
+              setPassword('');
+              alert('Please check password again !');
+            }
+          });
       })
       .catch((err) => console.log(err));
   };
