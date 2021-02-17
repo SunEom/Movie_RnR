@@ -3,11 +3,12 @@ import ProfileNav from '../../components/Profile/ProfileNav';
 import BasicProfile from '../../components/Profile/BasicProfileContainer';
 import EditProfile from '../../components/Profile/EditProfileContainer';
 import ViewPosts from '../../components/Profile/ViewPostsContainer';
+import PwdChange from '../../components/Profile/PwdChangeContainer';
 
 type ProfileProps = {
   user: any;
   modeHandler: any;
-  mode: 'basic' | 'edit' | 'posts';
+  mode: 'basic' | 'edit' | 'posts' | 'pwd';
   setMode: any;
 };
 
@@ -38,6 +39,8 @@ const Profile = ({ user, modeHandler, mode, setMode }: ProfileProps) => {
                 <BasicProfile user={user} />
               ) : mode === 'edit' ? (
                 <EditProfile user={user} setMode={setMode} />
+              ) : mode === 'pwd' ? (
+                <PwdChange user={user} setMode={setMode} />
               ) : (
                 <ViewPosts user={user} />
               )}

@@ -42,10 +42,22 @@ const ProfileNav = ({ modeHandler, isMy }: ProfileNavProps) => {
         </button>
       )}
 
+      {isMy && (
+        <button
+          onClick={() => {
+            modeHandler('pwd');
+            navColorChange(2);
+          }}
+          className="navbtn text-sm p-2 bg-indigo-200 text-center rounded font-semibold hover:bg-indigo-700 hover:text-gray-200"
+        >
+          Change Password
+        </button>
+      )}
+
       <button
         onClick={() => {
           modeHandler('posts');
-          navColorChange(isMy ? 2 : 1);
+          navColorChange(isMy ? 3 : 1);
         }}
         className="navbtn text-sm p-2 bg-indigo-200 text-center rounded font-semibold hover:bg-indigo-700 hover:text-gray-200"
       >
