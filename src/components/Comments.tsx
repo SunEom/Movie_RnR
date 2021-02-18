@@ -80,7 +80,7 @@ const Comments = ({
           <input
             className="border-b-2 w-full my-2 border-gray focus:outline-none"
             type="text"
-            value={comment}
+            defaultValue={contents}
             onChange={(e) => {
               onChange(e.target.value, setComment);
             }}
