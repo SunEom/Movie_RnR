@@ -32,7 +32,7 @@ const CommentContainerContainer = ({ movie }: CommentContainerProps) => {
     e.preventDefault();
 
     if (contents === '') {
-      return alert('Please input Comments');
+      return alert('Please input Comment!');
     }
 
     const data: CommentsFormat = {

@@ -28,6 +28,9 @@ const onDelete = async (id: number, setComments: any) => {
 };
 
 const onSave = (data: any, setComments: any) => {
+  if (data.contents === '') {
+    return alert('Please input Comment!');
+  }
   axios.patch('http://localhost:8000/comment/update', { ...data }, { withCredentials: true }).then(() => {
     const movie_id = +window.location.pathname.split('/')[window.location.pathname.split.length];
     axios
