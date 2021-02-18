@@ -13,8 +13,10 @@ type MovieCardProps = {
 const MovieCard = ({ id, title, genres, rates, overview, commentCount }: MovieCardProps) => {
   const rateStars = [];
   for (let i = 0; i < 5; i++) {
-    if (i < Math.ceil(rates / 2)) {
+    if (1 <= rates / 2 - i) {
       rateStars.push(<i className="fas fa-star"></i>);
+    } else if (0 < rates / 2 - i) {
+      rateStars.push(<i className="fas fa-star-half-alt"></i>);
     } else {
       rateStars.push(<i className="far fa-star"></i>);
     }
