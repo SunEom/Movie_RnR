@@ -8,6 +8,7 @@ type ViewPostsPresenterProps = {
     id: number;
     title: string;
     overview: string;
+    rates: number;
     created: string;
     genres: any;
     commentCount: number;
@@ -29,15 +30,7 @@ const ViewPostsPresenter = ({ posts, loading, page, pageHandler }: ViewPostsPres
           </div>
           <div className="w-full flex flex-col items-center mt-4">
             {posts.slice(4 * (page - 1), 4 * page).map((post, idx) => (
-              <DetailPostCard
-                key={idx}
-                id={post.id}
-                title={post.title}
-                overview={post.overview}
-                created={post.created}
-                genres={post.genres}
-                commentCount={post.commentCount}
-              />
+              <DetailPostCard key={idx} {...post} />
             ))}
             <Pagination maxPage={posts.length / 4} page={page} pageHandler={pageHandler} />
           </div>
