@@ -69,6 +69,7 @@ const BasicProfilePresenter = ({ user }: BasicProfilePresenterProps) => {
             type="text"
             target="_blank"
             href={user.instagram}
+            rel="noreferrer"
             className="w-full appearance-none text-black  rounded shadow py-1 px-2  mr-2 focus:outline-none focus:shadow-outline focus:border-blue-200  "
           >
             {user.instagram}
@@ -80,6 +81,7 @@ const BasicProfilePresenter = ({ user }: BasicProfilePresenterProps) => {
             type="text"
             target="_blank"
             href={user.facebook}
+            rel="noreferrer"
             className="w-full appearance-none text-black  rounded shadow py-1 px-2  mr-2 focus:outline-none focus:shadow-outline focus:border-blue-200  "
           >
             {user.facebook}
@@ -91,6 +93,7 @@ const BasicProfilePresenter = ({ user }: BasicProfilePresenterProps) => {
             type="text"
             target="_blank"
             href={user.twitter}
+            rel="noreferrer"
             className="w-full appearance-none text-black  rounded shadow py-1 px-2  mr-2 focus:outline-none focus:shadow-outline focus:border-blue-200  "
           >
             {user.twitter}

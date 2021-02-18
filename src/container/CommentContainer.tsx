@@ -44,7 +44,6 @@ const CommentContainerContainer = ({ movie }: CommentContainerProps) => {
     axios
       .post('http://localhost:8000/comment', { ...data }, { withCredentials: true })
       .then((response) => {
-        console.log(response);
         setComments([...comments, ...response.data.data]);
         setContents('');
       })

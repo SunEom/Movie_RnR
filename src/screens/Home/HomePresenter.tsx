@@ -26,8 +26,8 @@ const Home = ({ recent, loading }: HomeProps) => {
           <div className="w-screen text-center text-2xl pt-10 font-MyFont">Recent Postings</div>
           <div className="flex justify-center pt-10 ">
             <div className="flex justify-center flex-wrap md:w-11/12">
-              {recent.map((m) => (
-                <MovieCard key={m.id} {...m} />
+              {recent.map((m, idx) => (
+                <MovieCard key={idx} {...m} />
               ))}
             </div>
           </div>

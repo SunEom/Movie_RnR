@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import EditProfilePresenter from './EditProfilePresenter';
 import store from '../../store';
-import { useHistory } from 'react-router';
 import axios from 'axios';
 
 type EditProfileContainerProps = {
@@ -10,7 +9,6 @@ type EditProfileContainerProps = {
 };
 
 const EditProfileContainer = ({ user, setMode }: EditProfileContainerProps) => {
-  const history = useHistory();
   const [nickname, setNickname] = useState(user.nickname);
   const [gender, setGender] = useState(user.gender);
   const [biography, setBiography] = useState(user.biography ? user.biography : '');
@@ -26,7 +24,6 @@ const EditProfileContainer = ({ user, setMode }: EditProfileContainerProps) => {
       if (response.status !== 200) {
         console.error(response.data.error);
       }
-      console.log(response);
       if (response.data.already === false) {
         alert('This Nickname can be used 👌');
         setNickConfirmation(true);
