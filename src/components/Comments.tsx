@@ -58,9 +58,14 @@ const Comments = ({
               <button
                 className="mx-2 bg-gray px-3 py-1 rounded-md focus:outline-none"
                 onClick={() => {
-                  onDelete(id);
-                  const newComments = comments.concat();
-                  setComments(newComments.filter((c: any) => c.id !== id));
+                  const answer = window.confirm('Do you really want to delete this comment?');
+                  if (answer) {
+                    onDelete(id);
+                    const newComments = comments.concat();
+                    setComments(newComments.filter((c: any) => c.id !== id));
+                  } else {
+                    return;
+                  }
                 }}
               >
                 Delete
