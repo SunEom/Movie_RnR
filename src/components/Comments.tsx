@@ -33,17 +33,14 @@ const Comments = ({
   return (
     <>
       {mode === 'default' && (
-        <div className="bg-white rounded-lg p-3  flex flex-col justify-center items-center md:items-start shadow-lg mb-4">
-          <div className="flex flex-row justify-center items-center mr-2">
+        <div className="bg-white rounded-lg p-3  flex flex-col justify-center items-start shadow-lg mb-4 break-words">
+          <div className="flex flex-row justify-center items-center mr-2 mb-1">
             <i className="fas fa-user-circle text-xl mr-3"></i>
-            <Link
-              className="text-purple-600 font-semibold text-base text-center md:text-left hover:underline"
-              to={`/profile/user/${commenter}`}
-            >
+            <Link className="text-purple-600 font-semibold text-base text-left hover:underline" to={`/profile/user/${commenter}`}>
               {nickname}
             </Link>
           </div>
-          <p className="text-gray-600 text-base text-center md:text-left ">{contents}</p>
+          <p className="text-gray-600 text-base text-left break-words w-full">{contents}</p>
           {commenter === user?.id && (
             <div className="flex justify-end w-full">
               <button
@@ -75,7 +72,7 @@ const Comments = ({
         <div className="bg-white rounded-lg p-3  flex flex-col justify-center items-center md:items-start shadow-lg mb-4">
           <div className="flex flex-row justify-center items-center mr-2">
             <i className="fas fa-user-circle text-xl mr-3"></i>
-            <h3 className="text-purple-600 font-semibold text-base text-center md:text-left ">{nickname}</h3>
+            <h3 className="text-purple-600 font-semibold text-base text-left ">{nickname}</h3>
           </div>
           <input
             className="border-b-2 w-full my-2 border-gray focus:outline-none"
