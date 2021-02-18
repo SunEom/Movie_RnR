@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import ViewPostsPresenter from './ViewPostsPresenter';
 import axios from 'axios';
-import store from '../../store';
 
 type ViewPostsContainerProps = {
   user: any;

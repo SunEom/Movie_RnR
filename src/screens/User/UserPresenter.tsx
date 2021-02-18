@@ -1,7 +1,6 @@
 import React from 'react';
 import ProfileNav from '../../components/Profile/ProfileNav';
 import BasicProfile from '../../components/Profile/BasicProfileContainer';
-import EditProfile from '../../components/Profile/EditProfileContainer';
 import ViewPosts from '../../components/Profile/ViewPostsContainer';
 
 type UserProps = {

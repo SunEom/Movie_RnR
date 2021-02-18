@@ -11,7 +11,6 @@ const HomeContainer = () => {
     axios
       .get('/post', { withCredentials: true })
       .then((response) => {
-        console.log(response.data.data);
         store.dispatch({ type: 'GET_RECENT', recent: response.data.data });
         setRecent(response.data.data);
         setLoading(false);

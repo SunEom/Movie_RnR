@@ -12,7 +12,6 @@ type DetailPostCardProps = {
 };
 
 const DetailPostCard = ({ id, title, overview, created, genres, commentCount }: DetailPostCardProps) => {
-  const mainGenres = genresToArray(genres)[0];
   return (
     <div className="flex w-11/12 bg-white shadow-lg rounded-lg mx-4 mt-4 font-MyFont">
       <div className="flex items-start px-4 py-6 w-full">

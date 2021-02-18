@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 import PwdChangePresenter from './PwdChangePresenter';
-import store from '../../store';
-import { useHistory } from 'react-router';
 import axios from 'axios';
 
 type PwdChangeContainerProps = {
@@ -10,7 +8,6 @@ type PwdChangeContainerProps = {
 };
 
 const PwdChangeContainer = ({ user, setMode }: PwdChangeContainerProps) => {
-  const history = useHistory();
   const [password, setPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [newPasswordCheck, setNewPasswordCheck] = useState('');
