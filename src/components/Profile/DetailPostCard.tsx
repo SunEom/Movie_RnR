@@ -8,23 +8,30 @@ type DetailPostCardProps = {
   overview: string;
   created: string;
   genres: any;
+  commentCount: number;
 };
 
-const DetailPostCard = ({ id, title, overview, created, genres }: DetailPostCardProps) => {
+const DetailPostCard = ({ id, title, overview, created, genres, commentCount }: DetailPostCardProps) => {
   const mainGenres = genresToArray(genres)[0];
   return (
-    <div className="w-11/12 mt-10 flex justify-center ">
-      <div className="w-full max-w-4xl px-10 py-6 bg-white rounded-lg shadow-md">
-        <div className="flex justify-between items-center">
-          <span className="font-light text-gray-600">{dateFormat(created)}</span>
-          <div className="px-2 py-1 bg-gray-darker text-gray-light font-bold rounded hover:bg-gray-500">{mainGenres}</div>
-        </div>
-        <div className="mt-2">
-          <Link to={`/post/${id}`} className="text-2xl text-gray-700 font-bold hover:underline break-words">
-            {title.length > 25 ? `${title.slice(0, 25)}...` : title}
-          </Link>
-          <p className="mt-2 text-gray-600 break-words">{overview.length > 250 ? `${overview.slice(0, 250)}...` : overview}</p>
-        </div>
+    <div className="flex w-11/12 bg-white shadow-lg rounded-lg mx-4 mt-4 font-MyFont">
+      <div className="flex items-start px-4 py-6 w-full">
+        <img
+          className="w-12 h-12 rounded-full object-cover mr-4 shadow"
+          src="https://images.unsplash.com/photo-1605722625766-a4c989c747a4?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1350&q=80"
+          alt="avatar"
+        />
+        <Link to={`/post/${id}`} className="w-9/12 sm:10/12 lg:w-11/12 break-words hover:underline">
+          <div className="flex items-center justify-between box-border mr-0 w-full">
+            <h2 className="text-sm sm:text-lg font-semibold text-gray-900 -mt-1 ">
+              {title.length > 15 ? `${title.slice(0, 15)}...` : title}
+            </h2>
+            <small className="text-sm text-gray-700">{dateFormat(created)}</small>
+          </div>
+          <p className="mt-2 text-gray-700 text-xs sm:text-base w-full">
+            {overview.length > 120 ? `${overview.slice(0, 120)}...` : overview}
+          </p>
+        </Link>
       </div>
     </div>
   );
