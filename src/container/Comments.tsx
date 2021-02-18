@@ -11,7 +11,7 @@ type CommentsProps = {
   comments: any;
 };
 
-const onDelete = (id: number) => {
+const onDelete = async (id: number) => {
   axios.delete(`http://localhost:8000/comment/${id}`, { withCredentials: true }).catch((err) => console.error(err));
 };
 
