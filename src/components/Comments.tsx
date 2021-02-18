@@ -101,6 +101,7 @@ const Comments = ({
                 className="mx-2 bg-gray px-3 py-1 rounded-md focus:outline-none"
                 onClick={(e) => {
                   e.preventDefault();
+                  setComment(contents);
                   modeToggle(mode, setMode);
                 }}
               >
