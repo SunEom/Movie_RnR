@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 type CommentsProps = {
@@ -30,7 +30,6 @@ const Comments = ({
 }: CommentsProps) => {
   const [mode, setMode] = useState('default');
   const [comment, setComment] = useState(contents);
-
   return (
     <>
       {mode === 'default' && (
@@ -44,7 +43,7 @@ const Comments = ({
               {nickname}
             </Link>
           </div>
-          <p className="text-gray-600 text-base text-center md:text-left ">{comment}</p>
+          <p className="text-gray-600 text-base text-center md:text-left ">{contents}</p>
           {commenter === user?.id && (
             <div className="flex justify-end w-full">
               <button
@@ -57,12 +56,10 @@ const Comments = ({
               </button>
               <button
                 className="mx-2 bg-gray px-3 py-1 rounded-md focus:outline-none"
-                onClick={() => {
+                onClick={async () => {
                   const answer = window.confirm('Do you really want to delete this comment?');
                   if (answer) {
-                    onDelete(id);
-                    const newComments = comments.concat();
-                    setComments(newComments.filter((c: any) => c.id !== id));
+                    onDelete(id, setComments);
                   } else {
                     return;
                   }
@@ -94,7 +91,7 @@ const Comments = ({
               <button
                 className="mx-2 bg-gray px-3 py-1 rounded-md focus:outline-none"
                 onClick={() => {
-                  onSave({ id, commenter, contents: comment });
+                  onSave({ id, commenter, contents: comment }, setComments);
                   modeToggle(mode, setMode);
                 }}
               >

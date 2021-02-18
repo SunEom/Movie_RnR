@@ -44,12 +44,12 @@ const CommentContainerContainer = ({ movie }: CommentContainerProps) => {
     axios
       .post('http://localhost:8000/comment', { ...data }, { withCredentials: true })
       .then((response) => {
-        setComments([...comments, ...response.data.data]);
-        setContents('');
+        axios.get(`http://localhost:8000/comment/${movie_id}`, { withCredentials: true }).then((response) => {
+          setComments([...response.data.data]);
+          setContents('');
+        });
       })
       .catch((err) => console.error(err));
-
-    // setComments([...comments, { commenter: user.user_id, contents }]);
     setContents('');
   };
 
