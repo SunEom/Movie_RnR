@@ -125,10 +125,15 @@ const DetailContainer = ({ id }: { id: string }) => {
 
   const onDeleteClick = async (e: any) => {
     e.preventDefault();
-    await axios
-      .delete(`http://localhost:8000/post/${id}`, { withCredentials: true })
-      .then(() => history.push({ pathname: '/' }))
-      .catch((err) => console.error(err.response.data));
+    const answer = window.confirm('Do you really want to delete this post?');
+    if (answer) {
+      await axios
+        .delete(`http://localhost:8000/post/${id}`, { withCredentials: true })
+        .then(() => history.push({ pathname: '/' }))
+        .catch((err) => console.error(err.response.data));
+    } else {
+      return;
+    }
   };
 
   const user = store.getState().user ? store.getState().user : null;
