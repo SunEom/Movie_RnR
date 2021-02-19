@@ -9,6 +9,7 @@ const passport = require('passport');
 const passportConfig = require('./lib/passport');
 passportConfig();
 const session = require('express-session');
+const MySQLStore = require('express-mysql-session')(session);
 
 const postRouter = require('./routes/post');
 const joinRouter = require('./routes/join');
@@ -16,6 +17,15 @@ const authRouter = require('./routes/auth');
 const commentRouter = require('./routes/comment');
 const userRouter = require('./routes/user');
 const searchRouter = require('./routes/search');
+
+const options ={
+  host: 'localhost',
+  port: 3306,
+  user: 'psm',
+  password: '111111',
+  database: 'movie_rnr'
+}
+const sessionStore = new MySQLStore(options);
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -30,6 +40,7 @@ app.use(
       httpOnly: true,
       secure: false,
     },
+    store: sessionStore
   })
 );
 app.use(passport.initialize());
