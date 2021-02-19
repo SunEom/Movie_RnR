@@ -17,7 +17,7 @@ function App() {
   const [loginCheck, setLoginCheck] = useState(false);
   const reloading = () => {
     axios
-      .get('http://localhost:8000/auth/login', { withCredentials: true })
+      .get(`${process.env.SERVER_URL}/auth/login`, { withCredentials: true })
       .then(async (response) => {
         if (!response.data.data.user_id) {
           setLoginCheck(true);
