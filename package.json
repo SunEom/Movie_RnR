@@ -45,7 +45,9 @@
     "start": "craco start",
     "build": "craco build",
     "test": "craco test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -53,7 +55,7 @@
       "react-app/jest"
     ]
   },
-  "proxy": "http://127.0.0.1:8000",
+  "homepage": "https://suneom.github.io/movie_rnr",
   "browserslist": {
     "production": [
       ">0.2%",
@@ -65,5 +67,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "gh-pages": "^3.1.0"
   }
 }
