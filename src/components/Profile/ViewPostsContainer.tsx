@@ -13,7 +13,7 @@ const ViewPostsContainer = ({ user }: ViewPostsContainerProps) => {
 
   const getMyPosts = () => {
     axios
-      .get(`http://localhost:8000/post/user/${user.id}`, { withCredentials: true })
+      .get(`${process.env.REACT_APP_SERVER_URL}/post/user/${user.id}`, { withCredentials: true })
       .then((response) => {
         setPosts(response.data.data);
         setloading(false);

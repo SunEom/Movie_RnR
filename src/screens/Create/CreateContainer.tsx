@@ -63,7 +63,7 @@ const CreateContainer = () => {
     }
 
     await axios
-      .post('http://localhost:8000/post', { ...data }, { withCredentials: true })
+      .post(`${process.env.REACT_APP_SERVER_URL}/post`, { ...data }, { withCredentials: true })
       .then((response) => {
         history.push(`/post/${response.data.data[0].id}`);
       })

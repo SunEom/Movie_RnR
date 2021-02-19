@@ -26,7 +26,7 @@ const PwdChangeContainer = ({ user, setMode }: PwdChangeContainerProps) => {
     };
 
     await axios
-      .post('http://localhost:8000/user/password', data, { withCredentials: true })
+      .post(`${process.env.REACT_APP_SERVER_URL}/user/password`, data, { withCredentials: true })
       .then(async (response) => {
         alert('Updated Complete!');
         setMode('basic');

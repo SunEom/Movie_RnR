@@ -33,7 +33,6 @@ const JoinContainer = () => {
       alert('Please input id !');
       return;
     }
-    console.log(id);
     await axios.post('/join/id', { id }).then((response) => {
       if (response.status !== 200) {
         console.error(response.data.error);
@@ -92,11 +91,11 @@ const JoinContainer = () => {
     };
 
     await axios
-      .post('http://localhost:8000/join', data)
+      .post(`${process.env.REACT_APP_SERVER_URL}/join`, data)
       .then(async () => {
         await alert('Join Successfully!');
         axios
-          .post('http://localhost:8000/auth/login', { id: data.id, password: data.password }, { withCredentials: true })
+          .post(`${process.env.REACT_APP_SERVER_URL}/auth/login`, { id: data.id, password: data.password }, { withCredentials: true })
           .then((response) => {
             store.dispatch({ type: 'LOGIN', user: response.data.data });
             history.push({

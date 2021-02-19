@@ -13,7 +13,7 @@ const UserContainer = () => {
 
   const getUser = () => {
     axios
-      .get(`http://localhost:8000/user/${params.id}`, { withCredentials: true })
+      .get(`${process.env.REACT_APP_SERVER_URL}/user/${params.id}`, { withCredentials: true })
       .then((response) => {
         setUser(response.data.data[0]);
         if (store.getState().user?.id === response.data.data[0]?.id) {

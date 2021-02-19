@@ -9,7 +9,7 @@ const HomeContainer = () => {
 
   const getRecent = async () => {
     axios
-      .get('/post', { withCredentials: true })
+      .get(`${process.env.REACT_APP_SERVER_URL}/post`, { withCredentials: true })
       .then((response) => {
         store.dispatch({ type: 'GET_RECENT', recent: response.data.data });
         setRecent(response.data.data);
