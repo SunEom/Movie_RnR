@@ -70,28 +70,13 @@ router.delete('/', async function (req, res, next) {
   if (!authCheck.IsOwner(req, res)) {
     res.status(400).send({ code: 400, error: 'not login' });
   }
-  await db.query(`DELETE FROM comment WHERE commenter=?`, [req.user.id], async function (error, result) {
-    if (error) {
-      next(error);
+  await db.query(`DELETE FROM user WHERE id=?`, [req.user.id], function (error4, result4) {
+    if (error4) {
+      next(error4);
     }
-    await db.query(`DELETE FROM movie WHERE user_id=?`, [req.user.id], async function (error2, result2) {
-      if (error2) {
-        next(error2);
-      }
-      await db.query(`DELETE FROM aboutme WHERE my_id=?`, [req.user.id], async function (error3, result3) {
-        if (error3) {
-          next(error3);
-        }
-        await db.query(`DELETE FROM user WHERE id=?`, [req.user.id], function (error4, result4) {
-          if (error4) {
-            next(error4);
-          }
-          req.logout();
-          req.session.save(function () {
-            res.status(200).send({ code: 200 });
-          });
-        });
-      });
+    req.logout();
+    req.session.save(function () {
+      res.status(200).send({ code: 200 });
     });
   });
 });
