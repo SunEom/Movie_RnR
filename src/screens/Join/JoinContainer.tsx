@@ -33,7 +33,7 @@ const JoinContainer = () => {
       alert('Please input id !');
       return;
     }
-    await axios.post('/join/id', { id }).then((response) => {
+    await axios.post(`${process.env.REACT_APP_SERVER_URL}/join/id`, { id }).then((response) => {
       if (response.status !== 200) {
         console.error(response.data.error);
       }
@@ -50,7 +50,7 @@ const JoinContainer = () => {
 
   const nickConfirm = async (e: any) => {
     e.preventDefault();
-    await axios.post('/join/nick', { nickname }).then((response) => {
+    await axios.post(`${process.env.REACT_APP_SERVER_URL}/join/nick`, { nickname }).then((response) => {
       if (response.status !== 200) {
         console.error(response.data.error);
       }
