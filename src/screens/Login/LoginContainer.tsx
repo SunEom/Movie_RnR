@@ -35,7 +35,7 @@ const LoginContainer = () => {
       .then((response) => {
         store.dispatch({ type: 'LOGIN', user: response.data.data });
         history.push({
-          pathname: '/',
+          pathname: `${process.env.REACT_APP_SERVER_URL}/`,
         });
       })
       .catch((err) => {
