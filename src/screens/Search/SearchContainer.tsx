@@ -11,7 +11,7 @@ const SearchContainer = () => {
 
   const getData = () => {
     axios
-      .post(`http://localhost:8000/search`, { keyword }, { withCredentials: true })
+      .post(`${process.env.REACT_APP_SERVER_URL}/search`, { keyword }, { withCredentials: true })
       .then((response) => {
         setResult(response.data.data);
         setLoading(false);

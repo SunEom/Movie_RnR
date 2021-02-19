@@ -20,7 +20,7 @@ const EditProfileContainer = ({ user, setMode }: EditProfileContainerProps) => {
 
   const nickConfirm = async (e: any) => {
     e.preventDefault();
-    await axios.post('http://localhost:8000/join/nick', { nickname }).then((response) => {
+    await axios.post(`${process.env.REACT_APP_SERVER_URL}/join/nick`, { nickname }).then((response) => {
       if (response.status !== 200) {
         console.error(response.data.error);
       }
@@ -54,7 +54,7 @@ const EditProfileContainer = ({ user, setMode }: EditProfileContainerProps) => {
 
     console.log(data);
     await axios
-      .post('http://localhost:8000/user/profile', data, { withCredentials: true })
+      .post(`${process.env.REACT_APP_SERVER_URL}/user/profile`, data, { withCredentials: true })
       .then(async (response) => {
         await store.dispatch({ type: 'USER_UPDATED', user: response.data.data[0] });
         alert('Updated Complete!');

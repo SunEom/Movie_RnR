@@ -12,7 +12,7 @@ const mapDispatchToProps = (dispatch: any) => {
 
 const onClick = async (logout: any) => {
   await axios
-    .get('http://localhost:8000/auth/logout', { withCredentials: true })
+    .get(`${process.env.REACT_APP_SERVER_URL}/auth/logout`, { withCredentials: true })
     .then(() => {
       logout();
     })

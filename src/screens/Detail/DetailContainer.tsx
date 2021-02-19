@@ -59,7 +59,7 @@ const DetailContainer = ({ id }: { id: string }) => {
     }
 
     await axios
-      .patch('http://localhost:8000/post/update', { ...data }, { withCredentials: true })
+      .patch(`${process.env.REACT_APP_SERVER_URL}/post/update`, { ...data }, { withCredentials: true })
       .then((response) => {
         history.push(`/post/${response.data.data[0].id}`);
         getMovie();
@@ -101,7 +101,7 @@ const DetailContainer = ({ id }: { id: string }) => {
 
   const getMovie = async () => {
     axios
-      .get(`/post/${id}`)
+      .get(`${process.env.REACT_APP_SERVER_URL}/post/${id}`)
       .then((response) => {
         const movie = response.data.data.movie[0];
         const user = response.data.data.user[0];
@@ -128,7 +128,7 @@ const DetailContainer = ({ id }: { id: string }) => {
     const answer = window.confirm('Do you really want to delete this post?');
     if (answer) {
       await axios
-        .delete(`http://localhost:8000/post/${id}`, { withCredentials: true })
+        .delete(`${process.env.REACT_APP_SERVER_URL}/post/${id}`, { withCredentials: true })
         .then(() => history.push({ pathname: '/' }))
         .catch((err) => console.error(err.response.data));
     } else {

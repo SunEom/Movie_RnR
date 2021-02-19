@@ -13,7 +13,7 @@ const DangerContainer = () => {
       return;
     }
     axios
-      .delete('http://localhost:8000/user/', { withCredentials: true })
+      .delete(`${process.env.REACT_APP_SERVER_URL}/user/`, { withCredentials: true })
       .then(() => {
         store.dispatch({ type: 'LOGOUT' });
         alert('Account is deleted completely');

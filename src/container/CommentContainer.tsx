@@ -21,7 +21,7 @@ const CommentContainerContainer = ({ movie }: CommentContainerProps) => {
 
   const getComments = () => {
     axios
-      .get(`http://localhost:8000/comment/${movie.id}`, { withCredentials: true })
+      .get(`${process.env.REACT_APP_SERVER_URL}/comment/${movie.id}`, { withCredentials: true })
       .then((response) => {
         setComments(response.data.data);
       })
@@ -42,9 +42,9 @@ const CommentContainerContainer = ({ movie }: CommentContainerProps) => {
     };
 
     axios
-      .post('http://localhost:8000/comment', { ...data }, { withCredentials: true })
+      .post(`${process.env.REACT_APP_SERVER_URL}/comment`, { ...data }, { withCredentials: true })
       .then((response) => {
-        axios.get(`http://localhost:8000/comment/${movie_id}`, { withCredentials: true }).then((response) => {
+        axios.get(`${process.env.REACT_APP_SERVER_URL}/comment/${movie_id}`, { withCredentials: true }).then((response) => {
           setComments([...response.data.data]);
           setContents('');
         });

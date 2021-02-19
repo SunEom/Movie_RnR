@@ -31,7 +31,7 @@ const LoginContainer = () => {
     };
 
     axios
-      .post('http://localhost:8000/auth/login', { ...data }, { withCredentials: true })
+      .post(`${process.env.REACT_APP_SERVER_URL}/auth/login`, { ...data }, { withCredentials: true })
       .then((response) => {
         store.dispatch({ type: 'LOGIN', user: response.data.data });
         history.push({
