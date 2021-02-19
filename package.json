@@ -55,7 +55,7 @@
       "react-app/jest"
     ]
   },
-  "homepage": "https://suneom.github.io/movie_rnr",
+  "homepage": "https://suneom.github.io/Movie_RnR",
   "browserslist": {
     "production": [
       ">0.2%",
