@@ -37,7 +37,7 @@ const DetailPostCard = ({ id, title, overview, created, genres, commentCount, ra
               <i className="fas fa-star"></i> : {rates}
             </div>
             <div>
-              <i className="far fa-comment"></i> : {rates}
+              <i className="far fa-comment"></i> : {commentCount}
             </div>
           </div>
         </Link>

@@ -19,63 +19,66 @@ const ProfileNav = ({ modeHandler, isMy }: ProfileNavProps) => {
     });
   };
   return (
-    <div className="col-span-12 w-full px-3 py-6 justify-center flex space-x-4 border-gray border-solid md:space-x-0 md:space-y-4 md:flex-col md:col-span-2 md:justify-start">
-      <button
-        onClick={(e) => {
-          modeHandler('basic');
-          navColorChange(0);
-        }}
-        className="navbtn text-sm p-2 w-full bg-indigo-900 text-white text-center rounded font-bold"
-      >
-        Basic Information
-      </button>
+    <>
+      <div className="col-span-12 w-full px-3 pt-6 justify-center flex space-x-4 border-gray border-solid md:space-x-0 md:space-y-4 md:flex-col md:col-span-2 md:justify-start">
+        <button
+          onClick={(e) => {
+            modeHandler('basic');
+            navColorChange(0);
+          }}
+          className="navbtn text-sm p-2 bg-indigo-900 text-white text-center rounded font-bold"
+        >
+          Basic Information
+        </button>
 
-      {isMy && (
+        {isMy && (
+          <button
+            onClick={() => {
+              modeHandler('edit');
+              navColorChange(1);
+            }}
+            className="navbtn text-sm p-2 bg-indigo-200 text-center rounded font-semibold hover:bg-indigo-700 hover:text-gray-200"
+          >
+            Edit Profile
+          </button>
+        )}
+
+        {isMy && (
+          <button
+            onClick={() => {
+              modeHandler('pwd');
+              navColorChange(2);
+            }}
+            className="navbtn text-sm p-2 bg-indigo-200 text-center rounded font-semibold hover:bg-indigo-700 hover:text-gray-200"
+          >
+            Change Password
+          </button>
+        )}
+      </div>
+      <div className="col-span-12 w-full px-3 py-6 justify-center flex space-x-4 border-gray border-solid md:space-x-0 md:space-y-4 md:flex-col md:col-span-2 md:justify-start">
         <button
           onClick={() => {
-            modeHandler('edit');
-            navColorChange(1);
+            modeHandler('posts');
+            navColorChange(isMy ? 3 : 1);
           }}
           className="navbtn text-sm p-2 bg-indigo-200 text-center rounded font-semibold hover:bg-indigo-700 hover:text-gray-200"
         >
-          Edit Profile
+          View Postings
         </button>
-      )}
 
-      {isMy && (
-        <button
-          onClick={() => {
-            modeHandler('pwd');
-            navColorChange(2);
-          }}
-          className="navbtn text-sm p-2 bg-indigo-200 text-center rounded font-semibold hover:bg-indigo-700 hover:text-gray-200"
-        >
-          Change Password
-        </button>
-      )}
-
-      <button
-        onClick={() => {
-          modeHandler('posts');
-          navColorChange(isMy ? 3 : 1);
-        }}
-        className="navbtn text-sm p-2 bg-indigo-200 text-center rounded font-semibold hover:bg-indigo-700 hover:text-gray-200"
-      >
-        View Postings
-      </button>
-
-      {isMy && (
-        <button
-          onClick={() => {
-            modeHandler('danger');
-            navColorChange(4);
-          }}
-          className="navbtn text-sm p-2 bg-indigo-200 text-center rounded font-semibold hover:bg-indigo-700 hover:text-gray-200"
-        >
-          Danger Zone
-        </button>
-      )}
-    </div>
+        {isMy && (
+          <button
+            onClick={() => {
+              modeHandler('danger');
+              navColorChange(4);
+            }}
+            className="navbtn text-sm p-2 bg-indigo-200 text-center rounded font-semibold hover:bg-indigo-700 hover:text-gray-200"
+          >
+            Danger Zone
+          </button>
+        )}
+      </div>
+    </>
   );
 };
 
