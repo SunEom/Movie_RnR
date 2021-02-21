@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter, Route, useParams } from 'react-router-dom';
+import { HashRouter, Route, useParams } from 'react-router-dom';
 import Header from './container/Header';
 import Create from './screens/Create';
 import Home from './screens/Home';
@@ -58,7 +58,7 @@ function App() {
   return (
     <div className="App">
       {loginCheck ? (
-        <BrowserRouter>
+        <HashRouter>
           <Header />
           <Route exact path="/">
             <Home />
@@ -84,7 +84,7 @@ function App() {
           <Route exact path="/search/:keyword">
             <Search />
           </Route>
-        </BrowserRouter>
+        </HashRouter>
       ) : null}
     </div>
   );
