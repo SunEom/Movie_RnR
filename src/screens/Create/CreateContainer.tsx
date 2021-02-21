@@ -67,7 +67,12 @@ const CreateContainer = () => {
       .then((response) => {
         history.push(`/post/${response.data.data[0].id}`);
       })
-      .catch((err) => console.log('response: ', err.response.data));
+      .catch((err) => {
+        if (err.response.data.error === 'not login') {
+          store.dispatch({ action: 'LOGOUT' });
+          history.push({ pathname: '/login' });
+        }
+      });
   };
 
   const onChange = (e: React.FormEvent<HTMLInputElement>) => {

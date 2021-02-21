@@ -52,7 +52,6 @@ const EditProfileContainer = ({ user, setMode }: EditProfileContainerProps) => {
       twitter,
     };
 
-    console.log(data);
     await axios
       .post(`${process.env.REACT_APP_SERVER_URL}/user/profile`, data, { withCredentials: true })
       .then(async (response) => {
@@ -71,7 +70,7 @@ const EditProfileContainer = ({ user, setMode }: EditProfileContainerProps) => {
         });
         window.scrollTo(0, 0);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.error(err));
   };
 
   const onChange = (e: React.FormEvent<HTMLInputElement>) => {
