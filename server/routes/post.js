@@ -36,7 +36,13 @@ router.post('/', function (req, res, next) {
 });
 
 router.get('/user/:id', async function (req, res, next) {
-  await db.query(`SELECT * FROM movie WHERE user_id=?`, [req.params.id], function (error, result) {
+  await db.query(`select movie.id, title,overview, movie.created, genres, rates, movie.updated, user_id, comment.movie_id as ck, count(*) as commentCount from movie left join comment on movie.id=movie_id group by movie.id having user_id=?`, 
+  [req.params.id], function (error, result) {
+    for(let i=0; i<result.length; i++){
+      if(!result[i].ck){
+          result[i].commentCount = 0;
+      }
+  }
     if (error) {
       next(error);
     }
