@@ -103,8 +103,8 @@ const DetailContainer = ({ id }: { id: string }) => {
     axios
       .get(`${process.env.REACT_APP_SERVER_URL}/post/${id}`)
       .then((response) => {
-        const movie = response.data.data.movie[0];
-        const user = response.data.data.user[0];
+        const movie = response.data.data.movie;
+        const user = response.data.data.user;
         setMovie({ ...movie, user: { ...user } });
         setTitle(movie.title);
         setGenres(genresToArray(movie.genres));
