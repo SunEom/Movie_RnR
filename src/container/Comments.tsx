@@ -32,7 +32,7 @@ const onSave = (data: any, setComments: any) => {
     return alert('Please input Comment!');
   }
   axios.patch(`${process.env.REACT_APP_SERVER_URL}/comment/update`, { ...data }, { withCredentials: true }).then(() => {
-    const movie_id = +window.location.pathname.split('/')[window.location.pathname.split.length];
+    const movie_id = window.location.href.split('/')[window.location.href.split('/').length - 1];
     axios
       .get(`${process.env.REACT_APP_SERVER_URL}/comment/${movie_id}`)
       .then((response) => {
