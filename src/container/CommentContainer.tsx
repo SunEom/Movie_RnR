@@ -46,6 +46,7 @@ const CommentContainerContainer = ({ movie }: CommentContainerProps) => {
       .then((response) => {
         axios.get(`${process.env.REACT_APP_SERVER_URL}/comment/${movie_id}`, { withCredentials: true }).then((response) => {
           setComments([...response.data.data]);
+          console.log(...response.data.data);
           setContents('');
         });
       })

@@ -15,7 +15,7 @@ const onDelete = async (id: number, setComments: any) => {
   axios
     .delete(`${process.env.REACT_APP_SERVER_URL}/comment/${id}`, { withCredentials: true })
     .then(() => {
-      const movie_id = +window.location.pathname.split('/')[window.location.pathname.split.length];
+      const movie_id = window.location.href.split('/')[window.location.href.split('/').length - 1];
       axios
         .get(`${process.env.REACT_APP_SERVER_URL}/comment/${movie_id}`)
         .then((response) => {
@@ -31,7 +31,7 @@ const onSave = (data: any, setComments: any) => {
   if (data.contents === '') {
     return alert('Please input Comment!');
   }
-  axios.patch('${process.env.REACT_APP_SERVER_URL}/comment/update', { ...data }, { withCredentials: true }).then(() => {
+  axios.patch(`${process.env.REACT_APP_SERVER_URL}/comment/update`, { ...data }, { withCredentials: true }).then(() => {
     const movie_id = +window.location.pathname.split('/')[window.location.pathname.split.length];
     axios
       .get(`${process.env.REACT_APP_SERVER_URL}/comment/${movie_id}`)
